@@ -1,0 +1,51 @@
+.post {
+    display: flex;
+    margin: 30px;
+    padding-top: 5px;
+    transition: 0.1s;
+}
+.post-info {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+.post-ins {
+    padding: 20px;
+    display:table;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.1);
+    transition: 0.1s;
+    min-width: 15vw;
+}
+.post:hover > .post-ins {
+    border-radius: 15px 0px 0px 15px;
+}
+.post:hover > .post-options {
+    display: block;
+}
+.post-options {
+    display: none;
+    padding: 5px;
+    border-radius: 0px 15px 15px 0px;
+    background-color: rgba(0,0,0,0.05);
+    transition: 0.1s;
+}
+.post-option {
+    background: transparent;
+    border-width: 0;
+    border-radius: 5px;
+    width: 1.75em;
+    height: 1.75em;
+    transition: 0.2s;
+}
+.post-option:hover {
+    background: rgba(0,0,0,0.1);
+}
+.post-title {
+    margin-top: 0;
+    font-weight: 700;
+}
+.post-note-content {
+    margin-bottom: 0;
+}

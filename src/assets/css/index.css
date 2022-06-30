@@ -1,0 +1,75 @@
+body {
+  font-family: "Open Sans", Helvetica, Roboto, Arial, sans-serif;
+  margin: auto;
+}
+
+#content {
+  margin-top: 0;
+  margin-left: 16.5%;
+}
+
+#sidebar {
+  width: 15%;
+  background: rgb(196,196,196);
+  padding: 1rem;
+  font-size: 24px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+}
+
+.sidebar-item {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 2px;
+}
+.sidebar-bottom {
+  position: fixed;
+  width: 13% !important;
+  left: 1rem;
+  bottom: 1rem;
+}
+
+a.sidebar-item {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  transition: 0.2s;
+  padding: 10px;
+  width: calc(95% - 1rem);
+  border-radius: 5px;
+}
+a.sidebar-item:hover {
+  background: rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+  color: rgb(20, 20, 20);
+}
+
+.ttl {
+  padding: 13px;
+  padding-left: 20px;
+  background-color: rgb(219, 219, 219);
+  font-size: 24px;
+  font-weight: 600;
+}
+.postmakersect {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: rgb(219, 219, 219);
+  color: rgb(77, 127, 233);
+  text-decoration: none;
+  transition: 0.2s;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 36px;
+}
+.postmakersect:hover {
+  background-color: rgb(225, 225, 225);
+  transform: translateY(-2px);
+}

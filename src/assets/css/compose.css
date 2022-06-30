@@ -1,0 +1,19 @@
+.compose-form {
+    margin: 2em;
+    margin-left: 3em;
+}
+
+.compose-form-date, .compose-form-input, .compose-form-dropdown, .compose-form-button {
+    font-size: 1.5rem;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(179, 179, 179);
+    border-bottom-width: 2px;
+    border-bottom-color: rgb(63, 63, 63);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    color: rgb(63, 63, 63);
+}

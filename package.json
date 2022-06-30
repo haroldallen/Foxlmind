@@ -1,0 +1,79 @@
+{
+  "name": "Foxlmind",
+  "productName": "foxlmind",
+  "version": "1.0.0",
+  "description": "Epic note-keeping and to-do app built in Electron by foxlldev",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "release": "electron-builder",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foxlldev/Foxlmind.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "foxlldev",
+    "email": "foxl@withered.app",
+    "url": "https://foxl.design/"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "appId": "design.foxl.foxlmind",
+            "name": "foxlmind",
+            "productName": "Foxlmind",
+            "copyright": "Copyright © 2022 foxlldev"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^5.0.5",
+    "fs": "^0.0.1-security",
+    "shell": "^0.9.4"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
+    "electron": "19.0.4",
+    "electron-builder": "^22.14.13"
+  },
+  "build": {
+    "win": {
+      "publish": [
+        "github"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="./assets/css/compose.css" rel="stylesheet">
+    </head>
+<body>
+    <div id="ttl" class="ttl ttl-compose">
+        Compose post..
+    </div>
+    <div class="compose-form">
+        <select class="compose-form-dropdown" id="compose-form-type" name="compose-form-type">
+            <option value="note">Note</option>
+            <option value="todo">To-do</option>
+        </select>
+        <input class="compose-form-date" id="compose-form-date" name="compose-form-date" type="date"><br>
+        
+        <input class="compose-form-input" id="compose-form-title" name="compose-form-title" placeholder="Title..."
+            type="text"><br>
+        
+        <textarea class="compose-form-input" id="compose-form-content" name="compose-form-content" placeholder="Content..."
+            type="text"></textarea><br>
+        
+        <button class="compose-form-button" id="compose-form-submit" name="compose-form-submit"
+            onclick="composePostFromForm()">Post</button>
+    </div>
+</body>
+</html>
