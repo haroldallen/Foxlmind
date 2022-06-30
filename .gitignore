@@ -1,3 +1,7 @@
+# custom
+dist/
+
+
 # Logs
 logs
 *.log
