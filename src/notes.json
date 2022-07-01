@@ -6,6 +6,13 @@
       "title": "Welcome to Foxlmind...",
       "content": "Thank you for using Foxlmind!<br>This was made completely for fun but if you want to support its development, you can <a onclick='openURLInBrowser(`https://patreon.com/foxlldev`)' href='#'>donate here</a>.<br>If not, that's fine, enjoy :)",
       "state": "visible"
+    },
+    {
+      "date": "endless",
+      "type": "note",
+      "title": "Tribute to Technoblade",
+      "content": "https://youtu.be/DPMluEVUqS0",
+      "state": "visible"
     }
   ]
 }
