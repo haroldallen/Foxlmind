@@ -57,7 +57,7 @@ this.loadPageTitle = loadPageTitle;
 
 async function loadPosts(tc) {
     console.log("loadTodayNotes started")
-    const notesfile = await fetch(dataPath+"posts.json");
+    const notesfile = await fetch(dataPath+"/posts.json");
     const notesParsed = await notesfile.json();
     var notes = await notesParsed.table;
     console.log(notes);
@@ -113,9 +113,9 @@ async function loadPosts(tc) {
 this.loadPosts = loadPosts;
 
 function loadComplete() {
-    if (!fs.existsSync(dataPath+"posts.json")) {
+    if (!fs.existsSync(dataPath+"/posts.json")) {
         var data2Write = {table: [{"date": "endless","type": "note","title": "Welcome to Foxlmind...","content": "Thank you for using Foxlmind!<br>This was made completely for fun but if you want to support its development, you can <a onclick='openURLInBrowser(`https://patreon.com/foxlldev`)' href='#'>donate here</a>.<br>If not, that's fine, enjoy :)","state": "visible"},{"date": "endless","type": "note","title": "Tribute to Technoblade","content": "https://youtu.be/DPMluEVUqS0","state": "visible"}]};
-        fs.writeFile(dataPath+"posts.json", JSON.stringify(data2Write, null, 2), { flag: 'wx' }, function (err) {
+        fs.writeFile(dataPath+"/posts.json", JSON.stringify(data2Write, null, 2), { flag: 'wx' }, function (err) {
             if (err) throw err;
             console.log("It's saved!");
         });

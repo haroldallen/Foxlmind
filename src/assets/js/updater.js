@@ -30,11 +30,3 @@ function closeNotification() {
 function restartApp() {
   ipcRenderer.send('restart_app');
 }
-
-function debugging1() {
-  ipcRenderer.send('downloadGame', 'terflo');
-}
-
-function debugging2() {
-  ipcRenderer.send('launchGame', 'terflo');
-}

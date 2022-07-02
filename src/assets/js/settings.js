@@ -1,4 +1,5 @@
 function loadTheme() {
+    if (window.localStorage.getItem('theme') !== 'dark' && window.localStorage.getItem('theme') !== 'light') {window.localStorage.setItem('theme', 'light');}
     if (window.localStorage.getItem('theme') === 'dark' || window.localStorage.getItem('theme') === 'light') {
         document.body.classList.remove('theme-dark', 'theme-light');
         document.body.classList.add(`theme-${window.localStorage.getItem('theme')}`);
