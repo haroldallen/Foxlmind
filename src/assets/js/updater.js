@@ -2,7 +2,6 @@ var { ipcRenderer } = require('electron');
       
 ipcRenderer.send('app_version');
 ipcRenderer.on('app_version', (e, args) => {
-  ipcRenderer.removeAllListeners('app_version');
   console.log('Found version ' + args.version);
 });
 
