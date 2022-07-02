@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const { autoUpdater } = require("electron-updater");
 const os = require('os');
+const storage = require('electron-json-storage');
 let mainWindow;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -10,6 +11,11 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 }
 
 const createWindow = () => {
+  storage.setDataPath(os.tmpdir());
+  console.log(storage.getDataPath());
+  console.log(storage.getDefaultDataPath());
+  console.log(os.tmpdir());
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     minWidth: 980,
@@ -19,7 +25,7 @@ const createWindow = () => {
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
     }
   });
 
@@ -55,6 +61,10 @@ app.on('activate', () => {
 // Sends version to IPC
 ipcMain.on('app_version', (e) => {
   e.sender.send('app_version', { version: app.getVersion() });
+});
+
+ipcMain.on('json_path', (e) => {
+  e.sender.send('json_path', { path: storage.getDataPath() });
 });
 
 ipcMain.on('restart_app', () => {

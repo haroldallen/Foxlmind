@@ -1,0 +1,47 @@
+#page-content {
+    margin: 30px;
+    margin-top: 20px;
+}
+
+.settings-save {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border-color: rgba(50,225,50,0.75);
+    border-radius: 10px;
+    border-style: solid;
+    cursor:pointer;
+    transition: 0.2s;
+}
+.settings-save:hover {
+    background: rgba(0,50,0,0.5);
+    transform: translateY(-2px);
+}
+
+.setting {
+    display: flex;
+    justify-content: space-between;
+}
+.setting-ins {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15px;
+}
+.setting-label {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.setting-radio {
+    display: block;
+}
+.setting-radio-label {
+    font-weight: 500;
+}
+.setting-radio-actual {
+
+}

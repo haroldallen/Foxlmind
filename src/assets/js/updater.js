@@ -1,4 +1,4 @@
-const { ipcRenderer } = require('electron');
+var { ipcRenderer } = require('electron');
       
 ipcRenderer.send('app_version');
 ipcRenderer.on('app_version', (e, args) => {
