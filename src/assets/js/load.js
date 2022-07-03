@@ -93,19 +93,53 @@ async function loadPosts(tc) {
                 var unCompleteIcon = "fa-check";
                 var unComplete = "Complete";
                 if (gpg === "completed") {unComplete = "Uncomplete"; unCompleteIcon = "fa-angle-left";}
-                contentsDiv.innerHTML += `
-                <div class="post post-${thisNoteValues[1]}">
-                    <div class="post-ins">
-                        <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
-                        <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
-                        <p class="post-content post-${thisNoteValues[1]}-content">${thisNoteValues[3]}</p>
-                    </div>
-                    <div class="post-options">
-                        <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
-                        <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
-                        <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
-                    </div>
-                </div>`;
+
+                if (thisNoteValues[1] === "todo") {
+                    var contentPart = "";
+                    for (var it=0;it<thisNoteValues[3].length; it++) {
+                        console.log(Object.values(thisNoteValues[3])[it].val);
+                        if (Object.values(thisNoteValues[3])[it].val === true) {
+                            contentPart += 
+                            `<label class="rcontainer" id="todo-${i}-${it}-checkwrap">${Object.values(thisNoteValues[3])[it].label}
+                                <input type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})" checked="checked">
+                                <span class="rcheckmark"></span>
+                            </label><br>`;
+                        } else {
+                            contentPart += 
+                            `<label class="rcontainer" id="todo-${i}-${it}-checkwrap">${Object.values(thisNoteValues[3])[it].label}
+                                <input type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})">
+                                <span class="rcheckmark"></span>
+                            </label><br>`;
+                        }
+                    }
+                    contentsDiv.innerHTML += `
+                    <div class="post post-${thisNoteValues[1]}">
+                        <div class="post-ins">
+                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
+                            <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
+                            <p class="post-content post-${thisNoteValues[1]}-content">${contentPart}</p>
+                        </div>
+                        <div class="post-options">
+                            <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
+                            <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
+                            <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
+                        </div>
+                    </div>`;
+                } else if (thisNoteValues[1] === "note") {
+                    contentsDiv.innerHTML += `
+                    <div class="post post-${thisNoteValues[1]}">
+                        <div class="post-ins">
+                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
+                            <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
+                            <p class="post-content post-${thisNoteValues[1]}-content">${thisNoteValues[3]}</p>
+                        </div>
+                        <div class="post-options">
+                            <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
+                            <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
+                            <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
+                        </div>
+                    </div>`;
+                }
             }
         }
     }

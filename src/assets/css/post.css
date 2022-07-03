@@ -4,33 +4,39 @@
     padding-top: 5px;
     transition: 0.1s;
 }
+
 .post-info {
     margin-top: 0;
     margin-bottom: 0;
     margin-bottom: 5px;
     font-size: 12px;
 }
+
 .post-ins {
     padding: 20px;
-    display:table;
+    display: table;
     border-radius: 15px;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     transition: 0.1s;
     min-width: 15vw;
 }
-.post:hover > .post-ins {
+
+.post:hover>.post-ins {
     border-radius: 15px 0px 0px 15px;
 }
-.post:hover > .post-options {
+
+.post:hover>.post-options {
     display: block;
 }
+
 .post-options {
     display: none;
     padding: 5px;
     border-radius: 0px 15px 15px 0px;
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
     transition: 0.1s;
 }
+
 .post-option {
     background: transparent;
     border-width: 0;
@@ -40,13 +46,83 @@
     transition: 0.2s;
     color: var(--content-textcolor);
 }
+
 .post-option:hover {
-    background: rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.1);
 }
+
 .post-title {
     margin-top: 0;
     font-weight: 700;
 }
+
 .post-note-content {
     margin-bottom: 0;
+}
+
+/* The container */
+.rcontainer {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.rcontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.rcheckmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.rcontainer:hover input~.rcheckmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.rcontainer input:checked~.rcheckmark {
+    background-color: var(--link-color);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.rcheckmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.rcontainer input:checked~.rcheckmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.rcontainer .rcheckmark:after {
+    left: 5px;
+    top: 2.5px;
+    width: 2.5px;
+    height: 5px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
