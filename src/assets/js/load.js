@@ -32,8 +32,7 @@ function loadPage(pg) {
     } else if (pg === "settings") {
         $("#content").load('./settings.html');
     } else {
-        pg = "today";
-        loadPage(pg);
+        window.location.href = "./index.html?page=today";
     }
 
     if (pg === "today" || pg === "upcoming" || pg === "completed") {
@@ -64,6 +63,7 @@ async function loadPosts(tc) {
     var contentsDiv = document.getElementById("page-jsei");
     var notesLength = Object.keys(notes).length;
     console.log(notesLength)
+    var postsLoaded = 0;
     for (var i = 0; i < notesLength; i++) {
         var thisNote = notes[i];
         var thisNoteKeys = Object.keys(thisNote);
@@ -140,8 +140,13 @@ async function loadPosts(tc) {
                         </div>
                     </div>`;
                 }
+                postsLoaded++;
             }
         }
+    }
+    console.log(postsLoaded);
+    if (postsLoaded === 0) {
+        contentsDiv.innerHTML += `<p class="noposts">Couldn't find any posts</p>`;
     }
 }
 this.loadPosts = loadPosts;

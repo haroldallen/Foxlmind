@@ -1,13 +1,25 @@
 var todoId = 0;
+var qs = new URLSearchParams(window.location.search);
+var roc = qs.get('roc');
+
+function loadComposeDefaultDate() {
+    var date = document.getElementById("compose-form-date");
+    var today = new Date();
+    date.value = today.getFullYear()+"-"+("0" + (today.getMonth() + 1)).slice(-2)+"-"+("0" + today.getDate());
+}
+this.loadComposeDefaultDate = loadComposeDefaultDate;
+loadComposeDefaultDate();
 
 function composePostFromForm() {
     var type = document.getElementById("compose-form-type");
     var date = document.getElementById("compose-form-date");
+    var endless = document.getElementById("compose-form-endless");
     var title = document.getElementById("compose-form-title");
     var content = document.getElementById("compose-form-content");
     var todos = document.getElementById("compose-form-todos");
 
     // Checks
+    console.log(date.value);
     console.log(title.value +" and "+content.value+" and "+document.getElementById(`compose-form-todos`).children[0].value)
     if (title.value === "" || (type.value.toLowerCase()==="note" && content.value === "") || (type.value.toLowerCase()==="todo" && document.getElementById(`compose-form-todos`).children[0].value === "")) {
         document.getElementById("error").style.display = "flex";
@@ -19,7 +31,7 @@ function composePostFromForm() {
 
     var newDateFull = dateFull.getFullYear()+"-"+("0" + (dateFull.getMonth() + 1)).slice(-2)+"-"+("0" + dateFull.getDate()).slice(-2);
 
-    if (date.value === "") {newDateFull = "endless";}
+    if (date.value === "" || endless.checked) {newDateFull = "endless";}
 
     if (type.value.toLowerCase() === "note") {
         composeNote(newDateFull, title.value, content.value);
@@ -41,6 +53,9 @@ function composePostFromForm() {
     } else {
         console.log("Other types have not been implemented yet!");
     }
+
+    // Send user back to page
+    window.location.href = "./index.html?page="+roc;
 }
 this.composePostFromForm = composePostFromForm;
 
@@ -91,13 +106,11 @@ loadPostType();
 function addTodo() {
     todoId++;
     $('#compose-form-todos').append(`
-    <div class="compose-form-todo">
-        <label class="rcontainer">
-            <input type="checkbox" checked="checked">
-            <span class="rcheckmark"></span>
-        </label>
-        <div class="compose-form-iar"><input class="compose-form-input compose-form-todo-input" placeholder="Label..." type="text">
-        <button class="compose-form-button compose-form-button-red" onclick="removeTodo(${todoId})">X</button></div>
+    <div class="compose-form-todo" id="compose-form-todo">
+        <input class="compose-form-checkbox" type="checkbox">
+        <input class="compose-form-input" placeholder="To-do label..." type="text">
+        <button class="compose-form-button compose-form-button-red" onclick="removeTodo(${todoId})">X</button>
+        <br>
     </div>`);
     // <div class="compose-form-todo"><input class="compose-form-checkbox" type="checkbox"><input class="compose-form-input" placeholder="Label..." type="text"><button class="compose-form-button compose-form-button-red" onclick="removeTodo(${todoId})">X</button></div>`
 }

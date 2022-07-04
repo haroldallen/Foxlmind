@@ -28,14 +28,14 @@
             </div>
         </div>
     </div>
-    <button class="settings-save" id="settingspg-save" onclick="saveSettings()">SAVE</button>
+    <button class="settings-save" id="settingspg-save" onclick="saveSettings()">Save</button>
 
 
     <script>
         ipcRenderer.send('app_version');
         ipcRenderer.on('app_version', (e, args) => {
             console.log('Found version (for settings page) ' + args.version);
-            document.getElementById('ttl').innerText = "Settings | "+args.version;
+            document.getElementById('ttl').innerText = "Settings | v"+args.version;
         });
     </script>
 </body>

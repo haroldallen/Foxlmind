@@ -4,29 +4,31 @@
         <link href="./assets/css/post.css" rel="stylesheet">
         <link href="./assets/css/compose.css" rel="stylesheet">
     </head>
-<body>
+<body onload="loadComposeDefaultDate()">
     <div id="ttl" class="ttl ttl-compose">
         Compose post..
     </div>
     <div id="error" style="display: none;"><div id="error-content"><strong>Error</strong>: This feature has not yet been implemented!</div> <button id="error-close" onclick="closeError()">X</button></div>
     <div class="compose-form">
+        <label class="compose-form-label">TYPE</label><br>
         <select class="compose-form-dropdown" id="compose-form-type" name="compose-form-type" onclick="loadPostType()">
             <option value="note">Note</option>
             <option value="todo">To-do</option>
-        </select>
-        <input class="compose-form-date" id="compose-form-date" name="compose-form-date" type="date"><br>
-        
+        </select><br>
+        <label class="compose-form-label">DATE</label><br>
+        <input class="compose-form-date" id="compose-form-date" name="compose-form-date" type="date"> or <input class="compose-form-checkbox" id="compose-form-endless" type="checkbox"><label>Endless</label><br>
+        <br>
+        <label class="compose-form-label">CONTENT</label><br>
         <input class="compose-form-input" id="compose-form-title" name="compose-form-title" placeholder="Title..."
             type="text"><br>
-        
-        <textarea class="compose-form-input" id="compose-form-content" name="compose-form-content" placeholder="Content..."
+        <textarea class="compose-form-input" id="compose-form-content" name="compose-form-content" placeholder="Note..."
             type="text"></textarea><br>
         
         <div id="compose-form-todos-wrapper">
             <div id="compose-form-todos">
                 <div class="compose-form-todo" id="compose-form-todo">
                     <input class="compose-form-checkbox" type="checkbox">
-                    <input class="compose-form-input" placeholder="Label..." type="text"><br>
+                    <input class="compose-form-input" placeholder="To-do label..." type="text"><br>
                 </div>
             </div>
             <button class="compose-form-button" name="compose-form-addtodo" onclick="addTodo()">Add to-do</button>

@@ -43,7 +43,7 @@ function deletePost(id) {
         if (err) {throw err;}
         console.log("Data served");
         var objS = JSON.parse(data).table;
-        objS.splice(id, id+1);
+        objS.splice(id, 1);
         var obj = JSON.parse(data);
         obj.table = objS;
         
