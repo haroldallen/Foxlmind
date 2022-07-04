@@ -9,9 +9,9 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "release": "electron-builder --win --mac",
-    "build": "electron-builder build --win --mac --publish never",
-    "deploy": "electron-builder build --win --mac --publish always"
+    "release": "electron-builder --win",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
   },
   "repository": {
     "type": "git",
