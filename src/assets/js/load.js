@@ -20,6 +20,16 @@ function loadSidebar() {
 }
 this.loadSidebar = loadSidebar;
 
+const weekEnumArr = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+]
+
 function loadPage(pg) {
     switch (pg) {
         case "today":
@@ -40,14 +50,19 @@ function loadPage(pg) {
         default:
             window.location.href = "./index.html?page=today";
     }
-    if (pg === "today" || pg === "upcoming" || pg === "completed") {
-        let dt = new Date();
-        let dy = dt.getDay();
-        if (dy === 0) {dy = "Sunday"} else if (dy === 1) {dy = "Monday"} else if (dy === 2) {dy = "Tuesday"} else if (dy === 3) {dy = "Wednesday"} else if (dy === 4) {dy = "Thursday"} else if (dy === 5) {dy = "Friday"} else if (dy === 6) {dy = "Saturday"} else {dy = "Error"}
-        let fm = dy+", "+("0" + dt.getDate()).slice(-2)+"/"+("0" + (dt.getMonth() + 1)).slice(-2)+"/"+dt.getFullYear();
-        if (pg === "today"){loadPageTitle(fm);}
+    switch (pg) {
+        case "today":
+        case "upcoming":
+        case "completed":
+            let dt = new Date();
+            let dy = dt.getDay();
+            if (!weekEnumArr[dy]) {dy = "Error"}; // dy intially represents a number, however if it isn't a day of the week its an error
+            dy = weekEnumArr[dy]
+            let fm = dy+", "+("0" + dt.getDate()).slice(-2)+"/"+("0" + (dt.getMonth() + 1)).slice(-2)+"/"+dt.getFullYear();
+            if (pg === "today"){loadPageTitle(fm);}
+    
+            loadPosts(dt.getFullYear()+"-"+("0" + (dt.getMonth() + 1)).slice(-2)+"-"+("0" + dt.getDate()).slice(-2));
 
-        loadPosts(dt.getFullYear()+"-"+("0" + (dt.getMonth() + 1)).slice(-2)+"-"+("0" + dt.getDate()).slice(-2));
     }
 }
 this.loadPage = loadPage;
