@@ -15,14 +15,15 @@
 .post-ins {
     padding: 20px;
     display: table;
-    border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: var(--post-color);
+    border: 1px solid var(--border-color);
     transition: 0.1s;
     min-width: 15vw;
 }
 
 .post:hover>.post-ins {
-    border-radius: 15px 0px 0px 15px;
+    border-radius: 10px 0px 0px 10px;
 }
 
 .post:hover>.post-options {
@@ -32,8 +33,10 @@
 .post-options {
     display: none;
     padding: 5px;
-    border-radius: 0px 15px 15px 0px;
-    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0px 10px 10px 0px;
+    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
     transition: 0.1s;
 }
 

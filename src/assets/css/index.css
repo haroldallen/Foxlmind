@@ -15,6 +15,7 @@ html,body,#content {
 
 #sidebar {
   width: 15%;
+  border-right: 1px solid var(--border-color);
   background: var(--sidebar-background);
   color: var(--content-textcolor);
   padding: 1rem;
@@ -53,10 +54,13 @@ a.sidebar-item:hover {
 .ttl {
   font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
   padding: 13px;
-  padding-left: 20px;
+  padding-left: 30px;
+  border-bottom: 1px solid var(--border-color);
   background-color: var(--title-background);
   font-size: 24px;
   font-weight: 600;
+  display: flex;
+  justify-content: space-between;
 }
 .postmakersect {
   position: fixed;
@@ -118,4 +122,17 @@ a {
 a:hover {
   color: var(--content-textcolor);
   background: var(--link-color);
+}
+
+.item-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 10px;
+}
+
+.sidebar-item i {
+  margin-right: 10px;
 }
