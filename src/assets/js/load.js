@@ -115,7 +115,7 @@ async function loadPosts(tc) {
                     contentsDiv.innerHTML += `
                     <div class="post post-${thisNoteValues[1]}">
                         <div class="post-ins">
-                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
+                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace('todo', "Todo")}</p>
                             <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
                             <p class="post-content post-${thisNoteValues[1]}-content">${contentPart}</p>
                         </div>
@@ -129,7 +129,7 @@ async function loadPosts(tc) {
                     contentsDiv.innerHTML += `
                     <div class="post post-${thisNoteValues[1]}">
                         <div class="post-ins">
-                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
+                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace("note", "Note")}</p>
                             <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
                             <p class="post-content post-${thisNoteValues[1]}-content">${thisNoteValues[3]}</p>
                         </div>
