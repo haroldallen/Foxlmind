@@ -21,20 +21,25 @@ function loadSidebar() {
 this.loadSidebar = loadSidebar;
 
 function loadPage(pg) {
-    if (pg === "today") {
-        $("#content").load('./today.html');
-    } else if (pg === "upcoming") {
-        $("#content").load('./upcoming.html');
-    } else if (pg === "completed") {
-        $("#content").load('./completed.html');
-    } else if (pg === "compose") {
-        $("#content").load('./compose.html');
-    } else if (pg === "settings") {
-        $("#content").load('./settings.html');
-    } else {
-        window.location.href = "./index.html?page=today";
+    switch (pg) {
+        case "today":
+            $("#content").load('./today.html');
+            break;
+        case "upcoming":
+            $("#content").load('./upcoming.html');
+            break;
+        case "completed":
+            $("#content").load('./completed.html');
+            break;
+        case "compose":
+            $("#content").load('./compose.html');
+            break;
+        case "settings":
+            $("#content").load('./settings.html');
+            break;
+        default:
+            window.location.href = "./index.html?page=today";
     }
-
     if (pg === "today" || pg === "upcoming" || pg === "completed") {
         let dt = new Date();
         let dy = dt.getDay();
