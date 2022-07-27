@@ -128,3 +128,11 @@ a:hover {
   display: flex;
   align-items: center;
 }
+
+.logo {
+  margin-right: 10px;
+}
+
+.sidebar-item i {
+  margin-right: 10px;
+}
