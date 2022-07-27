@@ -151,7 +151,7 @@ async function loadPosts(tc) {
 }
 this.loadPosts = loadPosts;
 
-function loadComplete() {
+function loadApp() { // Originally loadComplete, renamed given its in a way pretty much the app itself.. While yes Electron referred to as a app its more so a desktop layer than even a wrapper. 
     if (!fs.existsSync(dataPath+"/posts.json")) {
         let data2Write = {table: [{"date": "endless","type": "note","title": "Welcome to Foxlmind...","content": "Thank you for using Foxlmind!<br>This was made completely for fun but if you want to support its development, you can <a onclick='openURLInBrowser(`https://patreon.com/foxlldev`)' href='#'>donate here</a>.<br>If not, that's fine, enjoy :)","state": "visible"},{"date": "endless","type": "note","title": "Tribute to Technoblade","content": "https://youtu.be/DPMluEVUqS0","state": "visible"}]};
         fs.writeFile(dataPath+"/posts.json", JSON.stringify(data2Write, null, 2), { flag: 'wx' }, function (err) {
@@ -161,13 +161,13 @@ function loadComplete() {
     }
     console.log(dataPath);
     console.log(storage.getDataPath());
-    console.log("loadComplete got path "+dataPath);
+    console.log("loadApp got path "+dataPath);
     loadTheme();
     loadSidebar();
     loadPage(gpg);
     setTimeout(loadSettings,1);
 }
-this.loadComplete = loadComplete;
+this.loadApp = loadApp;
 
 function openURLInBrowser(url) {
     require('electron').shell.openExternal(url);
