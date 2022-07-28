@@ -165,7 +165,7 @@ async function loadPosts(tc) {
 
         })
     console.log(postsLoaded);
-    if (postsLoaded === 0) {
+    if (postsLoaded === 0) { // Might be possible to omit and swap to just check if the array is empty rather than wasting clocks and lines counting then checking
         contentsDiv.innerHTML += `<p class="noposts">Couldn't find any posts</p>`;
     }
 }
