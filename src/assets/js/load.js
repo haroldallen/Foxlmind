@@ -1,3 +1,4 @@
+
 let qs = new URLSearchParams(window.location.search);
 let gpg = qs.get('page');
 const storage = require('electron-json-storage');
@@ -7,6 +8,17 @@ this.fs = fs;
 
 let dataPath = "error";
 this.dataPath = dataPath;
+
+const weekEnumArr = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+]
+this.weekEnumArr = weekEnumArr;
 
 ipcRenderer.send('json_path');
 ipcRenderer.on('json_path', (e, args) => {
@@ -19,16 +31,6 @@ function loadSidebar() {
     $("#sidebar").load("./sidebar.html");
 }
 this.loadSidebar = loadSidebar;
-
-const weekEnumArr = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-]
 
 function loadPage(pg) {
     switch (pg) {
@@ -56,13 +58,13 @@ function loadPage(pg) {
         case "completed":
             let dt = new Date();
             let dy = dt.getDay();
-            if (!weekEnumArr[dy]) {dy = "Error"}; // dy intially represents a number, however if it isn't a day of the week its an error
-            dy = weekEnumArr[dy]
-            let fm = dy+", "+("0" + dt.getDate()).slice(-2)+"/"+("0" + (dt.getMonth() + 1)).slice(-2)+"/"+dt.getFullYear();
-            if (pg === "today"){loadPageTitle(fm);}
+            if (!this.weekEnumArr[dy]) {dy = "Error"}; // dy intially represents a number, however if it isn't a day of the week its an error
+            dy = this.weekEnumArr[dy]
+            let fm = format.day(dy, dt); // Day and dateInstance
+            if (pg === "today") {loadPageTitle(fm);}
     
-            loadPosts(dt.getFullYear()+"-"+("0" + (dt.getMonth() + 1)).slice(-2)+"-"+("0" + dt.getDate()).slice(-2));
-
+            loadPosts(format.date(dt));
+        break;
     }
 }
 this.loadPage = loadPage;
