@@ -86,86 +86,84 @@ async function loadPosts(tc) {
     let notesLength = Object.keys(notes).length;
     console.log(notesLength)
     let postsLoaded = 0;
-    for (let i = 0; i < notesLength; i++) {
-        let thisNote = notes[i];
-        let thisNoteKeys = Object.keys(thisNote);
-        console.log("ThisNoteKeys is "+thisNoteKeys)
-        let thisNoteValues = Object.values(thisNote);
-        console.log("ThisNoteValues is "+thisNoteValues)
-
-        console.log("for loop iteration "+i)
-        console.log("date: "+thisNoteValues[0]+" needs to be equal to TC:"+tc+" or endless")
-
-        let upcomingBoolean = false;
-        if (gpg === "upcoming") {
-            if (tc === "endless") {
-                upcomingBoolean = true;
-            }
-            else {
-                let mba = new Date(tc);
-                console.log("mba/today ("+mba.getFullYear()+"-"+("0" + (mba.getMonth() + 1)).slice(-2)+"-"+("0" + mba.getDate()).slice(-2)+") must be before or equal to post's date ("+thisNoteValues[0]+") - RESULT: "+(mba <= new Date(thisNoteValues[0])));
-                upcomingBoolean = mba <= new Date(thisNoteValues[0]);
-            }
-        }
-
-
-        if ((gpg === "today" && thisNoteValues[4] === "visible") || (gpg === "completed" && thisNoteValues[4] === "completed") || (gpg === "upcoming" && thisNoteValues[4] === "visible")) {
-            if (gpg==="completed" || thisNoteValues[0] === tc || thisNoteValues[0] === "endless" || upcomingBoolean) {
-                console.log("found post for today")
-                let unCompleteIcon = "fa-check";
-                let unComplete = "Complete";
-                if (gpg === "completed") {unComplete = "Uncomplete"; unCompleteIcon = "fa-angle-left";}
-
-                if (thisNoteValues[1] === "todo") {
-                    let contentPart = "";
-                    for (let it=0;it<thisNoteValues[3].length; it++) {
-                        console.log(Object.values(thisNoteValues[3])[it].val);
-                        if (Object.values(thisNoteValues[3])[it].val === true) {
-                            contentPart += 
-                            `<label class="rcontainer" id="todo-${i}-${it}-checkwrap">${Object.values(thisNoteValues[3])[it].label}
-                                <input type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})" checked="checked">
-                                <span class="rcheckmark"></span>
-                            </label><br>`;
-                        } else {
-                            contentPart += 
-                            `<label class="rcontainer" id="todo-${i}-${it}-checkwrap">${Object.values(thisNoteValues[3])[it].label}
-                                <input type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})">
-                                <span class="rcheckmark"></span>
-                            </label><br>`;
-                        }
-                    }
-                    contentsDiv.innerHTML += `
-                    <div class="post post-${thisNoteValues[1]}">
-                        <div class="post-ins">
-                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
-                            <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
-                            <p class="post-content post-${thisNoteValues[1]}-content">${contentPart}</p>
-                        </div>
-                        <div class="post-options">
-                            <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
-                            <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
-                            <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
-                        </div>
-                    </div>`;
-                } else if (thisNoteValues[1] === "note") {
-                    contentsDiv.innerHTML += `
-                    <div class="post post-${thisNoteValues[1]}">
-                        <div class="post-ins">
-                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
-                            <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
-                            <p class="post-content post-${thisNoteValues[1]}-content">${thisNoteValues[3]}</p>
-                        </div>
-                        <div class="post-options">
-                            <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
-                            <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
-                            <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
-                        </div>
-                    </div>`;
+    notes
+        .forEach((thisNote, i) => {
+            let thisNoteKeys = Object.keys(thisNote);
+            console.log("ThisNoteKeys is "+thisNoteKeys)
+            let thisNoteValues = Object.values(thisNote);
+            console.log("ThisNoteValues is "+thisNoteValues)
+    
+            console.log("for loop iteration "+ i)
+            console.log("date: "+thisNoteValues[0]+" needs to be equal to TC:"+tc+" or endless")
+    
+            let upcomingBoolean = false;
+            if (gpg === "upcoming") {
+                if (tc === "endless") {
+                    upcomingBoolean = true;
                 }
-                postsLoaded++;
+                else {
+                    let mba = new Date(tc);
+                    console.log("mba/today ("+mba.getFullYear()+"-"+("0" + (mba.getMonth() + 1)).slice(-2)+"-"+("0" + mba.getDate()).slice(-2)+") must be before or equal to post's date ("+thisNoteValues[0]+") - RESULT: "+(mba <= new Date(thisNoteValues[0])));
+                    upcomingBoolean = mba <= new Date(thisNoteValues[0]);
+                }
             }
-        }
-    }
+    
+            if ((gpg === "today" && thisNoteValues[4] === "visible") || (gpg === "completed" && thisNoteValues[4] === "completed") || (gpg === "upcoming" && thisNoteValues[4] === "visible")) {
+                if (gpg==="completed" || thisNoteValues[0] === tc || thisNoteValues[0] === "endless" || upcomingBoolean) {
+                    console.log("found post for today")
+                    let unCompleteIcon = "fa-check";
+                    let unComplete = "Complete";
+                    if (gpg === "completed") {unComplete = "Uncomplete"; unCompleteIcon = "fa-angle-left";}
+    
+                    switch (thisNoteValues[1]) {
+                        case "todo":
+                            let contentPart = "";
+                            for (let it=0;it<thisNoteValues[3].length; it++) {
+                                console.log(Object.values(thisNoteValues[3])[it].val);
+                                if (Object.values(thisNoteValues[3])[it].val === true) {
+                                    const hasContent = true; // Check if it has content
+                                }
+                                contentPart += 
+                                `<label class="rcontainer" id="todo-${i}-${it}-checkwrap">${Object.values(thisNoteValues[3])[it].label}
+                                    <input type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})" ${hasContent ? 'checked="checked"' : ""}>
+                                    <span class="rcheckmark"></span>
+                                </label><br>`;
+                            }
+                            contentsDiv.innerHTML += `
+                            <div class="post post-${thisNoteValues[1]}">
+                                <div class="post-ins">
+                                    <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
+                                    <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
+                                    <p class="post-content post-${thisNoteValues[1]}-content">${contentPart}</p>
+                                </div>
+                                <div class="post-options">
+                                    <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
+                                    <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
+                                    <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
+                                </div>
+                            </div>`;
+                            break;
+                    case "note":
+                        contentsDiv.innerHTML += `
+                        <div class="post post-${thisNoteValues[1]}">
+                            <div class="post-ins">
+                                <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
+                                <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
+                                <p class="post-content post-${thisNoteValues[1]}-content">${thisNoteValues[3]}</p>
+                            </div>
+                            <div class="post-options">
+                                <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
+                                <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
+                                <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
+                            </div>
+                        </div>`;
+                        break;
+                    }
+                    postsLoaded++;
+                }
+            }
+
+        })
     console.log(postsLoaded);
     if (postsLoaded === 0) {
         contentsDiv.innerHTML += `<p class="noposts">Couldn't find any posts</p>`;
