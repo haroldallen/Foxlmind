@@ -43,6 +43,42 @@
                 </div>
                 <input type="radio" id="settings-themes-light" name="settings-themes" class="setting-radio-actual">
             </div>
+            <div class="setting-ins-myod setting-ins setting-radio-ins" onclick="dropdownMYO()">
+                <div class="setting-label setting-radio-label">
+                    <i id="myo-dropicon" class="fa-solid fa-caret-right"></i> Make your own
+                </div>
+                <input type="radio" id="settings-themes-myo" name="settings-themes" class="setting-radio-actual">
+            </div>
+            <div id="myo-content" class="myo setting-ins">
+                <div class="myo-option-wrapper">
+                    <input class="myo-option" type="color" id="settings-themes-myo-sidebarcol"></input>
+                    <label class="myo-option-label">Sidebar Color</label>
+                </div>
+                <div class="myo-option-wrapper">
+                    <input class="myo-option" type="color" id="settings-themes-myo-backgroundcol"></input>
+                    <label class="myo-option-label">Background Color</label>
+                </div>
+                <div class="myo-option-wrapper">
+                    <input class="myo-option" type="color" id="settings-themes-myo-topbarcol"></input>
+                    <label class="myo-option-label">Title Bar Color</label>
+                </div>
+                <div class="myo-option-wrapper">
+                    <input class="myo-option" type="color" id="settings-themes-myo-postcol"></input>
+                    <label class="myo-option-label">Post Background Color</label>
+                </div>
+                <div class="myo-option-wrapper">
+                    <input class="myo-option" type="color" id="settings-themes-myo-composeinputcol"></input>
+                    <label class="myo-option-label">Compose Input Color</label>
+                </div>
+                <div class="myo-option-wrapper">
+                    <input class="myo-option" type="color" id="settings-themes-myo-textcol"></input>
+                    <label class="myo-option-label">Text Color</label>
+                </div>
+                <div class="myo-option-wrapper">
+                    <input class="myo-option" type="color" id="settings-themes-myo-bordercol"></input>
+                    <label class="myo-option-label">Border Color</label>
+                </div>
+            </div>
         </div>
     </div>
     <button class="settings-save" id="settingspg-save" onclick="saveSettings()">Save</button>
