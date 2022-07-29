@@ -1,7 +1,7 @@
 {
   "name": "foxlmind",
   "productName": "Foxlmind",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Epic note-keeping and to-do app built in Electron by foxlldev",
   "main": "src/index.js",
   "scripts": {
