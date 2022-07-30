@@ -58,7 +58,7 @@ function loadPage(pg) {
         default:
             window.location.href = "./index.html?page=today";
     }
-    switch (pg) {
+    switch (pg) { // Merging the two switches may be possible in the future
         case "today":
         case "upcoming":
         case "completed":
@@ -74,6 +74,7 @@ function loadPage(pg) {
     }
 }
 this.loadPage = loadPage;
+
 /**
  * Sets the title for the current page.
  */
