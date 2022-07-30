@@ -27,11 +27,17 @@ ipcRenderer.on('json_path', (e, args) => {
     this.dataPath = args.path;
 });
 
+/**
+ * Loads the sidebar for the app.
+ */
 function loadSidebar() {
     $("#sidebar").load("./sidebar.html");
 }
 this.loadSidebar = loadSidebar;
 
+/**
+ * Loads each page on the app.
+ */
 function loadPage(pg) {
     switch (pg) {
         case "today":
@@ -68,7 +74,9 @@ function loadPage(pg) {
     }
 }
 this.loadPage = loadPage;
-
+/**
+ * Sets the title for the current page.
+ */
 function loadPageTitle(pgt) {
     setTimeout(function() {
         document.getElementById('ttl').innerText = pgt;
@@ -76,6 +84,9 @@ function loadPageTitle(pgt) {
 }
 this.loadPageTitle = loadPageTitle;
 
+/**
+ * Loads each post.
+ */
 async function loadPosts(tc) {
     console.log("loadTodayNotes started")
     const notesfile = await fetch(dataPath+"/posts.json");
@@ -171,6 +182,9 @@ async function loadPosts(tc) {
 }
 this.loadPosts = loadPosts;
 
+/**
+ * Loads the entire app itself.
+ */
 function loadApp() { // Originally loadComplete, renamed given its in a way pretty much the app itself.. While yes Electron referred to as a app its more so a desktop layer than even a wrapper. 
     if (!fs.existsSync(dataPath+"/posts.json")) {
         let data2Write = {table: [{"date": "endless","type": "note","title": "Welcome to Foxlmind...","content": "Thank you for using Foxlmind!<br>This was made completely for fun but if you want to support its development, you can <a onclick='openURLInBrowser(`https://patreon.com/foxlldev`)' href='#'>donate here</a>.<br>If not, that's fine, enjoy :)","state": "visible"},{"date": "endless","type": "note","title": "Tribute to Technoblade","content": "https://youtu.be/DPMluEVUqS0","state": "visible"}]};
@@ -189,6 +203,9 @@ function loadApp() { // Originally loadComplete, renamed given its in a way pret
 }
 this.loadApp = loadApp;
 
+/**
+ * Self explanitory, but it loads the url onto whatever the user's default brower is.
+ */
 function openURLInBrowser(url) {
     require('electron').shell.openExternal(url);
 }
