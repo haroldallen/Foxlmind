@@ -1,3 +1,5 @@
+const { getCurrentWindow, dialog } = require('@electron/remote');
+
 function loadTheme() {
     var theme = window.localStorage.getItem('theme');
     if (theme !== 'dark' && theme !== 'light' && theme !== 'myo') {window.localStorage.setItem('theme', 'light');}
@@ -131,3 +133,77 @@ function saveMYO() {
     window.localStorage.setItem('myo-bordercol', into_bordercol.value)
 }
 this.saveMYO = saveMYO;
+
+async function importMYO() {
+    let file = await dialog.showOpenDialog(getCurrentWindow(), {
+        filters: [
+            {
+                name: 'Foxlmind theme files',
+                extensions: ['ftf']
+            }
+        ]
+    });
+
+    if (file !== undefined || file !== null) {
+        if (file.filePaths.length === 0) {console.log("error")}
+        else {
+            var a = file.filePaths[0].split('\\')
+            var b = a[a.length-1];
+            console.log("file named " + b);
+
+            var rfile = fs.readFileSync(file.filePaths[0]);
+            console.log(rfile);
+            var pfile = JSON.parse(rfile);
+            console.log(pfile);
+            var keys = Object.keys(pfile);
+            var values = Object.values(pfile);
+
+            for (var i = 0; i < keys.length; i++) {
+                console.log("iteration "+i+", "+keys[i]+" is "+values[i])
+                window.localStorage.setItem(`myo-${keys[i]}`, values[i]);
+            }
+            loadMYO();
+        }
+    } else {
+        document.getElementById('error-content').style.display = block;
+        document.getElementById('error-content').innerHTML = "<strong>Error</strong>: File was null"
+    }
+}
+this.importMYO = importMYO;
+
+async function importPosts() {
+    let file = await dialog.showOpenDialog(getCurrentWindow(), {
+        filters: [
+            {
+                name: 'Foxlmind post files',
+                extensions: ['fpf']
+            }
+        ]
+    });
+
+    if (file !== undefined || file !== null) {
+        if (file.filePaths.length === 0) {console.log("error")}
+        else {
+            var a = file.filePaths[0].split('\\')
+            var b = a[a.length-1];
+            console.log("file named " + b);
+
+            var rfile = fs.readFileSync(file.filePaths[0]);
+            console.log(rfile);
+            var pfile = JSON.parse(rfile);
+            console.log(pfile);
+            var keys = Object.keys(pfile);
+            var values = Object.values(pfile);
+
+            for (var i = 0; i < keys.length; i++) {
+                console.log("iteration "+i+", "+keys[i]+" is "+values[i])
+                window.localStorage.setItem(`myo-${keys[i]}`, values[i]);
+            }
+            loadMYO();
+        }
+    } else {
+        document.getElementById('error-content').style.display = block;
+        document.getElementById('error-content').innerHTML = "<strong>Error</strong>: File was null"
+    }
+}
+this.importPosts = importPosts;

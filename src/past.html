@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link href="./assets/css/settings.css" rel="stylesheet">
+        <link href="./assets/css/post.css" rel="stylesheet">
         <script src="https://kit.fontawesome.com/d5db5a9cd6.js" crossorigin="anonymous"></script>
     </head>
 <body>
     <div class="ttl ttl-today">
         <div id="ttl">
-            Settings
+            Past
         </div>
         <div class="item-logo">
             <svg class="logo" width="25" height="25" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,77 +25,22 @@
              Foxlmind
         </div>
     </div>
-    <div id="error" style="display: none;"><div id="error-content"><strong>Error</strong>: This feature has not yet been implemented!</div> <button id="error-close" onclick="closeError()">X</button></div>
-    <div id="page-content">
-        <div class="setting setting-radio">
-            <div class="setting-label">
-                Themes
+    <div id="page-jsei">
+        <!--<div class="post post-note">
+            <div class="post-ins">
+                <p class="post-info post-note-info">date | type</p>
+                <p class="post-title post-note-title">title</p>
+                <p class="post-note post-note-note">content</p>
             </div>
-            <div class="setting-ins setting-radio-ins">
-                <div class="setting-label setting-radio-label">
-                    Dark theme
-                </div>
-                <input type="radio" id="settings-themes-dark" name="settings-themes" class="setting-radio-actual">
+            <div class="post-options">
+                <button id="post-options-complete" class="post-option fa-solid fa-check" onclick="optionComplete()"></button>
+                <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit()"></button>
+                <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete()"></button>
             </div>
-            <div class="setting-ins setting-radio-ins">
-                <div class="setting-label setting-radio-label">
-                    Light theme
-                </div>
-                <input type="radio" id="settings-themes-light" name="settings-themes" class="setting-radio-actual">
-            </div>
-            <div class="setting-ins-myod setting-ins setting-radio-ins" onclick="dropdownMYO()">
-                <div class="setting-label setting-radio-label">
-                    <i id="myo-dropicon" class="fa-solid fa-caret-right"></i> Make your own
-                </div>
-                <input type="radio" id="settings-themes-myo" name="settings-themes" class="setting-radio-actual">
-            </div>
-            <div id="myo-content" class="myo setting-ins">
-                <div class="myo-option-wrapper">
-                    <input class="myo-option" type="color" id="settings-themes-myo-sidebarcol"></input>
-                    <label class="myo-option-label">Sidebar Color</label>
-                </div>
-                <div class="myo-option-wrapper">
-                    <input class="myo-option" type="color" id="settings-themes-myo-backgroundcol"></input>
-                    <label class="myo-option-label">Background Color</label>
-                </div>
-                <div class="myo-option-wrapper">
-                    <input class="myo-option" type="color" id="settings-themes-myo-topbarcol"></input>
-                    <label class="myo-option-label">Title Bar Color</label>
-                </div>
-                <div class="myo-option-wrapper">
-                    <input class="myo-option" type="color" id="settings-themes-myo-postcol"></input>
-                    <label class="myo-option-label">Post Background Color</label>
-                </div>
-                <div class="myo-option-wrapper">
-                    <input class="myo-option" type="color" id="settings-themes-myo-composeinputcol"></input>
-                    <label class="myo-option-label">Compose Input Color</label>
-                </div>
-                <div class="myo-option-wrapper">
-                    <input class="myo-option" type="color" id="settings-themes-myo-textcol"></input>
-                    <label class="myo-option-label">Text Color</label>
-                </div>
-                <div class="myo-option-wrapper">
-                    <input class="myo-option" type="color" id="settings-themes-myo-bordercol"></input>
-                    <label class="myo-option-label">Border Color</label>
-                </div>
-                <br>
-                <button class="myo-import" id="myo-import" onclick="importMYO()">Import theme</button>
-            </div>
-            <div class="setting-label">
-                Posts
-            </div>
-            <button class="setting-ins posts-import" id="posts-import" onclick="importMYO()">Import posts</button>
-        </div>
+        </div>-->
     </div>
-    <button class="settings-save" id="settingspg-save" onclick="saveSettings()">Save</button>
-
-
-    <script>
-        ipcRenderer.send('app_version');
-        ipcRenderer.on('app_version', (e, args) => {
-            console.log('Found version (for settings page) ' + args.version);
-            document.getElementById('ttl').innerText = "Settings | v"+args.version;
-        });
-    </script>
+    <a href="./index.html?page=compose&roc=past" class="postmakersect">
+        +
+    </a>
 </body>
 </html>
