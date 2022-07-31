@@ -34,6 +34,7 @@ html,body,#content {
   width: calc(100% - 2rem);
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .sidebar-bottom {
   position: absolute;

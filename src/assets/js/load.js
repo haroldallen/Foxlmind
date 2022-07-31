@@ -95,7 +95,7 @@ function loadPosts(tc) {
             if (gpg === "past" && thisNoteValues[0] !== "endless") {
                 var mba = new Date(tc);
                 console.log("mba/today (" + mba.getFullYear() + "-" + ("0" + (mba.getMonth() + 1)).slice(-2) + "-" + ("0" + mba.getDate()).slice(-2) + ") must be before or equal to post's date (" + thisNoteValues[0] + ") - RESULT: " + (mba <= new Date(thisNoteValues[0])));
-                upcomingBoolean = mba >= new Date(thisNoteValues[0]);
+                upcomingBoolean = mba > new Date(thisNoteValues[0]);
             }
 
 
@@ -112,20 +112,20 @@ function loadPosts(tc) {
                             console.log(Object.values(thisNoteValues[3])[it].val);
                             if (Object.values(thisNoteValues[3])[it].val === true) {
                                 contentPart +=
-                                    `<label class="rcontainer" id="todo-${i}-${it}-checkwrap">${Object.values(thisNoteValues[3])[it].label}
+                                    `<label class="rcontainer" id="todo-${i}-${it}-checkwrap"><fmtc>${Object.values(thisNoteValues[3])[it].label}</fmtc>
                                 <input type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})" checked="checked">
                                 <span class="rcheckmark"></span>
-                            </label><br>`;
+                            </label>`;
                             } else {
                                 contentPart +=
-                                    `<label class="rcontainer" id="todo-${i}-${it}-checkwrap">${Object.values(thisNoteValues[3])[it].label}
+                                    `<label class="rcontainer" id="todo-${i}-${it}-checkwrap"><fmtc>${Object.values(thisNoteValues[3])[it].label}</fmtc>
                                 <input type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})">
                                 <span class="rcheckmark"></span>
-                            </label><br>`;
+                            </label>`;
                             }
                         }
                         contentsDiv.innerHTML += `
-                    <div class="post post-${thisNoteValues[1]}">
+                    <div class="post post-${thisNoteValues[1]}" name="pid-${i}">
                         <div class="post-ins">
                             <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace('todo', "Todo")}</p>
                             <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
@@ -139,7 +139,7 @@ function loadPosts(tc) {
                     </div>`;
                     } else if (thisNoteValues[1] === "note") {
                         contentsDiv.innerHTML += `
-                    <div class="post post-${thisNoteValues[1]}">
+                    <div class="post post-${thisNoteValues[1]}" name="pid-${i}">
                         <div class="post-ins">
                             <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace("note", "Note")}</p>
                             <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
@@ -162,8 +162,8 @@ function loadPosts(tc) {
         }
     }
     catch (err) {
+        contentsDiv.innerHTML += `<p class="noposts">There seems to be an error with your posts file<br><button onclick="location.reload()">Reload</button> <button onclick="fixPostsFile()">Fix (will delete posts)</button></p>`;
         console.log(err);
-        fixPostsFile();
     }
 }
 this.loadPosts = loadPosts;
@@ -185,6 +185,7 @@ function fixPostsFile(wx) {
         });
     }
 }
+this.fixPostsFile = fixPostsFile;
 
 function loadComplete() {
     console.log(fs);

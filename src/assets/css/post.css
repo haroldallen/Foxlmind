@@ -73,6 +73,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    margin-bottom: 10px;
 }
 
 /* Hide the browser's default checkbox */
@@ -133,3 +134,4 @@
 .noposts {
     text-align: center;
 }
+

@@ -5,7 +5,7 @@ var roc = qs.get('roc');
 function loadComposeDefaultDate() {
     var date = document.getElementById("compose-form-date");
     var today = new Date();
-    date.value = today.getFullYear()+"-"+("0" + (today.getMonth() + 1)).slice(-2)+"-"+("0" + today.getDate());
+    date.value = today.getFullYear()+"-"+("0" + (today.getMonth() + 1)).slice(-2)+"-"+("0" + today.getDate()).slice(-2);
 }
 this.loadComposeDefaultDate = loadComposeDefaultDate;
 loadComposeDefaultDate();

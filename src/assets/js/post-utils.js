@@ -9,6 +9,16 @@ function writeToNotes(jsonData) {
 }
 this.writeToNotes = writeToNotes;
 
+function getValueInPost(id, key, callback) {
+    fs.readFile(dataPath+"/posts.fpf", 'utf8', function readFileCallback(err, data) {
+        if (err) {throw err;}
+        console.log("Data served");
+        var obj = JSON.parse(data);
+        callback(Object.values(obj.table)[id][key]);
+    });
+}
+this.updateValueInPost = updateValueInPost;
+
 function updateValueInPost(id, key, value) {
     fs.readFile(dataPath+"/posts.fpf", 'utf8', function readFileCallback(err, data) {
         if (err) {throw err;}
