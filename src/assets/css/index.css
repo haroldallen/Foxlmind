@@ -29,19 +29,16 @@ html,body,#content {
   justify-content: space-between;
 }
 .sidebar-top {
-  flex: 1;
-  width: 100%;
+  position: absolute;
+  top: 1rem;
+  width: calc(100% - 2rem);
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .sidebar-bottom {
   position: absolute;
   bottom: 3rem;
   width: calc(100% - 2rem);
-  flex: 2;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -49,17 +46,22 @@ html,body,#content {
 .sidebar-text {
   margin-left: 10px;
 }
+.sbi {
+  text-align: center;
+  display: grid;
+  place-items: center;
+}
 
 @media only screen and (min-width: 800px) {
   #sidebar {
-    min-width: 185px;
+    min-width: 195px;
     width: 15%;
   }
   #content {
-    margin-left: 200px;
+    margin-left: 210px;
   }
 }
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1300px) {
   #content {
     margin-left: 16%;
   }
@@ -80,8 +82,7 @@ html,body,#content {
   font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
   font-weight: 600;
   margin: 2px;
-}
-.sidebar-bottom {
+  width: 100%;
 }
 
 a.sidebar-item {
@@ -89,8 +90,7 @@ a.sidebar-item {
   text-decoration: none;
   color: var(--content-textcolor);
   transition: 0.2s;
-  padding: 10px;
-  width: calc(95% - 1rem);
+  padding: 10px 15px 10px 15px;
   border-radius: 5px;
 }
 a.sidebar-item:hover {
