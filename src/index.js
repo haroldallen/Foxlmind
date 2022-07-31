@@ -23,6 +23,7 @@ const createWindow = () => {
     width: 980,
     height: 580,
     autoHideMenuBar: true,
+    icon: path.join(__dirname, '/assets/media/logo.png'),
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,

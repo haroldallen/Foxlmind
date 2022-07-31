@@ -144,7 +144,7 @@ async function loadPosts(tc) {
                             contentsDiv.innerHTML += `
                             <div class="post post-${thisNoteValues[1]}">
                                 <div class="post-ins">
-                                    <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
+                                    <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace('todo', "Todo")}</p>
                                     <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
                                     <p class="post-content post-${thisNoteValues[1]}-content">${contentPart}</p>
                                 </div>
@@ -159,7 +159,7 @@ async function loadPosts(tc) {
                         contentsDiv.innerHTML += `
                         <div class="post post-${thisNoteValues[1]}">
                             <div class="post-ins">
-                                <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0]} | ${thisNoteValues[1]}</p>
+                                <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace("note", "Note")}</p>
                                 <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
                                 <p class="post-content post-${thisNoteValues[1]}-content">${thisNoteValues[3]}</p>
                             </div>
@@ -188,7 +188,7 @@ this.loadPosts = loadPosts;
  */
 function loadApp() { // Originally loadComplete, renamed given its in a way pretty much the app itself.. While yes Electron referred to as a app its more so a desktop layer than even a wrapper. 
     if (!fs.existsSync(dataPath+"/posts.json")) {
-        let data2Write = {table: [{"date": "endless","type": "note","title": "Welcome to Foxlmind...","content": "Thank you for using Foxlmind!<br>This was made completely for fun but if you want to support its development, you can <a onclick='openURLInBrowser(`https://patreon.com/foxlldev`)' href='#'>donate here</a>.<br>If not, that's fine, enjoy :)","state": "visible"},{"date": "endless","type": "note","title": "Tribute to Technoblade","content": "https://youtu.be/DPMluEVUqS0","state": "visible"}]};
+        let data2Write = {table: [{"date": "endless","type": "note","title": "Welcome to Foxlmind...","content": "Thank you for using Foxlmind!<br>This was made completely for fun but if you want to support its development, you can <a onclick='openURLInBrowser(`https://patreon.com/foxlldev`)' href='#'>donate here</a>.<br>If not, that's fine, enjoy :)","state": "visible"}]};
         fs.writeFile(dataPath+"/posts.json", JSON.stringify(data2Write, null, 2), { flag: 'wx' }, function (err) {
             if (err) throw err;
             console.log("It's saved!");

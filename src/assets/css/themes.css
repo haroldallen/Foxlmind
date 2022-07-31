@@ -1,28 +1,30 @@
 .theme-dark {
     --cics: 'dark';
-    --content-background: rgb(77, 85, 90);
+    --content-background: rgb(54, 54, 54);
     --content-textcolor: white;
     --content-placeholdercolor: rgb(197, 197, 197);
-    --title-background: rgb(65, 71, 75);
-    --title-hover-background: rgb(53, 67, 77);
-    --sidebar-background: rgb(58, 61, 63);
+    --title-background: rgb(45, 45, 45);
+    --sidebar-background: rgb(49, 47, 47);
 
     --compose-background: rgba(34, 36, 37,0.3);
     --compose-bbc: white;
-
     --link-color: rgb(92, 128, 196);
+
+    --border-color: rgba(255, 255, 255, 0.326);
+    --post-color: rgba(60, 58, 58, 0);
 }
 .theme-light {
     --cics: 'light';
-    --content-background: rgb(253, 251, 245);
+    --content-background: white;
     --content-textcolor: rgb(20, 20, 20);
     --content-placeholdercolor: rgb(83, 83, 83);
-    --title-background: rgb(219, 219, 219);
-    --title-hover-background: rgb(210, 221, 231);
-    --sidebar-background: rgb(196,196,196);
+    --title-background: rgb(230, 230, 230);
+    --sidebar-background: rgb(230, 230, 230);
 
     --compose-background: rgba(211, 222, 228, 0.3);
     --compose-bbc: rgb(87, 87, 87);
-
     --link-color: rgb(92, 128, 196);
+
+    --post-color: rgba(0, 0, 0, 0);
+    --border-color: rgba(0, 0, 0, 0.51);
 }
