@@ -61,7 +61,7 @@ function loadPosts(tc) {
     const contentsDiv = document.getElementById("page-jsei");
     try {
         console.log("loadTodayNotes started")
-        const notesfile = fs.readFileSync(dataPath+"/posts.json");
+        const notesfile = fs.readFileSync(dataPath+"/posts.fpf");
         console.log(notesfile);
         const notesParsed = JSON.parse(notesfile);
         var notes = notesParsed.table;
@@ -155,10 +155,10 @@ function loadPosts(tc) {
                     postsLoaded++;
                 }
             }
-            console.log(postsLoaded);
-            if (postsLoaded === 0) {
-                contentsDiv.innerHTML += `<p class="noposts">Couldn't find any posts</p>`;
-            }
+        }
+        console.log(postsLoaded);
+        if (postsLoaded === 0) {
+            contentsDiv.innerHTML += `<p class="noposts">Couldn't find any posts</p>`;
         }
     }
     catch (err) {
@@ -174,12 +174,12 @@ function fixPostsFile(wx) {
     }
     var data2Write = {table: [{"date": "endless","type": "note","title": "Welcome to Foxlmind...","content": "Thank you for using Foxlmind!<br>This was made completely for fun but if you want to support its development, you can <a onclick='openURLInBrowser(`https://patreon.com/foxlldev`)' href='#'>donate here</a>.<br>If not, that's fine, enjoy :)","state": "visible"}]};
     if (wx === true) {
-        fs.writeFile(dataPath + "/posts.json", JSON.stringify(data2Write, null, 2), {flags: 'wx'}, function (err) {
+        fs.writeFile(dataPath + "/posts.fpf", JSON.stringify(data2Write, null, 2), {flags: 'wx'}, function (err) {
             if (err) throw err;
             console.log("It's saved!");
         });
     } else {
-        fs.writeFile(dataPath + "/posts.json", JSON.stringify(data2Write, null, 2), function (err) {
+        fs.writeFile(dataPath + "/posts.fpf", JSON.stringify(data2Write, null, 2), function (err) {
             if (err) throw err;
             console.log("It's saved!");
         });
@@ -188,7 +188,7 @@ function fixPostsFile(wx) {
 
 function loadComplete() {
     console.log(fs);
-    if (!fs.existsSync(dataPath+"/posts.json")) {fixPostsFile(true);}
+    if (!fs.existsSync(dataPath+"/posts.fpf")) {fixPostsFile(true);}
     console.log(dataPath);
     console.log(storage.getDataPath());
     console.log("loadComplete got path "+dataPath);

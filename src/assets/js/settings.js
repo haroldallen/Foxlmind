@@ -192,14 +192,26 @@ async function importPosts() {
             console.log(rfile);
             var pfile = JSON.parse(rfile);
             console.log(pfile);
-            var keys = Object.keys(pfile);
-            var values = Object.values(pfile);
+            var keys = Object.keys(pfile.table);
+            var values = Object.values(pfile.table);
 
-            for (var i = 0; i < keys.length; i++) {
-                console.log("iteration "+i+", "+keys[i]+" is "+values[i])
-                window.localStorage.setItem(`myo-${keys[i]}`, values[i]);
+            var old = fs.readFileSync(dataPath+'/posts.fpf');
+            var pold = JSON.parse(old);
+            var told = pold.table;
+            var vold = Object.values(told);
+            var njson = {"table":[]};
+
+            for (var i = 0; i < told.length; i++) {
+                console.log("iteration(2) "+i+", "+vold[i])
+                njson.table[i] = vold[i];
             }
-            loadMYO();
+            for (var i = 0; i < keys.length; i++) {
+                var ni = njson.table.length+i;
+                if (i>0) {ni = njson.table.length+i-1};
+                console.log("iteration "+i+" / "+ni+", "+keys[ni]+" is "+values[ni])
+                njson.table[ni] = values[i];
+            }
+            fs.writeFile(dataPath+'/posts.fpf', JSON.stringify(njson, null, 2), (err) => {if(err) {throw(err);}});
         }
     } else {
         document.getElementById('error-content').style.display = block;
