@@ -13,16 +13,16 @@ async function optionUncomplete(id) {
 this.optionUncomplete = optionUncomplete;
 
 function optionEdit(id) {
-    var posts = document.getElementById('page-jsei').children;
-    var htp = posts.namedItem('pid-'+id);
-    var thisPostType = htp.children[0].children[0].innerHTML.toString().split(' | ')[1].toLowerCase();
+    let posts = document.getElementById('page-jsei').children;
+    let htp = posts.namedItem('pid-'+id);
+    let thisPostType = htp.children[0].children[0].innerHTML.toString().split(' | ')[1].toLowerCase();
 
     htp.children[0].innerHTML += "<p style='margin-bottom: 0;'>Press enter on each field you want to save</p>";
     htp.classList.add('editing');
 
     /* Date */
-    var datedefaultvalue = htp.children[0].children[0].innerHTML.toString().split(' | ')[0].toLowerCase() === "endless" ? "" : htp.children[0].children[0].innerHTML.toString().split(' | ')[0];
-    htp.children[0].children[0].innerHTML = "<input id='editingpost-"+id+"-date' type='date' value='"+datedefaultvalue+"' onkeydown='submitEdit(`date`, "+id+")'> | "+thisPostType;
+    let datedefaultvalue = htp.children[0].children[0].innerHTML.toString().split(' | ')[0].toLowerCase() === "endless" ? "" : htp.children[0].children[0].innerHTML.toString().split(' | ')[0];
+    htp.children[0].children[0].innerHTML = "<input id='editingpost-"+id+"-date' type='date' value='"+datedefaultvalue+"' onkeydown='submitEdit(`date`, "+id+")'> | "+thisPostType.replace('note', 'Note').replace('todo', 'Todo');
     /* Title */
     htp.children[0].children[1].innerHTML = "<input id='editingpost-"+id+"-title' type='text' value='"+htp.children[0].children[1].innerHTML+"' onkeydown='submitEdit(`title`, "+id+")'>";
 
@@ -32,10 +32,10 @@ function optionEdit(id) {
         htp.children[0].children[2].innerHTML = "<input id='editingpost-"+id+"-pcontent' type='text' value='"+htp.children[0].children[2].innerHTML+"' onkeydown='submitEdit(`pcontent`, "+id+")'>";
     } else if (thisPostType === "todo") {
         console.log("todo")
-        var todos = htp.children[0].children[2].children;
+        let todos = htp.children[0].children[2].children;
         console.log(todos);
 
-        for (var i = 0; i < todos.length; i++) {
+        for (let i = 0; i < todos.length; i++) {
             console.log(todos[i]);
             console.log(todos[i].children[0])
             console.log(todos[i].children[0].innerHTML)
@@ -58,7 +58,7 @@ function submitEdit(type, id, tid = null) {
     console.log(document.getElementById('editingpost-'+id+'-'+type));
     switch(type) {
         case "date":
-            var nd = document.getElementById('editingpost-'+id+'-date').value;
+            let nd = document.getElementById('editingpost-'+id+'-date').value;
             if (nd === "") return;
             updateValueInPost(id, "date", nd);
             break;
@@ -116,7 +116,7 @@ function optionDelete(id) {
 this.optionDelete = optionDelete;
 
 function updateCheck(pid, cid) {
-    var checked = document.getElementById(`todo-${pid}-${cid}-checkbox`).checked;
+    let checked = document.getElementById(`todo-${pid}-${cid}-checkbox`).checked;
     updateTodoValueInPost(pid, cid, "val", checked);
 }
 

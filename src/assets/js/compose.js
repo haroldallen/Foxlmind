@@ -3,20 +3,20 @@ var qs = new URLSearchParams(window.location.search);
 var roc = qs.get('roc');
 
 function loadComposeDefaultDate() {
-    var date = document.getElementById("compose-form-date");
-    var today = new Date();
+    let date = document.getElementById("compose-form-date");
+    let today = new Date();
     date.value = today.getFullYear()+"-"+("0" + (today.getMonth() + 1)).slice(-2)+"-"+("0" + today.getDate()).slice(-2);
 }
 this.loadComposeDefaultDate = loadComposeDefaultDate;
 loadComposeDefaultDate();
 
 function composePostFromForm() {
-    var type = document.getElementById("compose-form-type");
-    var date = document.getElementById("compose-form-date");
-    var endless = document.getElementById("compose-form-endless");
-    var title = document.getElementById("compose-form-title");
-    var content = document.getElementById("compose-form-content");
-    var todos = document.getElementById("compose-form-todos");
+    let type = document.getElementById("compose-form-type");
+    let date = document.getElementById("compose-form-date");
+    let endless = document.getElementById("compose-form-endless");
+    let title = document.getElementById("compose-form-title");
+    let content = document.getElementById("compose-form-content");
+    let todos = document.getElementById("compose-form-todos");
 
     // Checks
     console.log(date.value);
@@ -27,23 +27,23 @@ function composePostFromForm() {
         return;
     }
 
-    var dateFull = new Date(date.value);
+    let dateFull = new Date(date.value);
 
-    var newDateFull = dateFull.getFullYear()+"-"+("0" + (dateFull.getMonth() + 1)).slice(-2)+"-"+("0" + dateFull.getDate()).slice(-2);
+    let newDateFull = dateFull.getFullYear()+"-"+("0" + (dateFull.getMonth() + 1)).slice(-2)+"-"+("0" + dateFull.getDate()).slice(-2);
 
     if (date.value === "" || endless.checked) {newDateFull = "endless";}
 
     if (type.value.toLowerCase() === "note") {
         composeNote(newDateFull, title.value, content.value);
     } else if (type.value.toLowerCase() === "todo") {
-        var t = todos.children;
-        var nt = [];
-        for (var i=0; i<(todoId+1);i++) {
+        let t = todos.children;
+        let nt = [];
+        for (let i=0; i<(todoId+1);i++) {
             if (t[i] !== null) {
                 if (t[i].children[1] !== null) {
                     if (t[i].children[1].value !== "") {
-                        var label = t[i].children[1].value;
-                        var value = t[i].children[0].checked;
+                        let label = t[i].children[1].value;
+                        let value = t[i].children[0].checked;
                         nt.push({"label": label, "val": value});
                     }
                 }
@@ -72,8 +72,8 @@ function composeNote(dateStr,title,content) {
 this.composeNote = composeNote;
 
 function composeTodo(dateStr,title,todos) {
-    var t = [];
-    for (var i=0; i<todos.length; i++) {
+    let t = [];
+    for (let i=0; i<todos.length; i++) {
         t.push(todos[i]);
     }
     console.log(t);
@@ -89,9 +89,9 @@ function composeTodo(dateStr,title,todos) {
 this.composeTodo = composeTodo;
 
 function loadPostType() {
-    var type = document.getElementById('compose-form-type');
-    var content = document.getElementById("compose-form-content");
-    var todos = document.getElementById("compose-form-todos-wrapper");
+    let type = document.getElementById('compose-form-type');
+    let content = document.getElementById("compose-form-content");
+    let todos = document.getElementById("compose-form-todos-wrapper");
 
     content.style.display = "none";
     todos.style.display = "none";

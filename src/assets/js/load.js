@@ -20,7 +20,7 @@ function loadSidebar() {
 this.loadSidebar = loadSidebar;
 
 function loadPage(pg) {
-    var acceptedPages = ['today','upcoming','past','completed','compose','settings'];
+    let acceptedPages = ['today','upcoming','past','completed','compose','settings'];
     if (acceptedPages.includes(pg) && pg !== null) {
         $('#content').load(`./${pg}.html`);
     } else {
@@ -28,10 +28,10 @@ function loadPage(pg) {
     }
 
     if (pg === "today" || pg === "upcoming" || pg === "past" || pg === "completed") {
-        var dt = new Date();
-        var daysFormatted = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        var dy = daysFormatted[dt.getDay()];
-        var fm = dy+", "+("0" + dt.getDate()).slice(-2)+"/"+("0" + (dt.getMonth() + 1)).slice(-2)+"/"+dt.getFullYear();
+        let dt = new Date();
+        let daysFormatted = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        let dy = daysFormatted[dt.getDay()];
+        let fm = dy+", "+("0" + dt.getDate()).slice(-2)+"/"+("0" + (dt.getMonth() + 1)).slice(-2)+"/"+dt.getFullYear();
         if (pg === "today"){loadPageTitle(fm);}
 
         setTimeout(function() {
@@ -55,36 +55,36 @@ function loadPosts(tc) {
         const notesfile = fs.readFileSync(dataPath+"/posts.fpf");
         console.log("notesFile got "+notesfile);
         const notesParsed = JSON.parse(notesfile);
-        var notes = notesParsed.table;
+        let notes = notesParsed.table;
         console.log("notes got "+notes);
         console.log("contentsDiv got "+contentsDiv);
-        var notesLength = Object.keys(notes).length;
+        let notesLength = Object.keys(notes).length;
         console.log("notesLength got "+notesLength)
-        var postsLoaded = 0;
+        let postsLoaded = 0;
 
-        for (var i = 0; i < notesLength; i++) {
-            var thisNote = notes[i];
-            var thisNoteKeys = Object.keys(thisNote);
+        for (let i = 0; i < notesLength; i++) {
+            let thisNote = notes[i];
+            let thisNoteKeys = Object.keys(thisNote);
             console.log("ThisNoteKeys is " + thisNoteKeys)
-            var thisNoteValues = Object.values(thisNote);
+            let thisNoteValues = Object.values(thisNote);
             console.log("ThisNoteValues is " + thisNoteValues)
 
             console.log("for loop iteration " + i)
             console.log("date: " + thisNoteValues[0] + " needs to be equal to TC:" + tc + " or endless")
 
-            var upcomingBoolean = false;
+            let upcomingBoolean = false;
             if (gpg === "upcoming") {
                 if (tc === "endless") {
                     upcomingBoolean = true;
                 }
                 else {
-                    var mba = new Date(tc);
+                    let mba = new Date(tc);
                     console.log("mba/today (" + mba.getFullYear() + "-" + ("0" + (mba.getMonth() + 1)).slice(-2) + "-" + ("0" + mba.getDate()).slice(-2) + ") must be before or equal to post's date (" + thisNoteValues[0] + ") - RESULT: " + (mba <= new Date(thisNoteValues[0])));
                     upcomingBoolean = mba <= new Date(thisNoteValues[0]);
                 }
             }
             if (gpg === "past" && thisNoteValues[0] !== "endless") {
-                var mba = new Date(tc);
+                let mba = new Date(tc);
                 console.log("mba/today (" + mba.getFullYear() + "-" + ("0" + (mba.getMonth() + 1)).slice(-2) + "-" + ("0" + mba.getDate()).slice(-2) + ") must be before or equal to post's date (" + thisNoteValues[0] + ") - RESULT: " + (mba <= new Date(thisNoteValues[0])));
                 upcomingBoolean = mba > new Date(thisNoteValues[0]);
             }
@@ -93,15 +93,15 @@ function loadPosts(tc) {
             if ((gpg === "today" && thisNoteValues[4] === "visible") || (gpg === "completed" && thisNoteValues[4] === "completed") || (gpg === "upcoming" && thisNoteValues[4] === "visible") || (gpg === "past" && thisNoteValues[4] === "visible")) {
                 if ((gpg === "completed" || thisNoteValues[0] === tc || thisNoteValues[0] === "endless" || upcomingBoolean) && gpg !== "past" || gpg === "past" && upcomingBoolean) {
                     console.log("found post for today")
-                    var unCompleteIcon = "fa-check";
-                    var unComplete = "Complete";
+                    let unCompleteIcon = "fa-check";
+                    let unComplete = "Complete";
                     if (gpg === "completed") { unComplete = "Uncomplete"; unCompleteIcon = "fa-angle-left"; }
 
                     if (thisNoteValues[1] === "todo") {
-                        var contentPart = "";
-                        for (var it = 0; it < thisNoteValues[3].length; it++) {
+                        let contentPart = "";
+                        for (let it = 0; it < thisNoteValues[3].length; it++) {
                             console.log(Object.values(thisNoteValues[3])[it].val);
-                            var checkedOrNot = Object.values(thisNoteValues[3])[it].val === true ? " checked='checked'" : "";
+                            let checkedOrNot = Object.values(thisNoteValues[3])[it].val === true ? " checked='checked'" : "";
                             contentPart +=
                                 `<label class="rcontainer" id="todo-${i}-${it}-checkwrap"><span class="rs">${Object.values(thisNoteValues[3])[it].label}</span>
                                     <input class="ri" type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})"${checkedOrNot}>
@@ -156,7 +156,7 @@ function fixPostsFile(wx) {
     if (!fs.existsSync(dataPath)){
         fs.mkdirSync(dataPath);
     }
-    var data2Write = {table: [{"date": "endless","type": "note","title": "Welcome to Foxlmind...","content": "Thank you for using Foxlmind!<br>This was made completely for fun but if you want to support its development, you can <a onclick='openURLInBrowser(`https://patreon.com/foxlldev`)' href='#'>donate here</a>.<br>If not, that's fine, enjoy :)","state": "visible"}]};
+    let data2Write = {table: [{"date": "endless","type": "note","title": "Welcome to Foxlmind...","content": "Thank you for using Foxlmind!<br>This was made completely for fun but if you want to support its development, you can <a onclick='openURLInBrowser(`https://patreon.com/foxlldev`)' href='#'>donate here</a>.<br>If not, that's fine, enjoy :)","state": "visible"}]};
     if (wx === true) {
         fs.writeFile(dataPath + "/posts.fpf", JSON.stringify(data2Write, null, 2), {flags: 'wx'}, function (err) {
             if (err) throw err;

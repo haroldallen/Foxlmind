@@ -1,20 +1,20 @@
 const { getCurrentWindow, dialog } = require('@electron/remote');
 
 function loadTheme() {
-    var theme = window.localStorage.getItem('theme');
+    let theme = window.localStorage.getItem('theme');
     if (theme !== 'dark' && theme !== 'light' && theme !== 'myo') {window.localStorage.setItem('theme', 'light');}
     if (theme === 'dark' || theme === 'light' || theme == 'myo') {
         document.body.classList.remove('theme-dark', 'theme-light', 'theme-myo');
         document.body.classList.add(`theme-${theme}`);
     }
     if (theme === 'myo') {
-        var sidebarCol = window.localStorage.getItem('myo-sidebarcol');
-        var backgroundCol = window.localStorage.getItem('myo-backgroundcol');
-        var topbarCol = window.localStorage.getItem('myo-topbarcol');
-        var postCol = window.localStorage.getItem('myo-postcol');
-        var inputCol = window.localStorage.getItem('myo-inputcol');
-        var textCol = window.localStorage.getItem('myo-textcol');
-        var borderCol = window.localStorage.getItem('myo-bordercol');
+        let sidebarCol = window.localStorage.getItem('myo-sidebarcol');
+        let backgroundCol = window.localStorage.getItem('myo-backgroundcol');
+        let topbarCol = window.localStorage.getItem('myo-topbarcol');
+        let postCol = window.localStorage.getItem('myo-postcol');
+        let inputCol = window.localStorage.getItem('myo-inputcol');
+        let textCol = window.localStorage.getItem('myo-textcol');
+        let borderCol = window.localStorage.getItem('myo-bordercol');
         document.body.style.setProperty('--sidebar-background', sidebarCol)
         document.body.style.setProperty('--content-background', backgroundCol)
         document.body.style.setProperty('--title-background', topbarCol)
@@ -68,8 +68,8 @@ function saveSettings() {
 this.saveSettings = saveSettings;
 
 function dropdownMYO() {
-    var icon = document.getElementById('myo-dropicon');
-    var content = document.getElementById('myo-content');
+    let icon = document.getElementById('myo-dropicon');
+    let content = document.getElementById('myo-content');
     if (icon.classList.contains('fa-caret-right')) {
         icon.classList.replace('fa-caret-right', 'fa-caret-down')
         content.style.display = "block";
@@ -82,21 +82,21 @@ function dropdownMYO() {
 this.dropdownMYO = dropdownMYO;
 
 function loadMYO() {
-    var into_sidebarcol = document.getElementById('settings-themes-myo-sidebarcol');
-    var into_backgroundcol = document.getElementById('settings-themes-myo-backgroundcol');
-    var into_topbarcol = document.getElementById('settings-themes-myo-topbarcol');
-    var into_postcol = document.getElementById('settings-themes-myo-postcol');
-    var into_inputcol = document.getElementById('settings-themes-myo-inputcol');
-    var into_textcol = document.getElementById('settings-themes-myo-textcol');
-    var into_bordercol = document.getElementById('settings-themes-myo-bordercol');
+    let into_sidebarcol = document.getElementById('settings-themes-myo-sidebarcol');
+    let into_backgroundcol = document.getElementById('settings-themes-myo-backgroundcol');
+    let into_topbarcol = document.getElementById('settings-themes-myo-topbarcol');
+    let into_postcol = document.getElementById('settings-themes-myo-postcol');
+    let into_inputcol = document.getElementById('settings-themes-myo-inputcol');
+    let into_textcol = document.getElementById('settings-themes-myo-textcol');
+    let into_bordercol = document.getElementById('settings-themes-myo-bordercol');
     
-    var val_sidebarcol = window.localStorage.getItem('myo-sidebarcol');
-    var val_backgroundcol = window.localStorage.getItem('myo-backgroundcol');
-    var val_topbarcol = window.localStorage.getItem('myo-topbarcol');
-    var val_postcol = window.localStorage.getItem('myo-postcol');
-    var val_inputcol = window.localStorage.getItem('myo-inputcol');
-    var val_textcol = window.localStorage.getItem('myo-textcol');
-    var val_bordercol = window.localStorage.getItem('myo-bordercol');
+    let val_sidebarcol = window.localStorage.getItem('myo-sidebarcol');
+    let val_backgroundcol = window.localStorage.getItem('myo-backgroundcol');
+    let val_topbarcol = window.localStorage.getItem('myo-topbarcol');
+    let val_postcol = window.localStorage.getItem('myo-postcol');
+    let val_inputcol = window.localStorage.getItem('myo-inputcol');
+    let val_textcol = window.localStorage.getItem('myo-textcol');
+    let val_bordercol = window.localStorage.getItem('myo-bordercol');
 
     console.log("sidebarcol got "+val_sidebarcol)
     into_sidebarcol.value = val_sidebarcol;
@@ -116,13 +116,13 @@ function loadMYO() {
 this.loadMYO = loadMYO;
 
 function saveMYO() {
-    var into_sidebarcol = document.getElementById('settings-themes-myo-sidebarcol');
-    var into_backgroundcol = document.getElementById('settings-themes-myo-backgroundcol');
-    var into_topbarcol = document.getElementById('settings-themes-myo-topbarcol');
-    var into_postcol = document.getElementById('settings-themes-myo-postcol');
-    var into_inputcol = document.getElementById('settings-themes-myo-inputcol');
-    var into_textcol = document.getElementById('settings-themes-myo-textcol');
-    var into_bordercol = document.getElementById('settings-themes-myo-bordercol');
+    let into_sidebarcol = document.getElementById('settings-themes-myo-sidebarcol');
+    let into_backgroundcol = document.getElementById('settings-themes-myo-backgroundcol');
+    let into_topbarcol = document.getElementById('settings-themes-myo-topbarcol');
+    let into_postcol = document.getElementById('settings-themes-myo-postcol');
+    let into_inputcol = document.getElementById('settings-themes-myo-inputcol');
+    let into_textcol = document.getElementById('settings-themes-myo-textcol');
+    let into_bordercol = document.getElementById('settings-themes-myo-bordercol');
     
     window.localStorage.setItem('myo-sidebarcol', into_sidebarcol.value)
     window.localStorage.setItem('myo-backgroundcol', into_backgroundcol.value)
@@ -147,18 +147,18 @@ async function importMYO() {
     if (file !== undefined || file !== null) {
         if (file.filePaths.length === 0) {console.log("error")}
         else {
-            var a = file.filePaths[0].split('\\')
-            var b = a[a.length-1];
+            let a = file.filePaths[0].split('\\')
+            let b = a[a.length-1];
             console.log("file named " + b);
 
-            var rfile = fs.readFileSync(file.filePaths[0]);
+            let rfile = fs.readFileSync(file.filePaths[0]);
             console.log(rfile);
-            var pfile = JSON.parse(rfile);
+            let pfile = JSON.parse(rfile);
             console.log(pfile);
-            var keys = Object.keys(pfile);
-            var values = Object.values(pfile);
+            let keys = Object.keys(pfile);
+            let values = Object.values(pfile);
 
-            for (var i = 0; i < keys.length; i++) {
+            for (let i = 0; i < keys.length; i++) {
                 console.log("iteration "+i+", "+keys[i]+" is "+values[i])
                 window.localStorage.setItem(`myo-${keys[i]}`, values[i]);
             }
@@ -184,29 +184,29 @@ async function importPosts() {
     if (file !== undefined || file !== null) {
         if (file.filePaths.length === 0) {console.log("error")}
         else {
-            var a = file.filePaths[0].split('\\')
-            var b = a[a.length-1];
+            let a = file.filePaths[0].split('\\')
+            let b = a[a.length-1];
             console.log("file named " + b);
 
-            var rfile = fs.readFileSync(file.filePaths[0]);
+            let rfile = fs.readFileSync(file.filePaths[0]);
             console.log(rfile);
-            var pfile = JSON.parse(rfile);
+            let pfile = JSON.parse(rfile);
             console.log(pfile);
-            var keys = Object.keys(pfile.table);
-            var values = Object.values(pfile.table);
+            let keys = Object.keys(pfile.table);
+            let values = Object.values(pfile.table);
 
-            var old = fs.readFileSync(dataPath+'/posts.fpf');
-            var pold = JSON.parse(old);
-            var told = pold.table;
-            var vold = Object.values(told);
-            var njson = {"table":[]};
+            let old = fs.readFileSync(dataPath+'/posts.fpf');
+            let pold = JSON.parse(old);
+            let told = pold.table;
+            let vold = Object.values(told);
+            let njson = {"table":[]};
 
-            for (var i = 0; i < told.length; i++) {
+            for (let i = 0; i < told.length; i++) {
                 console.log("iteration(2) "+i+", "+vold[i])
                 njson.table[i] = vold[i];
             }
-            for (var i = 0; i < keys.length; i++) {
-                var ni = njson.table.length+i;
+            for (let i = 0; i < keys.length; i++) {
+                let ni = njson.table.length+i;
                 if (i>0) {ni = njson.table.length+i-1};
                 console.log("iteration "+i+" / "+ni+", "+keys[ni]+" is "+values[ni])
                 njson.table[ni] = values[i];
