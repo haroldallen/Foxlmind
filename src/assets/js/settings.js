@@ -12,14 +12,14 @@ function loadTheme() {
         var backgroundCol = window.localStorage.getItem('myo-backgroundcol');
         var topbarCol = window.localStorage.getItem('myo-topbarcol');
         var postCol = window.localStorage.getItem('myo-postcol');
-        var composeinputCol = window.localStorage.getItem('myo-composeinputcol');
+        var inputCol = window.localStorage.getItem('myo-inputcol');
         var textCol = window.localStorage.getItem('myo-textcol');
         var borderCol = window.localStorage.getItem('myo-bordercol');
         document.body.style.setProperty('--sidebar-background', sidebarCol)
         document.body.style.setProperty('--content-background', backgroundCol)
         document.body.style.setProperty('--title-background', topbarCol)
         document.body.style.setProperty('--post-color', postCol)
-        document.body.style.setProperty('--compose-bbc', composeinputCol)
+        document.body.style.setProperty('--input-background', inputCol)
         document.body.style.setProperty('--content-textcolor', textCol)
         document.body.style.setProperty('--border-color', borderCol)
     } else {
@@ -86,7 +86,7 @@ function loadMYO() {
     var into_backgroundcol = document.getElementById('settings-themes-myo-backgroundcol');
     var into_topbarcol = document.getElementById('settings-themes-myo-topbarcol');
     var into_postcol = document.getElementById('settings-themes-myo-postcol');
-    var into_composeinputcol = document.getElementById('settings-themes-myo-composeinputcol');
+    var into_inputcol = document.getElementById('settings-themes-myo-inputcol');
     var into_textcol = document.getElementById('settings-themes-myo-textcol');
     var into_bordercol = document.getElementById('settings-themes-myo-bordercol');
     
@@ -94,7 +94,7 @@ function loadMYO() {
     var val_backgroundcol = window.localStorage.getItem('myo-backgroundcol');
     var val_topbarcol = window.localStorage.getItem('myo-topbarcol');
     var val_postcol = window.localStorage.getItem('myo-postcol');
-    var val_composeinputcol = window.localStorage.getItem('myo-composeinputcol');
+    var val_inputcol = window.localStorage.getItem('myo-inputcol');
     var val_textcol = window.localStorage.getItem('myo-textcol');
     var val_bordercol = window.localStorage.getItem('myo-bordercol');
 
@@ -106,8 +106,8 @@ function loadMYO() {
     into_topbarcol.value = val_topbarcol;
     console.log("postcol got "+val_postcol)
     into_postcol.value = val_postcol;
-    console.log("composeinputcol got "+val_composeinputcol)
-    into_composeinputcol.value = val_composeinputcol;
+    console.log("inputcol got "+val_inputcol)
+    into_inputcol.value = val_inputcol;
     console.log("textcol got "+val_textcol)
     into_textcol.value = val_textcol;
     console.log("bordercol got "+val_bordercol)
@@ -120,7 +120,7 @@ function saveMYO() {
     var into_backgroundcol = document.getElementById('settings-themes-myo-backgroundcol');
     var into_topbarcol = document.getElementById('settings-themes-myo-topbarcol');
     var into_postcol = document.getElementById('settings-themes-myo-postcol');
-    var into_composeinputcol = document.getElementById('settings-themes-myo-composeinputcol');
+    var into_inputcol = document.getElementById('settings-themes-myo-inputcol');
     var into_textcol = document.getElementById('settings-themes-myo-textcol');
     var into_bordercol = document.getElementById('settings-themes-myo-bordercol');
     
@@ -128,7 +128,7 @@ function saveMYO() {
     window.localStorage.setItem('myo-backgroundcol', into_backgroundcol.value)
     window.localStorage.setItem('myo-topbarcol', into_topbarcol.value)
     window.localStorage.setItem('myo-postcol', into_postcol.value)
-    window.localStorage.setItem('myo-composeinputcol', into_composeinputcol.value)
+    window.localStorage.setItem('myo-inputcol', into_inputcol.value)
     window.localStorage.setItem('myo-textcol', into_textcol.value)
     window.localStorage.setItem('myo-bordercol', into_bordercol.value)
 }

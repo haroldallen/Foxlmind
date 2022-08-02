@@ -74,6 +74,8 @@
     "electron-builder": "^22.14.13"
   },
   "build": {
+    "appId": "design.foxl.foxlmind",
+    "icon": "./src/assets/media/logo.png",
     "publish": [
       "github"
     ]

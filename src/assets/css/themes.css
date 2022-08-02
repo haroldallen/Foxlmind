@@ -6,7 +6,7 @@
     --title-background: rgb(45, 45, 45);
     --sidebar-background: rgb(49, 47, 47);
 
-    --compose-background: rgba(34, 36, 37,0.3);
+    --input-background: rgba(34, 36, 37,0.3);
     --compose-bbc: white;
     --link-color: rgb(92, 128, 196);
 
@@ -21,7 +21,7 @@
     --title-background: rgb(230, 230, 230);
     --sidebar-background: rgb(230, 230, 230);
 
-    --compose-background: rgba(211, 222, 228, 0.3);
+    --input-background: rgba(211, 222, 228, 0.3);
     --compose-bbc: rgb(87, 87, 87);
     --link-color: rgb(92, 128, 196);
 

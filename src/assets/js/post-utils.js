@@ -17,7 +17,17 @@ function getValueInPost(id, key, callback) {
         callback(Object.values(obj.table)[id][key]);
     });
 }
-this.updateValueInPost = updateValueInPost;
+this.getValueInPost = getValueInPost;
+function getTodoValueInPost(pid, cid, key, callback) {
+    fs.readFile(dataPath+"/posts.fpf", 'utf8', function readFileCallback(err, data) {
+        if (err) {throw err;}
+        console.log("Data served");
+        var obj = JSON.parse(data);
+        console.log(Object.values(obj.table)[pid].content[cid][key])
+        callback(Object.values(obj.table)[pid].content[cid][key]);
+    });
+}
+this.getTodoValueInPost = getTodoValueInPost;
 
 function updateValueInPost(id, key, value) {
     fs.readFile(dataPath+"/posts.fpf", 'utf8', function readFileCallback(err, data) {

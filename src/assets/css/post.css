@@ -19,7 +19,7 @@
     background-color: var(--post-color);
     border: 1px solid var(--border-color);
     transition: 0.1s;
-    min-width: 15vw;
+    min-width: 25vw;
 }
 
 .post:hover>.post-ins {
@@ -29,6 +29,9 @@
 .post:hover>.post-options {
     display: block;
 }
+
+.post.editing > .post-ins { border-radius: 10px; }
+.post.editing > .post-options { display: none; }
 
 .post-options {
     display: none;
@@ -77,12 +80,16 @@
 }
 
 /* Hide the browser's default checkbox */
-.rcontainer input {
+.rcontainer .ri {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     height: 0;
     width: 0;
+}
+
+.rcontainer .rs input {
+    margin-top: -15px;
 }
 
 /* Create a custom checkbox */
@@ -135,3 +142,10 @@
     text-align: center;
 }
 
+.post-ins * input {
+    padding: 5px;
+    background: var(--input-background);
+    color: var(--content-textcolor);
+    border: none;
+    border-radius: 2px;
+}

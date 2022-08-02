@@ -20,26 +20,17 @@ function loadSidebar() {
 this.loadSidebar = loadSidebar;
 
 function loadPage(pg) {
-    if (pg === "today") {
-        $("#content").load('./today.html');
-    } else if (pg === "upcoming") {
-        $("#content").load('./upcoming.html');
-    } else if (pg === "past") {
-        $("#content").load('./past.html');
-    } else if (pg === "completed") {
-        $("#content").load('./completed.html');
-    } else if (pg === "compose") {
-        $("#content").load('./compose.html');
-    } else if (pg === "settings") {
-        $("#content").load('./settings.html');
+    var acceptedPages = ['today','upcoming','past','completed','compose','settings'];
+    if (acceptedPages.includes(pg) && pg !== null) {
+        $('#content').load(`./${pg}.html`);
     } else {
         window.location.href = "./index.html?page=today";
     }
 
     if (pg === "today" || pg === "upcoming" || pg === "past" || pg === "completed") {
         var dt = new Date();
-        var dy = dt.getDay();
-        if (dy === 0) {dy = "Sunday"} else if (dy === 1) {dy = "Monday"} else if (dy === 2) {dy = "Tuesday"} else if (dy === 3) {dy = "Wednesday"} else if (dy === 4) {dy = "Thursday"} else if (dy === 5) {dy = "Friday"} else if (dy === 6) {dy = "Saturday"} else {dy = "Error"}
+        var daysFormatted = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var dy = daysFormatted[dt.getDay()];
         var fm = dy+", "+("0" + dt.getDate()).slice(-2)+"/"+("0" + (dt.getMonth() + 1)).slice(-2)+"/"+dt.getFullYear();
         if (pg === "today"){loadPageTitle(fm);}
 
@@ -62,13 +53,13 @@ function loadPosts(tc) {
     try {
         console.log("loadTodayNotes started")
         const notesfile = fs.readFileSync(dataPath+"/posts.fpf");
-        console.log(notesfile);
+        console.log("notesFile got "+notesfile);
         const notesParsed = JSON.parse(notesfile);
         var notes = notesParsed.table;
-        console.log(notes);
-        console.log(contentsDiv);
+        console.log("notes got "+notes);
+        console.log("contentsDiv got "+contentsDiv);
         var notesLength = Object.keys(notes).length;
-        console.log(notesLength)
+        console.log("notesLength got "+notesLength)
         var postsLoaded = 0;
 
         for (var i = 0; i < notesLength; i++) {
@@ -110,47 +101,40 @@ function loadPosts(tc) {
                         var contentPart = "";
                         for (var it = 0; it < thisNoteValues[3].length; it++) {
                             console.log(Object.values(thisNoteValues[3])[it].val);
-                            if (Object.values(thisNoteValues[3])[it].val === true) {
-                                contentPart +=
-                                    `<label class="rcontainer" id="todo-${i}-${it}-checkwrap"><fmtc>${Object.values(thisNoteValues[3])[it].label}</fmtc>
-                                <input type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})" checked="checked">
-                                <span class="rcheckmark"></span>
-                            </label>`;
-                            } else {
-                                contentPart +=
-                                    `<label class="rcontainer" id="todo-${i}-${it}-checkwrap"><fmtc>${Object.values(thisNoteValues[3])[it].label}</fmtc>
-                                <input type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})">
-                                <span class="rcheckmark"></span>
-                            </label>`;
-                            }
+                            var checkedOrNot = Object.values(thisNoteValues[3])[it].val === true ? " checked='checked'" : "";
+                            contentPart +=
+                                `<label class="rcontainer" id="todo-${i}-${it}-checkwrap"><span class="rs">${Object.values(thisNoteValues[3])[it].label}</span>
+                                    <input class="ri" type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})"${checkedOrNot}>
+                                    <span class="rcheckmark"></span>
+                                </label>`;
                         }
                         contentsDiv.innerHTML += `
-                    <div class="post post-${thisNoteValues[1]}" name="pid-${i}">
-                        <div class="post-ins">
-                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace('todo', "Todo")}</p>
-                            <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
-                            <p class="post-content post-${thisNoteValues[1]}-content">${contentPart}</p>
-                        </div>
-                        <div class="post-options">
-                            <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
-                            <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
-                            <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
-                        </div>
-                    </div>`;
+                            <div class="post post-${thisNoteValues[1]}" name="pid-${i}">
+                                <div class="post-ins">
+                                    <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace('todo', "Todo")}</p>
+                                    <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
+                                    <div class="post-content post-${thisNoteValues[1]}-content">${contentPart}</div>
+                                </div>
+                                <div class="post-options">
+                                    <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
+                                    <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
+                                    <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
+                                </div>
+                            </div>`;
                     } else if (thisNoteValues[1] === "note") {
                         contentsDiv.innerHTML += `
-                    <div class="post post-${thisNoteValues[1]}" name="pid-${i}">
-                        <div class="post-ins">
-                            <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace("note", "Note")}</p>
-                            <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
-                            <p class="post-content post-${thisNoteValues[1]}-content">${thisNoteValues[3]}</p>
-                        </div>
-                        <div class="post-options">
-                            <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
-                            <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
-                            <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
-                        </div>
-                    </div>`;
+                            <div class="post post-${thisNoteValues[1]}" name="pid-${i}">
+                                <div class="post-ins">
+                                    <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace("note", "Note")}</p>
+                                    <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
+                                    <p class="post-content post-${thisNoteValues[1]}-content">${thisNoteValues[3]}</p>
+                                </div>
+                                <div class="post-options">
+                                    <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
+                                    <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
+                                    <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
+                                </div>
+                            </div>`;
                     }
                     postsLoaded++;
                 }
@@ -188,10 +172,10 @@ function fixPostsFile(wx) {
 this.fixPostsFile = fixPostsFile;
 
 function loadComplete() {
-    console.log(fs);
+    console.log("fs got "+fs);
     if (!fs.existsSync(dataPath+"/posts.fpf")) {fixPostsFile(true);}
-    console.log(dataPath);
-    console.log(storage.getDataPath());
+    console.log("dataPath got "+dataPath);
+    console.log("storage getDataPath got "+storage.getDataPath());
     console.log("loadComplete got path "+dataPath);
     loadSidebar();
     loadPage(gpg);

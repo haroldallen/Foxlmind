@@ -17,6 +17,9 @@ function optionEdit(id) {
     var htp = posts.namedItem('pid-'+id);
     var thisPostType = htp.children[0].children[0].innerHTML.toString().split(' | ')[1].toLowerCase();
 
+    htp.children[0].innerHTML += "<p style='margin-bottom: 0;'>Press enter on each field you want to save</p>";
+    htp.classList.add('editing');
+
     /* Date */
     var datedefaultvalue = htp.children[0].children[0].innerHTML.toString().split(' | ')[0].toLowerCase() === "endless" ? "" : htp.children[0].children[0].innerHTML.toString().split(' | ')[0];
     htp.children[0].children[0].innerHTML = "<input id='editingpost-"+id+"-date' type='date' value='"+datedefaultvalue+"' onkeydown='submitEdit(`date`, "+id+")'> | "+thisPostType;
@@ -36,17 +39,20 @@ function optionEdit(id) {
             console.log(todos[i]);
             console.log(todos[i].children[0])
             console.log(todos[i].children[0].innerHTML)
-            console.log(todos[i].children[0].innerHTML.toString())
+            todos[i].children[0].innerHTML = "<input id='editingpost-"+id+"-tcontent-"+i+"' type='text' value='"+todos[i].children[0].innerHTML+"' onkeydown='submitEdit(`tcontent`, "+id+", "+i+")'>";
+            /*getTodoValueInPost(id, i, "val", function(rv) {
+                todos[i].children[1].checked = rv;
+            });*/
         }
     } else {console.log("is " + thisPostType)}
 
-    console.log("Editing posts has not yet been implemented. ID: "+id);
+    /*console.log("Editing posts has not yet been implemented. ID: "+id);
     document.getElementById("error").style.display = "flex";
-    document.getElementById("error-content").innerHTML = "<strong>Error</strong>: This feature has not yet been implemented!";
+    document.getElementById("error-content").innerHTML = "<strong>Error</strong>: This feature has not yet been implemented!";*/
 }
 this.optionEdit = optionEdit;
 
-function submitEdit(type, id) {
+function submitEdit(type, id, tid = null) {
     if (event.keyCode !== 13) return;
     console.log(id+", "+type)
     console.log(document.getElementById('editingpost-'+id+'-'+type));
@@ -62,9 +68,15 @@ function submitEdit(type, id) {
         case "pcontent":
             updateValueInPost(id, "content", document.getElementById('editingpost-'+id+'-pcontent').value);
             break;
+        case "tcontent":
+            updateTodoValueInPost(id, tid, "label", document.getElementById('editingpost-'+id+'-tcontent-'+tid).value);
+            break;
     }
 
-    document.getElementById('editingpost-'+id+'-'+type).parentElement.innerHTML += `<i style="margin-left:5px;" class="fa-solid fa-square-check"></i>`;
+    if (type !== "tcontent")
+        document.getElementById('editingpost-'+id+'-'+type).insertAdjacentHTML('afterend', `<i style="margin-left:5px;" class="fa-solid fa-square-check"></i>`);
+    else
+        document.getElementById('editingpost-'+id+'-'+type+'-'+tid).insertAdjacentHTML('afterend', `<i style="margin-left:5px;" class="fa-solid fa-square-check"></i>`);
 }
 
 function optionFuncEditDate(id, newDate) {
