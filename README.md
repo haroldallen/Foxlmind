@@ -12,3 +12,6 @@ Don't trust us? Check our source, right here on GitHub.
 
 ## Notes & to-dos. In one app.
 It's easy to remember anything with Foxlmind - whether it's in need of an in-depth explanation or simple steps.   
+
+## Themes? No problem.
+With dark, light and easy-to-make custom themes with our Themes Designer, Foxlmind can look any way you want it to.   
