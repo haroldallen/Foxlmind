@@ -15,3 +15,6 @@ It's easy to remember anything with Foxlmind - whether it's in need of an in-dep
 
 ## Themes? No problem.
 With dark, light and easy-to-make custom themes with our Themes Designer, Foxlmind can look any way you want it to.   
+
+## Simple design
+Foxlmind has a simple design, which still proves to be great-looking (especially after Joasss' redesign in 0.7) and efficient.   
