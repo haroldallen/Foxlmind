@@ -7,7 +7,7 @@ An epic note-keeping and to-do app built in <a href="https://electronjs.org">Ele
 # Features
 
 ## Totally local. Maximum security.
-We don't collect any data about you - you don't even need to log in to use Foxlmind - and your posts are stored locally (on your computer).
+We don't collect any data about you - you don't even need to log in to use Foxlmind - and your posts are stored locally (on your computer).   
 Don't trust us? Check our source, right here on GitHub.   
 
 ## Notes & to-dos. In one app.
@@ -18,3 +18,9 @@ With dark, light and easy-to-make custom themes with our Themes Designer, Foxlmi
 
 ## Simple design
 Foxlmind has a simple design, which still proves to be great-looking (especially after Joasss' redesign in 0.7) and efficient.   
+
+## Completion doesn't mean deletion.
+You can view your completed posts in the Completed page, choose to mark them as uncompleted or permenantly delete them.   
+
+## Quick & easy editing
+Made a typo or have new ideas? Edit your post - change the date, title, content, and even add a to-do point to an existing post.
