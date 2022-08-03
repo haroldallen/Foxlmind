@@ -3,3 +3,7 @@ An epic note-keeping and to-do app built in <a href="https://electronjs.org">Ele
 
 <strong>Website</strong>: [foxl.design/mind](https://foxl.design/mind)   
 <strong>Downloads</strong>: [foxl.design/mind#downloads](https://foxl.design/mind#downloads)
+
+# Features
+
+## Notes & to-dos. In one app.
