@@ -97,45 +97,43 @@ function loadPosts(tc) {
                     let unComplete = "Complete";
                     if (gpg === "completed") { unComplete = "Uncomplete"; unCompleteIcon = "fa-angle-left"; }
 
+                    let dateFormatted = thisNoteValues[0];
+                    if (dateFormatted !== "endless") {
+                        let dt = new Date(dateFormatted);
+                        dateFormatted = ("0" + dt.getDate()).slice(-2)+"/"+("0" + (dt.getMonth() + 1)).slice(-2)+"/"+dt.getFullYear();
+                    } else {dateFormatted = "Endless";}
+
+                    let typeFormatted = thisNoteValues[1].replace("note", "Note").replace("todo", "To-do list");
+                    let todoContent = "";
                     if (thisNoteValues[1] === "todo") {
-                        let contentPart = "";
                         for (let it = 0; it < thisNoteValues[3].length; it++) {
                             console.log(Object.values(thisNoteValues[3])[it].val);
                             let checkedOrNot = Object.values(thisNoteValues[3])[it].val === true ? " checked='checked'" : "";
-                            contentPart +=
+                            todoContent +=
                                 `<label class="rcontainer" id="todo-${i}-${it}-checkwrap"><span class="rs">${Object.values(thisNoteValues[3])[it].label}</span>
                                     <input class="ri" type="checkbox" id="todo-${i}-${it}-checkbox" onclick="updateCheck(${i},${it})"${checkedOrNot}>
                                     <span class="rcheckmark"></span>
                                 </label>`;
                         }
-                        contentsDiv.innerHTML += `
-                            <div class="post post-${thisNoteValues[1]}" name="pid-${i}">
-                                <div class="post-ins">
-                                    <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace('todo', "Todo")}</p>
-                                    <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
-                                    <div class="post-content post-${thisNoteValues[1]}-content">${contentPart}</div>
-                                </div>
-                                <div class="post-options">
-                                    <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
-                                    <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
-                                    <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
-                                </div>
-                            </div>`;
-                    } else if (thisNoteValues[1] === "note") {
-                        contentsDiv.innerHTML += `
-                            <div class="post post-${thisNoteValues[1]}" name="pid-${i}">
-                                <div class="post-ins">
-                                    <p class="post-info post-${thisNoteValues[1]}-info">${thisNoteValues[0].replace("endless", "Endless")} | ${thisNoteValues[1].replace("note", "Note")}</p>
-                                    <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
-                                    <p class="post-content post-${thisNoteValues[1]}-content">${thisNoteValues[3]}</p>
-                                </div>
-                                <div class="post-options">
-                                    <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
-                                    <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
-                                    <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
-                                </div>
-                            </div>`;
                     }
+                    let contentElementType = thisNoteValues[1] === "note" ? "p" : "div";
+                    let finalContent = thisNoteValues[1] === "note" ? thisNoteValues[3] : todoContent;
+
+                    contentsDiv.innerHTML += `
+                    <div class="post post-${thisNoteValues[1]}" name="pid-${i}">
+                        <div class="post-ins">
+                            <p class="post-info post-${thisNoteValues[1]}-info">${dateFormatted} | ${typeFormatted}</p>
+                            <p class="post-title post-${thisNoteValues[1]}-title">${thisNoteValues[2]}</p>
+                            <${contentElementType} class="post-content post-${thisNoteValues[1]}-content">${finalContent}</${contentElementType}>
+                        </div>
+                        <div class="post-options">
+                            <button id="post-options-complete" class="post-option fa-solid ${unCompleteIcon}" onclick="option${unComplete}(${i})"></button>
+                            <br><button id="post-options-edit" class="post-option fa-solid fa-pencil" onclick="optionEdit(${i})"></button>
+                            <br><button id="post-options-delete" class="post-option fa-solid fa-trash-can" onclick="optionDelete(${i})"></button>
+                        </div>
+                    </div>`;
+
+                    
                     postsLoaded++;
                 }
             }

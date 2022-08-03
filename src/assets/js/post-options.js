@@ -20,21 +20,32 @@ function optionEdit(id) {
     htp.children[0].innerHTML += "<p style='margin-bottom: 0;'>Press enter on each field you want to save</p>";
     htp.classList.add('editing');
 
-    /* Date */
+    // date
     let datedefaultvalue = htp.children[0].children[0].innerHTML.toString().split(' | ')[0].toLowerCase() === "endless" ? "" : htp.children[0].children[0].innerHTML.toString().split(' | ')[0];
-    htp.children[0].children[0].innerHTML = "<input id='editingpost-"+id+"-date' type='date' value='"+datedefaultvalue+"' onkeydown='submitEdit(`date`, "+id+")'> | "+thisPostType.replace('note', 'Note').replace('todo', 'Todo');
-    /* Title */
+    if (datedefaultvalue !== "") {
+        let dt = datedefaultvalue.split('/');
+        let formattedDt = dt[2]+"-"+dt[1]+"-"+dt[0]
+        console.log("formattedDt got "+formattedDt);
+        datedefaultvalue = formattedDt;
+    }
+
+    let dateendless = datedefaultvalue === "endless" ? " checked='checked'" : "";
+    htp.children[0].children[0].innerHTML = "<fme class='downthing'><fme onkeydown='submitEdit(`date`, "+id+")' id='editingpost-"+id+"-datew' class='datewinput'><input id='editingpost-"+id+"-date' type='date' value='"+datedefaultvalue+"'>"+
+        " or <input id='editingpost-"+id+"-endless' type='checkbox'"+dateendless+"> Endless? </fme> | "
+        +thisPostType.replace('note', 'Note').replace(' list', '').replace('to-do', 'To-do list')+"</fme>";
+    // title
     htp.children[0].children[1].innerHTML = "<input id='editingpost-"+id+"-title' type='text' value='"+htp.children[0].children[1].innerHTML+"' onkeydown='submitEdit(`title`, "+id+")'>";
 
     if (thisPostType === "note") {
         console.log("note")
-        /* Note Content */
+        // note content
         htp.children[0].children[2].innerHTML = "<input id='editingpost-"+id+"-pcontent' type='text' value='"+htp.children[0].children[2].innerHTML+"' onkeydown='submitEdit(`pcontent`, "+id+")'>";
-    } else if (thisPostType === "todo") {
+    } else if (thisPostType === "to-do list") {
         console.log("todo")
         let todos = htp.children[0].children[2].children;
         console.log(todos);
 
+        // todo points
         for (let i = 0; i < todos.length; i++) {
             console.log(todos[i]);
             console.log(todos[i].children[0])
@@ -58,6 +69,11 @@ function submitEdit(type, id, tid = null) {
     console.log(document.getElementById('editingpost-'+id+'-'+type));
     switch(type) {
         case "date":
+            if (document.getElementById('editingpost-'+id+'-endless').checked) {
+                updateValueInPost(id, "date", "endless");
+                return;
+            }
+
             let nd = document.getElementById('editingpost-'+id+'-date').value;
             if (nd === "") return;
             updateValueInPost(id, "date", nd);
@@ -73,10 +89,12 @@ function submitEdit(type, id, tid = null) {
             break;
     }
 
-    if (type !== "tcontent")
+    if (type !== "tcontent" && type !== "endless" && type !== "date")
         document.getElementById('editingpost-'+id+'-'+type).insertAdjacentHTML('afterend', `<i style="margin-left:5px;" class="fa-solid fa-square-check"></i>`);
-    else
+    else if (type === "tcontent")
         document.getElementById('editingpost-'+id+'-'+type+'-'+tid).insertAdjacentHTML('afterend', `<i style="margin-left:5px;" class="fa-solid fa-square-check"></i>`);
+    else if (type === "date" || type === "endless")
+        document.getElementById('editingpost-'+id+'-'+"datew").insertAdjacentHTML('afterend', `<i style="margin-left:5px;" class="fa-solid fa-square-check"></i>`);
 }
 
 function optionFuncEditDate(id, newDate) {

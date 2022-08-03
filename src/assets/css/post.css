@@ -149,3 +149,18 @@
     border: none;
     border-radius: 2px;
 }
+.datewinput {
+    padding: 5px;
+    background: var(--input-background);
+    border-radius: 2px;
+    margin-right: 5px;
+}
+.datewinput input {
+    padding: 2px;
+    background: transparent;
+}
+
+.editing * .post-info {
+    display: flex;
+    align-items: center;
+}
