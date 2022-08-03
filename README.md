@@ -10,3 +10,5 @@ An epic note-keeping and to-do app built in <a href="https://electronjs.org">Ele
 It's easy to remember anything with Foxlmind - whether it's in need of an in-depth explanation or simple steps.   
 
 ## Totally local. Maximum security.
+We don't collect any data about you - you don't even need to log in to use Foxlmind - and your posts are stored locally (on your computer).
+Don't trust us? Check our source, right here on GitHub.
