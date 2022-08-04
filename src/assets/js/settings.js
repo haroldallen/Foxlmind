@@ -8,25 +8,21 @@ function loadTheme() {
         document.body.classList.add(`theme-${theme}`);
     }
     if (theme === 'myo') {
-        let sidebarCol = window.localStorage.getItem('myo-sidebarcol');
-        let backgroundCol = window.localStorage.getItem('myo-backgroundcol');
-        let topbarCol = window.localStorage.getItem('myo-topbarcol');
-        let postCol = window.localStorage.getItem('myo-postcol');
-        let inputCol = window.localStorage.getItem('myo-inputcol');
-        let textCol = window.localStorage.getItem('myo-textcol');
-        let borderCol = window.localStorage.getItem('myo-bordercol');
-        document.body.style.setProperty('--sidebar-background', sidebarCol)
-        document.body.style.setProperty('--content-background', backgroundCol)
-        document.body.style.setProperty('--title-background', topbarCol)
-        document.body.style.setProperty('--post-color', postCol)
-        document.body.style.setProperty('--input-background', inputCol)
-        document.body.style.setProperty('--content-textcolor', textCol)
-        document.body.style.setProperty('--border-color', borderCol)
+        let d = {'sidebarcol': 'sidebar-background',
+            'backgroundcol': 'content-background',
+            'topbarcol': 'title-background',
+            'postcol': 'post-color',
+            'inputcol': 'input-background',
+            'textcol': 'content-textcolor',
+            'bordercol': 'border-color'};
+
+        for (let i = 0; i < Object.keys(d).length; i++) {
+            //console.log("property: "+Object.values(d)[i]);
+            //console.log("new value: "+Object.keys(d)[i]);
+            document.body.style.setProperty(`--${Object.values(d)[i]}`, window.localStorage.getItem(`myo-${Object.keys(d)[i]}`))
+        }
     } else {
         document.body.removeAttribute('style');
-    }
-    if (gpg === 'settings') {
-        setTimeout(loadMYO, 1);
     }
 }
 this.loadTheme = loadTheme;
@@ -44,7 +40,10 @@ this.setTheme = setTheme;
 
 function loadSettings() {
     if (gpg === "settings") {
-        document.getElementById(`settings-themes-${window.localStorage.getItem('theme')}`).checked = true;
+        setTimeout(function() {
+            document.getElementById(`settings-themes-${window.localStorage.getItem('theme')}`).checked = true;
+            loadMYO
+        }, 1);
     }
 }
 this.loadSettings = loadSettings;
@@ -82,55 +81,20 @@ function dropdownMYO() {
 this.dropdownMYO = dropdownMYO;
 
 function loadMYO() {
-    let into_sidebarcol = document.getElementById('settings-themes-myo-sidebarcol');
-    let into_backgroundcol = document.getElementById('settings-themes-myo-backgroundcol');
-    let into_topbarcol = document.getElementById('settings-themes-myo-topbarcol');
-    let into_postcol = document.getElementById('settings-themes-myo-postcol');
-    let into_inputcol = document.getElementById('settings-themes-myo-inputcol');
-    let into_textcol = document.getElementById('settings-themes-myo-textcol');
-    let into_bordercol = document.getElementById('settings-themes-myo-bordercol');
-    
-    let val_sidebarcol = window.localStorage.getItem('myo-sidebarcol');
-    let val_backgroundcol = window.localStorage.getItem('myo-backgroundcol');
-    let val_topbarcol = window.localStorage.getItem('myo-topbarcol');
-    let val_postcol = window.localStorage.getItem('myo-postcol');
-    let val_inputcol = window.localStorage.getItem('myo-inputcol');
-    let val_textcol = window.localStorage.getItem('myo-textcol');
-    let val_bordercol = window.localStorage.getItem('myo-bordercol');
-
-    console.log("sidebarcol got "+val_sidebarcol)
-    into_sidebarcol.value = val_sidebarcol;
-    console.log("backgroundcol got "+val_backgroundcol)
-    into_backgroundcol.value = val_backgroundcol;
-    console.log("topbarcol got "+val_topbarcol)
-    into_topbarcol.value = val_topbarcol;
-    console.log("postcol got "+val_postcol)
-    into_postcol.value = val_postcol;
-    console.log("inputcol got "+val_inputcol)
-    into_inputcol.value = val_inputcol;
-    console.log("textcol got "+val_textcol)
-    into_textcol.value = val_textcol;
-    console.log("bordercol got "+val_bordercol)
-    into_bordercol.value = val_bordercol;
+    let options = document.getElementById('myo-options').children;
+    for (let i = 0; i < options.length; i++) {
+        let name = options[i].children[0].id.replace('settings-themes-myo-', '');
+        options[i].children[0].value = window.localStorage.getItem('myo-'+name);
+    }
 }
 this.loadMYO = loadMYO;
 
 function saveMYO() {
-    let into_sidebarcol = document.getElementById('settings-themes-myo-sidebarcol');
-    let into_backgroundcol = document.getElementById('settings-themes-myo-backgroundcol');
-    let into_topbarcol = document.getElementById('settings-themes-myo-topbarcol');
-    let into_postcol = document.getElementById('settings-themes-myo-postcol');
-    let into_inputcol = document.getElementById('settings-themes-myo-inputcol');
-    let into_textcol = document.getElementById('settings-themes-myo-textcol');
-    let into_bordercol = document.getElementById('settings-themes-myo-bordercol');
-    
-    window.localStorage.setItem('myo-sidebarcol', into_sidebarcol.value)
-    window.localStorage.setItem('myo-backgroundcol', into_backgroundcol.value)
-    window.localStorage.setItem('myo-topbarcol', into_topbarcol.value)
-    window.localStorage.setItem('myo-postcol', into_postcol.value)
-    window.localStorage.setItem('myo-inputcol', into_inputcol.value)
-    window.localStorage.setItem('myo-textcol', into_textcol.value)
-    window.localStorage.setItem('myo-bordercol', into_bordercol.value)
+    let options = document.getElementById('myo-options').children;
+    for (let i = 0; i < options.length; i++) {
+        let name = options[i].children[0].id.replace('settings-themes-myo-', '');
+        window.localStorage.setItem('myo-'+name, options[i].children[0].value);
+    }
 }
 this.saveMYO = saveMYO;
 
