@@ -26,15 +26,15 @@
 
 ### How to contribute Foxlmind
 
-To contribute Foxlmind create a fork of this repository in your profile. Click to **Fork** and in opened page click **Create fork**. Next, clone the your fork of repository, and make your changes. You can make the unlimited count of commits to your repository. After you push your changes, you can click the **Contribute** and **Open pull request**.
+To contribute Foxlmind, first fork this repository. Click 'fork', 'create fork'. Next, clone the your fork of repository in GitHub Desktop or equivilent, and make your changes. You can make an unlimited ammount of commits to your repository, though it's easier for us if you keep it small. After you push your changes, you can open a pull request so that we can merge your changes if we deem them helpful.
 
 ### Building app from CLI
 
-Since Foxlmind runs on Electron.js, Node.js is required to run. You can download Node.js from the [official site](https://nodejs.org/en/download/). To build Foxlmind you need to run this commands in Terminal from repo root directory:
+Since Foxlmind runs on ElectronJS, NodeJS is required to run it. You can download NodeJS from the [official Node site](https://nodejs.org/en/download/). To run Foxlmind you will need to run these commands in your Foxlmind project folder.
 
 ```
 npm install
 npm start
 ```
 
-If you build the app when the other instance of app already opened you can get an error like `Unable to create cache` because the first runned instance of app already loaded and working with the save file. 
+If you build the app when another instance of it has already opened you could get an error like `Unable to create cache` because another instance of app has already loaded and working with the save file. 
