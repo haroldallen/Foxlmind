@@ -3,8 +3,12 @@ body {
   margin: auto;
 }
 
-html,body,#content {
-  background-color: var(--content-background);
+html,body {
+  height: 100%;
+  background: linear-gradient(var(--content-background), var(--content-background)), var(--bgimgurl);
+  background-repeat: no-repeat;
+  background-size:cover;
+  backdrop-filter: blur(var(--bgblurrad));
   color: var(--content-textcolor);
 }
 
@@ -20,7 +24,7 @@ html,body,#content {
   color: var(--content-textcolor);
   padding: 1rem;
   font-size: 24px;
-  height: 100%;
+  height: calc(100% - 2rem);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -38,7 +42,7 @@ html,body,#content {
 }
 .sidebar-bottom {
   position: absolute;
-  bottom: 3rem;
+  bottom: 1rem;
   width: calc(100% - 2rem);
   display: flex;
   flex-wrap: wrap;
