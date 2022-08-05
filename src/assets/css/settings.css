@@ -37,6 +37,7 @@
 .setting-ins.myo {
     display: none;
     margin-left: 34px;
+    margin-top: 15px;
 }
 .setting-ins.setting-ins-myod {
     cursor: pointer;
@@ -55,3 +56,8 @@
 .setting-radio-actual {
 
 }
+
+.myo-option-wrapper { display: flex; }
+.myo-option-wrapper.myo-other { justify-content: space-between; }
+.myo-option-label { margin-left: 10px; }
+.myo-other .myo-option-label { margin-left: 0; }

@@ -14,11 +14,14 @@ function loadTheme() {
             'postcol': 'post-color',
             'inputcol': 'input-background',
             'textcol': 'content-textcolor',
-            'bordercol': 'border-color'};
+            'bordercol': 'border-color',
+            'bgimgurl': 'bgimgurl',
+            'bgblurrad': 'bgblurrad'};
 
         for (let i = 0; i < Object.keys(d).length; i++) {
             //console.log("property: "+Object.values(d)[i]);
             //console.log("new value: "+Object.keys(d)[i]);
+            if (Object.keys(d)[i] === "bgimgurl" && window.localStorage.getItem(`myo-${Object.keys(d)[i]}`) === "") continue;
             document.body.style.setProperty(`--${Object.values(d)[i]}`, window.localStorage.getItem(`myo-${Object.keys(d)[i]}`))
         }
     } else {
@@ -83,8 +86,13 @@ this.dropdownMYO = dropdownMYO;
 function loadMYO() {
     let options = document.getElementById('myo-options').children;
     for (let i = 0; i < options.length; i++) {
-        let name = options[i].children[0].id.replace('settings-themes-myo-', '');
-        options[i].children[0].value = window.localStorage.getItem('myo-'+name);
+        let inputNum = 0;
+        if (i===7 || i===8) inputNum = 1;
+        let name = options[i].children[inputNum].id.replace('settings-themes-myo-', '');
+        let fval = window.localStorage.getItem('myo-'+name);
+        if (inputNum === 0) $(`#${options[i].children[inputNum].id}`).spectrum({showAlpha: true, color: fval});
+        if (name === "bgimgurl") fval = fval.replace(`url('`, '').replace(`')`, '');
+        if (inputNum === 1) options[i].children[inputNum].value = fval;
     }
 }
 this.loadMYO = loadMYO;
@@ -92,8 +100,15 @@ this.loadMYO = loadMYO;
 function saveMYO() {
     let options = document.getElementById('myo-options').children;
     for (let i = 0; i < options.length; i++) {
-        let name = options[i].children[0].id.replace('settings-themes-myo-', '');
-        window.localStorage.setItem('myo-'+name, options[i].children[0].value);
+        let inputNum = 0;
+        if (i===7 || i===8) inputNum = 1;
+        let name = options[i].children[inputNum].id.replace('settings-themes-myo-', '');
+        let fval = null;
+        if (inputNum === 0) fval = $(`#${options[i].children[inputNum].id}`).spectrum("get").toRgbString();
+        if (inputNum === 1) fval = options[i].children[inputNum].value;
+        if (name === "bgimgurl") fval = `url('${fval}')`;
+        if (name === "bgblurrad") fval = fval;
+        window.localStorage.setItem('myo-'+name, fval);
     }
 }
 this.saveMYO = saveMYO;

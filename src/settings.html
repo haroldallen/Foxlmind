@@ -67,6 +67,15 @@
                         <input class="myo-option" type="color" id="settings-themes-myo-bordercol"></input>
                         <label class="myo-option-label">Border Color</label>
                     </div>
+                    <!-- other -->
+                    <div class="myo-option-wrapper myo-other" style="margin-top: 15px;">
+                        <label class="myo-option-label">Background image URL (blank for none)</label>
+                        <input class="myo-option" type="url" id="settings-themes-myo-bgimgurl" style="width: 15vw;"></input>
+                    </div>
+                    <div class="myo-option-wrapper myo-other">
+                        <label class="myo-option-label">Background blur radius</label>
+                        <input class="myo-option" type="text" id="settings-themes-myo-bgblurrad" value="0px" aria-valuemax="50" aria-valuemin="0" min="0" max="50" maxlength="4" style="width: 5vw;"></input>
+                    </div>
                 </div>
                 <br>
                 <button class="myo-import" id="myo-import" onclick="importMYO()">Import theme</button>
