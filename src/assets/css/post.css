@@ -1,5 +1,6 @@
 .post {
     display: flex;
+    font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
     margin: 30px;
     padding-top: 5px;
     transition: 0.1s;
@@ -140,6 +141,7 @@
 
 .noposts {
     text-align: center;
+    font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 .post-ins * input {

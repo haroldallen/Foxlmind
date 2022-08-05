@@ -1,6 +1,7 @@
 #page-content {
     margin: 30px;
     margin-top: 20px;
+    font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
 }
 
 .settings-save {
@@ -11,6 +12,7 @@
     bottom: 0;
     right: 0;
     margin: 20px;
+    font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
     padding: 10px 20px;
     background: rgba(0,0,0,0.5);
     color: white;
@@ -52,9 +54,6 @@
 }
 .setting-radio-label {
     font-weight: 500;
-}
-.setting-radio-actual {
-
 }
 
 .myo-option-wrapper { display: flex; }
