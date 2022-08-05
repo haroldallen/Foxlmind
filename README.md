@@ -5,7 +5,7 @@
     <a href="https://foxl.design/mind"><b>Website</b></a>&nbsp;&nbsp;&nbsp;
     <a href="https://foxl.design/mind#downloads"><b>Downloads</b></a>&nbsp;&nbsp;&nbsp;
     <a href="https://github.com/foxlldev/Foxlmind/releases"><b>Releases</b></a>&nbsp;&nbsp;&nbsp;
-    <a href="(https://github.com/foxlldev/Foxlmind/issues"><b>Issues</b></a>&nbsp;&nbsp;&nbsp;
+    <a href="https://github.com/foxlldev/Foxlmind/issues"><b>Issues</b></a>&nbsp;&nbsp;&nbsp;
 </div>
 
 ## Features
