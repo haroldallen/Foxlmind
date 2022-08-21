@@ -16,7 +16,7 @@
 
 **Themes? No problem.** With dark, light and easy-to-make custom themes with our Themes Designer, Foxlmind can look any way you want it to.
 
-**Simple design.** Foxlmind has a simple design, which still proves to be great-looking (especially after [Joasss'](https://github.com/Joasss) redesign in 0.7) and efficient.
+**Beautiful design.** Foxlmind has a simple yet beautiful design to maximize ease of use while still looking great.
 
 **Completion doesn't mean deletion.** You can view your completed posts in the Completed page, choose to mark them as uncompleted or permenantly delete them.
 
