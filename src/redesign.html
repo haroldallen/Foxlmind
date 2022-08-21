@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="./assets/css/redesign.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d5db5a9cd6.js" crossorigin="anonymous"></script>
+</head>
+
+<body onload="loadComplete()">
+    <div class="header">
+        <div class="header-section header-left">
+            <img class="header-img" src="./assets/media/logo.svg" alt="logo">
+            Foxlmind
+        </div>
+        <div class="header-section header-right">
+            <i class="header-icon fa-solid fa-cog hvr" onclick="loadPage('settings')"></i>
+        </div>
+    </div>
+    <div class="top-wrapper"><div class="top">
+        <!--<p class="top-title-page" id="top-title-page">Today</p>-->
+        <div class="top-title-day">
+            <i onclick="moveDate('left')" id="top-title-day-left" class="hvr top-title-day-chevron left fa-solid fa-chevron-left"></i>
+            <span class="top-title-day-text" id="top-title-day-text">Today</span>
+            <i onclick="moveDate('right')" id="top-title-day-right" class="hvr top-title-day-chevron right fa-solid fa-chevron-right"></i>
+        </div>
+        <p class="top-title-date" id="top-title-date">Sunday, Aug 21, 2022</p>
+        <div class="top-addtask" id="top-addtask">
+            <a class="button top-addtask-button hvr" onclick="popup('compose')"><i class="fa-solid fa-plus" style="margin-right: 5px;"></i> Add a task...</a>
+        </div>
+    </div></div>
+    <div class="tasks" id="into-tasks">
+        <!--<div class="task">
+            <p class="task-title">Task title thats a todo</p>
+            <div class="task-contents">
+                <div class="todo-point checked">
+                    <i onclick="toggleCheck('task-0-point-0-check')" id="task-0-point-0-check" class="fa-solid fa-check-circle"></i>
+                    <label>Todo label</label>
+                </div>
+                <div class="todo-point">
+                    <i onclick="toggleCheck('task-0-point-1-check')" id="task-0-point-1-check" class="fa-solid fa-circle"></i>
+                    <label>Todo label that is actually rather long</label>
+                </div>
+            </div>
+        </div>
+        <div class="task">
+            <p class="task-title">Task title thats a note</p>
+            <div class="task-contents">
+                <span>Y'know blah blah blah blah blah blah blah</span>
+            </div>
+        </div>
+        <div class="task">
+            <p class="task-title">Task title thats a note 2</p>
+            <div class="task-contents">
+                <span>Y'know blah blah blah blah blah blah blah 2</span>
+            </div>
+        </div>
+        <div class="task">
+            <p class="task-title">Task title thats a note 3</p>
+            <div class="task-contents">
+                <span>Y'know blah blah blah blah blah blah blah 3</span>
+            </div>
+        </div>
+        <div class="task">
+            <p class="task-title">Task title thats a note 4</p>
+            <div class="task-contents">
+                <span>Y'know blah blah blah blah blah blah blah 4</span>
+            </div>
+        </div>-->
+    </div>
+
+    <div id="compose-popup" style="top: 100%;">
+        <div class="compose-popup-background" style="top: 100%;"></div>
+        <div class="compose-popup-wrapper" style="top: 100%;"><div class="compose-popup" style="top: 100%;">
+            <img src="./assets/media/cross.svg" class="compose-popup-close hvr" onclick="popup('compose')">
+            <div class="top-wrapper">
+                <div class="top">
+                    <p class="top-title-page" id="compose-popup-page">Compose</p>
+                    <div class="top-title-day">
+                        <i onclick="moveDayCompose('left')" id="top-title-dayc-left" class="hvr top-title-day-chevron left fa-solid fa-chevron-left"></i>
+                        <span class="top-title-day-text" id="compose-popup-dayc">Thursday</span>
+                        <i onclick="moveDayCompose('right')" id="top-title-dayc-right" class="hvr top-title-day-chevron right fa-solid fa-chevron-right"></i>
+                    </div>
+                    <div class="top-title-datec">
+                        <i onclick="moveDateCompose('left')" id="top-title-datec-left" class="hvr top-title-datec-chevron left fa-solid fa-chevron-left"></i>
+                        <span class="top-title-datec-text" id="compose-popup-day">Aug 4, 2022</span>
+                        <i onclick="moveDateCompose('right')" id="top-title-datec-right" class="hvr top-title-datec-chevron right fa-solid fa-chevron-right"></i>
+                    </div>
+                    <div class="compose-popup-endless hvr" onclick="toggleCheck('endlessCM')">
+                        <i id="endlessCM" class="fa-solid fa-circle" style="margin-right: 5px;"></i> Endless
+                    </div>
+                </div>
+            </div>
+    
+            <div class="compose-popup-input">
+                <div class="compose-popup-input-tabs">
+                    <div class="compose-popup-input-tab open" id="compose-popup-input-tab-todo" onclick="composeSwitchTab('todo')">To-Do List</div>
+                    <div class="compose-popup-input-tab" id="compose-popup-input-tab-note" onclick="composeSwitchTab('note')">Note</div>
+                </div>
+                <div class="compose-popup-input-content-wrapper">
+                    <div class="compose-popup-input-content">
+                        <div class="compose-popup-input-opentab todo" id="compose-popup-input-todo">
+                            <input placeholder="Task title..." class="compose-popup-content-title" id="compose-popup-content-todo-title" type="text">
+                            <div class="compose-popup-content-points" id="compose-popup-content-points">
+                                <div class="compose-popup-content-point" id="compose-popup-content-point-0">
+                                    <i onclick="toggleCheck('compose-point-0')" id="compose-point-0" class="hvr fa-solid fa-circle" style="margin-right: 5px;"></i>
+                                    <input placeholder="Point label..." onkeydown="composeTodoKeydown()" class="compose-popup-content-point-label" id="compose-popup-content-point-0-label" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="compose-popup-input-opentab note" id="compose-popup-input-note" style="display: none;">
+                            <input placeholder="Task title..." class="compose-popup-content-title" id="compose-popup-content-todo-title"
+                                type="text">
+                            <textarea placeholder="Task content..." class="compose-popup-content-note"
+                                id="compose-popup-content-note"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="compose-popup-buttons">
+                    <button class="button compose-popup-button hvr">Post</button>
+                </div>
+            </div>
+        </div></div>
+    </div>
+
+    <script src="./assets/js/jquery.min.js"></script>
+    <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
+    <script src="./assets/js/redesign.js"></script>
+    <script src="./assets/js/load.redesign.js"></script>
+    <script src="./assets/js/post-options.js"></script>
+    <script src="./assets/js/post-utils.js"></script>
+</body>
+
+</html>

@@ -133,8 +133,7 @@ function optionDelete(id) {
 }
 this.optionDelete = optionDelete;
 
-function updateCheck(pid, cid) {
-    let checked = document.getElementById(`todo-${pid}-${cid}-checkbox`).checked;
+function updateCheck(pid, cid, checked) {
     updateTodoValueInPost(pid, cid, "val", checked);
 }
 
