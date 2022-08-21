@@ -1,9 +1,9 @@
 function moveDate(dir, compose = false) {
     //let page = document.getElementById('top-title-page');
     let page = document.getElementById('top-title-day-text');
-    let date = document.getElementById('top-title-date');
-    let left = document.getElementById('top-title-day-left');
-    let right = document.getElementById('top-title-day-right');
+    //let date = document.getElementById('top-title-date');
+    //let left = document.getElementById('top-title-day-left');
+    //let right = document.getElementById('top-title-day-right');
     let cur = page.innerText.toLowerCase();
 
     console.log(cur);
