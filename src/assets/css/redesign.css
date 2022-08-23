@@ -7,6 +7,7 @@ html {
     font-weight: 600;
     background-color: black;
     color: white;
+    overflow-y: visible;
 }
 body {
     height: 100%;
@@ -107,18 +108,32 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: rgb(109, 109, 109);
 }
-.top-title-datec-text {
+.top-title-datec div { display: flex; justify-content: center; align-items: center; }
+.compose-popup-datec-input {
+    background-color: rgb(35,35,35);
     color: rgb(177, 177, 177);
+    padding: 7px 10px 7px 10px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
     font-size: 16px;
+    text-align: center;
+    min-width: 250px;
     font-weight: 400;
-    margin-left: 10px;
-    margin-right: 10px;
 }
-.top-title-datec-chevron {
-    color: rgb(100, 100, 100);
+.compose-popup-datec-input:focus { outline: none; }
+.top-title-datec-chevron, .top-title-datec-chevrons {
+    transition: 0.1s;
     font-size: 16px;
 }
+.top-title-datec-chevron:hover, .top-title-datec div:hover { color: rgb(177, 177, 177); }
+.top-title-datec-chevrons.right { margin-left: -4px; }
+.top-title-datec-chevrons.right.e { margin-left: 2px; }
+.top-title-datec-chevrons.left { margin-right: -4px; }
+.top-title-datec-chevrons.left.e { margin-right: 2px; }
 
 /* compose popup */
 #compose-popup, .compose-popup-wrapper, .compose-popup-background, .compose-popup {
@@ -153,7 +168,7 @@ body {
 .compose-popup-input {
     margin-top: 30px;
     overflow-y: auto;
-    height: calc(100% - 300px);
+    height: calc(100% - 195px);
     padding: 20px;
 }
 .compose-popup-input-tabs {
@@ -246,6 +261,41 @@ body {
     box-shadow: none;
 }
 
+.error {
+    font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
+    display: none;
+    /*display:flex;*/
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 50, 50, 0.5);
+    border-color: rgb(255, 50, 50);
+    margin: 15px;
+    margin-left: 30px;
+    padding: 10px;
+    border-width: 2px;
+    border-radius: 15px;
+    border-style: solid;
+}
+
+.error-close {
+    font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: white 2px solid;
+    padding: 2.5px 7px 2.5px 7px;
+    border-radius: 100%;
+    font-weight: 800;
+    transition: 0.2s;
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+
+.error-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(360deg);
+}
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -266,15 +316,24 @@ body {
 
 /* post */
 .tasks {
+    position: absolute;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 20px;
+    overflow-y: auto;
+    width: calc(100% - 10px);
+    height: calc(100% - 212px);
 }
 .task {
     margin: 10px;
     padding: 20px;
     width: 250px;
+}
+.task-date {
+    color: rgb(177, 177, 177);
+    font-size: 12px;
+    margin: 0;
 }
 .task-title {
     font-family: Poppins, Inter, Gantari, 'Helvetica Now', Helvetica, Arial, sans-serif;
@@ -287,6 +346,7 @@ body {
     margin: 5px;
     font-size: 20px;
     font-weight: 400;
+    word-wrap: break-word;
 }
 .task-contents span {
     color: rgb(177, 177, 177);

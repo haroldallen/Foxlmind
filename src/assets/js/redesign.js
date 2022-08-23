@@ -81,33 +81,3 @@ function popup(name) {
             break;
     }
 }
-
-function composeSwitchTab(tabName) {
-    let t = document.getElementById(`compose-popup-input-${tabName}`)
-    let tab = document.getElementById(`compose-popup-input-tab-${tabName}`)
-
-    for (let i = 0; i < tab.parentElement.children.length; i++) { tab.parentElement.children[i].classList.remove('open'); }
-    tab.classList.add('open');
-
-    for (let i = 0; i < tab.parentElement.parentElement.children[1].children[0].children.length; i++) { tab.parentElement.parentElement.children[1].children[0].children[i].style.display = "none"; }
-    t.style.display = "block";
-}
-
-function composeTodoKeydown() {
-    setTimeout(function () {
-        let pointse = document.getElementById('compose-popup-content-points');
-        let points = pointse.children;
-        if (points[points.length - 1].children[1].value.length > 0) {
-            $(`#${pointse.id}`).append(
-                `<div class="compose-popup-content-point" id="compose-popup-content-point-${points.length}">
-                <i onclick="toggleCheck('compose-point-${points.length}')" id="compose-point-${points.length}" class="hvr fa-solid fa-circle" style="margin-right: 5px;"></i>
-                <input placeholder="Add another point..." onkeydown="composeTodoKeydown(event)" class="compose-popup-content-point-label" id="compose-popup-content-point-0-label" type="text">
-            </div>`);
-        }
-        for (var i = 0; i < points.length; i++) {
-            if (points[i].children[1].value.length === 0 && i !== 0 && i !== points.length - 1) pointse.removeChild(points[i]);
-            if (i === points.length - 1) points[i].classList.add('notcontaining')
-            else points[i].classList.remove('notcontaining')
-        }
-    }, 1);
-}

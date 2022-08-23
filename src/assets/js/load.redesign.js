@@ -77,7 +77,7 @@ function loadTasks(tc) {
                 }
             }
             if (gpg === "past" && thisNoteValues[0] !== "endless") {
-                let mba = new Date(tc);
+                let mba = new Date();
                 console.log("mba/today (" + mba.getFullYear() + "-" + ("0" + (mba.getMonth() + 1)).slice(-2) + "-" + ("0" + mba.getDate()).slice(-2) + ") must be before or equal to post's date (" + thisNoteValues[0] + ") - RESULT: " + (mba <= new Date(thisNoteValues[0])));
                 upcomingBoolean = mba > new Date(thisNoteValues[0]);
             }
@@ -94,7 +94,7 @@ function loadTasks(tc) {
                     if (dateFormatted !== "endless") {
                         let dt = new Date(dateFormatted);
                         dateFormatted = ("0" + dt.getDate()).slice(-2)+"/"+("0" + (dt.getMonth() + 1)).slice(-2)+"/"+dt.getFullYear();
-                    } else {dateFormatted = "Endless";}
+                    } else {dateFormatted = "ENDLESS";}
 
                     let typeFormatted = thisNoteValues[1].replace("note", "Note").replace("todo", "To-do list");
                     let todoContent = "";
@@ -115,6 +115,7 @@ function loadTasks(tc) {
 
                     contentsDiv.innerHTML += `
                     <div class="task">
+                        <p class="task-date">${dateFormatted}
                         <p class="task-title">${thisNoteValues[2]}</p>
                         <div class="task-contents">
                             ${finalContent}
@@ -132,7 +133,7 @@ function loadTasks(tc) {
         }
     }
     catch (err) {
-        contentsDiv.innerHTML += `<p class="noposts">There seems to be an error with your tasks file<br><button onclick="location.reload()">Reload</button> <button onclick="fixPostsFile()">Fix (will delete tasks)</button></p>`;
+        contentsDiv.innerHTML += `<p class="noposts">There seems to be an error with your tasks file<br><button class="button" onclick="location.reload()">Reload</button> <button class="button" onclick="fixPostsFile()">Fix (will delete tasks)</button></p>`;
         console.log(err);
     }
 }
@@ -177,14 +178,13 @@ function loadComplete() {
     console.log(gpg);
     let dt = new Date();
     makeDate(dt, "", "");
-    loadTasksComplete(dt);
+    setTimeout(function() {loadTasksComplete(dt);}, 50);
 }
 this.loadComplete = loadComplete;
 
 function loadTasksComplete(dt) {
-    setTimeout(function() {
-        loadTasks(dt.getFullYear()+"-"+("0" + (dt.getMonth() + 1)).slice(-2)+"-"+("0" + dt.getDate()).slice(-2));
-    }, 100);
+    gpg = document.getElementById('top-title-day-text').innerText.toLowerCase();
+    loadTasks(dt.getFullYear()+"-"+("0" + (dt.getMonth() + 1)).slice(-2)+"-"+("0" + dt.getDate()).slice(-2));
 }
 
 function makeDate(date, before, after) {

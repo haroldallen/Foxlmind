@@ -4,6 +4,20 @@
 <head>
     <link href="./assets/css/redesign.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d5db5a9cd6.js" crossorigin="anonymous"></script>
+    
+    <link href="./assets/css/jquery-ui.min.css" rel="stylesheet">
+    <script src="./assets/js/jquery.min.js"></script>
+    <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
+    <script src="./assets/js/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $("#compose-popup-datec-input").datepicker({
+                dateFormat: "D, d M, yy",
+                defaultDate: 0
+            });
+            $("#compose-popup-datec-input").datepicker( "setDate", new Date() );
+        });
+    </script>
 </head>
 
 <body onload="loadComplete()">
@@ -29,43 +43,6 @@
         </div>
     </div></div>
     <div class="tasks" id="into-tasks">
-        <!--<div class="task">
-            <p class="task-title">Task title thats a todo</p>
-            <div class="task-contents">
-                <div class="todo-point checked">
-                    <i onclick="toggleCheck('task-0-point-0-check')" id="task-0-point-0-check" class="fa-solid fa-check-circle"></i>
-                    <label>Todo label</label>
-                </div>
-                <div class="todo-point">
-                    <i onclick="toggleCheck('task-0-point-1-check')" id="task-0-point-1-check" class="fa-solid fa-circle"></i>
-                    <label>Todo label that is actually rather long</label>
-                </div>
-            </div>
-        </div>
-        <div class="task">
-            <p class="task-title">Task title thats a note</p>
-            <div class="task-contents">
-                <span>Y'know blah blah blah blah blah blah blah</span>
-            </div>
-        </div>
-        <div class="task">
-            <p class="task-title">Task title thats a note 2</p>
-            <div class="task-contents">
-                <span>Y'know blah blah blah blah blah blah blah 2</span>
-            </div>
-        </div>
-        <div class="task">
-            <p class="task-title">Task title thats a note 3</p>
-            <div class="task-contents">
-                <span>Y'know blah blah blah blah blah blah blah 3</span>
-            </div>
-        </div>
-        <div class="task">
-            <p class="task-title">Task title thats a note 4</p>
-            <div class="task-contents">
-                <span>Y'know blah blah blah blah blah blah blah 4</span>
-            </div>
-        </div>-->
     </div>
 
     <div id="compose-popup" style="top: 100%;">
@@ -75,18 +52,11 @@
             <div class="top-wrapper">
                 <div class="top">
                     <p class="top-title-page" id="compose-popup-page">Compose</p>
-                    <div class="top-title-day">
-                        <i onclick="moveDayCompose('left')" id="top-title-dayc-left" class="hvr top-title-day-chevron left fa-solid fa-chevron-left"></i>
-                        <span class="top-title-day-text" id="compose-popup-dayc">Thursday</span>
-                        <i onclick="moveDayCompose('right')" id="top-title-dayc-right" class="hvr top-title-day-chevron right fa-solid fa-chevron-right"></i>
-                    </div>
                     <div class="top-title-datec">
-                        <i onclick="moveDateCompose('left')" id="top-title-datec-left" class="hvr top-title-datec-chevron left fa-solid fa-chevron-left"></i>
-                        <span class="top-title-datec-text" id="compose-popup-day">Aug 4, 2022</span>
-                        <i onclick="moveDateCompose('right')" id="top-title-datec-right" class="hvr top-title-datec-chevron right fa-solid fa-chevron-right"></i>
+                        <input class="compose-popup-datec-input" id="compose-popup-datec-input" type="text" size="30">
                     </div>
-                    <div class="compose-popup-endless hvr" onclick="toggleCheck('endlessCM')">
-                        <i id="endlessCM" class="fa-solid fa-circle" style="margin-right: 5px;"></i> Endless
+                    <div class="compose-popup-endless hvr" onclick="toggleCheck('compose-popup-endless-i')">
+                        <i id="compose-popup-endless-i" class="fa-solid fa-circle" style="margin-right: 5px;"></i> Endless
                     </div>
                 </div>
             </div>
@@ -98,6 +68,10 @@
                 </div>
                 <div class="compose-popup-input-content-wrapper">
                     <div class="compose-popup-input-content">
+                        <div class="error" id="compose-error">
+                            <span class="error-content" id="compose-error-content"><strong>Error</strong>: none</span>
+                            <button class="error-close" onclick="closeComposeError()">X</button>
+                        </div>
                         <div class="compose-popup-input-opentab todo" id="compose-popup-input-todo">
                             <input placeholder="Task title..." class="compose-popup-content-title" id="compose-popup-content-todo-title" type="text">
                             <div class="compose-popup-content-points" id="compose-popup-content-points">
@@ -108,7 +82,7 @@
                             </div>
                         </div>
                         <div class="compose-popup-input-opentab note" id="compose-popup-input-note" style="display: none;">
-                            <input placeholder="Task title..." class="compose-popup-content-title" id="compose-popup-content-todo-title"
+                            <input placeholder="Task title..." class="compose-popup-content-title" id="compose-popup-content-note-title"
                                 type="text">
                             <textarea placeholder="Task content..." class="compose-popup-content-note"
                                 id="compose-popup-content-note"></textarea>
@@ -116,18 +90,17 @@
                     </div>
                 </div>
                 <div class="compose-popup-buttons">
-                    <button class="button compose-popup-button hvr">Post</button>
+                    <button class="button compose-popup-button hvr" onclick="composePostFromForm()">Post</button>
                 </div>
             </div>
         </div></div>
     </div>
 
-    <script src="./assets/js/jquery.min.js"></script>
-    <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
     <script src="./assets/js/redesign.js"></script>
     <script src="./assets/js/load.redesign.js"></script>
     <script src="./assets/js/post-options.js"></script>
     <script src="./assets/js/post-utils.js"></script>
+    <script src="./assets/js/compose.redesign.js"></script>
 </body>
 
 </html>

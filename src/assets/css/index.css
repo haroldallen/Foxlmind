@@ -137,7 +137,7 @@ a.sidebar-item:hover {
   transform: translateY(-2px);
 }
 
-#error {
+.error {
   font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
   display: flex;
   justify-content: space-between;
@@ -152,15 +152,17 @@ a.sidebar-item:hover {
   border-style: solid;
 }
 
-#error-close {
+.error-close {
   font-family: Gantari, 'Open Sans', Helvetica, Arial, sans-serif;
   background: rgba(0,0,0,0.2);
   padding: 2.5px 5px 2.5px 5px;
   border-radius: 100%;
   font-weight: 800;
   transition: 0.2s;
+  display: grid;
+  place-items: center;
 }
-#error-close:hover {
+.error-close:hover {
   background: rgba(255,255,255,0.2);
   transform: rotate(360deg);
 }
