@@ -79,5 +79,20 @@ function popup(name) {
             t.children[1].children[0].style.top = nt;
             t.children[1].children[0].children[0].style.top = nt2;
             break;
+        case 'settings':
+            let s = document.getElementById('settings-popup');
+            let ns = "0";
+            let ns2 = "1em";
+
+            if (s.style.top === "100%") { ns = "0"; ns2 = "1em"; }
+            else { ns = "100%"; ns2 = "calc(100% + 1em)"; }
+
+            s.style.top = ns;
+            s.children[0].style.top = ns;
+            s.children[1].style.top = ns;
+            s.children[1].children[0].style.top = ns;
+            s.children[1].children[0].children[0].style.top = ns2;
+
+            break;
     }
 }

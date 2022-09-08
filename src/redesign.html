@@ -24,10 +24,10 @@
     <div class="header">
         <div class="header-section header-left">
             <img class="header-img" src="./assets/media/logo.svg" alt="logo">
-            Foxlmind
+            <strong>Foxlmind</strong>
         </div>
         <div class="header-section header-right">
-            <i class="header-icon fa-solid fa-cog hvr" onclick="loadPage('settings')"></i>
+            <i class="header-icon fa-solid fa-cog hvr" onclick="popup('settings')"></i>
         </div>
     </div>
     <div class="top-wrapper"><div class="top">
@@ -48,7 +48,15 @@
     <div id="compose-popup" style="top: 100%;">
         <div class="compose-popup-background" style="top: 100%;"></div>
         <div class="compose-popup-wrapper" style="top: 100%;"><div class="compose-popup" style="top: 100%;">
-            <img style="top: 100%;" src="./assets/media/cross.svg" class="compose-popup-close hvr" onclick="popup('compose')">
+            <div class="header">
+                <div class="header-section header-left">
+                    <img class="header-img" src="./assets/media/logo.svg" alt="logo">
+                    <strong>Foxlmind</strong> Compose task
+                </div>
+                <div class="header-section header-right">
+                    <img style="top: 100%;" src="./assets/media/cross.svg" class="compose-popup-close hvr" onclick="popup('compose')">
+                </div>
+            </div>
             <div class="top-wrapper">
                 <div class="top">
                     <p class="top-title-page" id="compose-popup-page">Compose</p>
@@ -91,6 +99,37 @@
                 </div>
                 <div class="compose-popup-buttons">
                     <button class="button compose-popup-button hvr" onclick="composePostFromForm()">Post</button>
+                </div>
+            </div>
+        </div></div>
+    </div>
+
+    <div id="settings-popup" style="top: 100%;">
+        <div class="settings-popup-wrapper" style="top: 100%;"><div class="settings-popup" style="top: 100%;">
+            <div class="header" style="padding: 0;">
+                <div class="header-section header-left">
+                    <img class="header-img" src="./assets/media/logo.svg" alt="logo">
+                    <strong>Foxlmind</strong> Settings
+                </div>
+                <div class="header-section header-right">
+                    <img style="top: 100%;" src="./assets/media/cross.svg" class="settings-popup-close hvr" onclick="popup('settings')">
+                </div>
+            </div>
+            <div class="settings-themes-w">
+                <h1 class="settings-themes-header">Themes <i class="settings-themes-import hvr fa-solid fa-file-arrow-up" onclick="importTheme()"></i></h1>
+                <div class="settings-themes">
+                    <div class="settings-theme-wrapper selected"><div class="settings-theme builtin" onclick="selectTheme(0)">
+                        <div class="settings-theme-top">
+                            <p class="settings-theme-name">Dark</p>
+                            <p class="settings-theme-builtin">Built-in</p>
+                        </div>
+                    </div></div>
+                    <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme(1)">
+                        <div class="settings-theme-top">
+                            <p class="settings-theme-name">Light</p>
+                            <p class="settings-theme-builtin">Built-in</p>
+                        </div>
+                    </div></div>
                 </div>
             </div>
         </div></div>

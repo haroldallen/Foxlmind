@@ -51,17 +51,22 @@ function composePostFromForm() {
 
     let newDateFull = dateFull.getFullYear()+"-"+("0" + (dateFull.getMonth() + 1)).slice(-2)+"-"+("0" + dateFull.getDate()).slice(-2);
 
-    if (endless.checked) {newDateFull = "endless";}
+    if (endless) {newDateFull = "endless";}
 
     if (type === "note") {
         composeNote(newDateFull, title.value, content.value);
     } else if (type === "todo") {
         let t = todos.children;
         let nt = [];
-        for (let i=0; i<(todoId+1);i++) {
+        for (let i=0; i<t.length;i++) {
+            console.log("GOLD iteration "+i+" - printing todos.children...")
+            console.log(todos.children)
             if (t[i] !== null) {
+                console.log("GOLD iteration "+i+" t["+i+"] is not null")
                 if (t[i].children[1] !== null) {
+                    console.log("GOLD iteration "+i+" t["+i+"].children[1] is not null")
                     if (t[i].children[1].value !== "") {
+                        console.log("GOLD iteration "+i+" t["+i+"].children[1]'s value is not ''")
                         let label = t[i].children[1].value;
                         let value = t[i].children[0].classList.contains('fa-check-circle');
                         nt.push({"label": label, "val": value});
@@ -73,6 +78,8 @@ function composePostFromForm() {
     } else {
         console.log("Other types have not been implemented yet!");
     }
+    //reloadPage();
+    popup('compose');
 }
 this.composePostFromForm = composePostFromForm;
 
@@ -89,17 +96,18 @@ function composeNote(dateStr,title,content) {
 this.composeNote = composeNote;
 
 function composeTodo(dateStr,title,todos) {
-    let t = [];
-    for (let i=0; i<todos.length; i++) {
-        t.push(todos[i]);
-    }
-    console.log(t);
+    //let t = [];
+    //for (let i=0; i<todos.length; i++) {
+        //t.push(todos[i]);
+    //}
+    //console.log(t);
+    console.log(todos);
     console.log("Compose post");
     writeToNotes({
         "date":dateStr,
         "type":"todo",
         "title":title,
-        "content":t,
+        "content":todos,
         "state":"visible"
     });
 }

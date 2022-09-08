@@ -43,6 +43,7 @@ this.loadPageTitle = loadPageTitle;
 
 function loadTasks(tc) {
     const contentsDiv = document.getElementById("into-tasks");
+    contentsDiv.innerHTML = "";
     try {
         console.log("loadTodayNotes started")
         const notesfile = fs.readFileSync(dataPath+"/posts.fpf");
@@ -174,13 +175,23 @@ function loadComplete() {
     //loadTheme();
     //setTimeout(loadSettings,1);
     ipcRenderer.send('json_path');
-    gpg = document.getElementById('top-title-day-text').innerText.toLowerCase();
+    console.log(localStorage.getItem('temp-gtp'));
+    let daytxt = document.getElementById('top-title-day-text');
+    if (localStorage.getItem('temp-gtp') === "past") daytxt.innerText = "Past";
+    else if (localStorage.getItem('temp-gtp') === "upcoming") daytxt.innerHTML = "Upcoming";
+    localStorage.setItem('temp-gtp', 'default');
     console.log(gpg);
     let dt = new Date();
     makeDate(dt, "", "");
     setTimeout(function() {loadTasksComplete(dt);}, 50);
 }
 this.loadComplete = loadComplete;
+
+function reloadPage() {
+    gpg = document.getElementById('top-title-day-text').innerText.toLowerCase();
+    localStorage.setItem('temp-gtp', gpg);
+    window.location.reload();
+}
 
 function loadTasksComplete(dt) {
     gpg = document.getElementById('top-title-day-text').innerText.toLowerCase();
