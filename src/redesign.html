@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <link href="./assets/css/redesign.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="./assets/css/themes.css" rel="stylesheet">
+    <link href="./assets/css/popup.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d5db5a9cd6.js" crossorigin="anonymous"></script>
     
     <link href="./assets/css/jquery-ui.min.css" rel="stylesheet">
@@ -116,15 +118,15 @@
                 </div>
             </div>
             <div class="settings-themes-w">
-                <h1 class="settings-themes-header">Themes <i class="settings-themes-import hvr fa-solid fa-file-arrow-up" onclick="importTheme()"></i></h1>
-                <div class="settings-themes">
-                    <div class="settings-theme-wrapper selected"><div class="settings-theme builtin" onclick="selectTheme(0)">
+                <h1 class="settings-ph settings-themes-header">Themes <span class="secondary smol">(place in themes folder)</span></h1>
+                <div class="settings-themes" id="settings-themes">
+                    <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('dark')">
                         <div class="settings-theme-top">
                             <p class="settings-theme-name">Dark</p>
                             <p class="settings-theme-builtin">Built-in</p>
                         </div>
                     </div></div>
-                    <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme(1)">
+                    <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('light')">
                         <div class="settings-theme-top">
                             <p class="settings-theme-name">Light</p>
                             <p class="settings-theme-builtin">Built-in</p>
@@ -132,7 +134,21 @@
                     </div></div>
                 </div>
             </div>
+            <div class="settings-tasks-w">
+                <h1 class="settings-ph settings-tasks-header">Tasks</h1>
+                <div class="settings-tasks">
+                    <button class="hvr btn btn-circle btn-accent" onclick="importTasks()">Import tasks</button>
+                    <button class="hvr btn btn-circle btn-gray" onclick="confirmResetTasks()">Reset tasks file</button>
+                </div>
+            </div>
         </div></div>
+    </div>
+
+    <div class="absolute-popup-w" id="absolute-popup" style="top: 100%;">
+        <div class="absolute-popup">
+            <h1 class="absolute-header" id="absolute-header">Absolute header</h1>
+            <div class="absolute-details" id="absolute-details">Absolute details</div>
+        </div>
     </div>
 
     <script src="./assets/js/redesign.js"></script>
@@ -140,6 +156,7 @@
     <script src="./assets/js/post-options.js"></script>
     <script src="./assets/js/post-utils.js"></script>
     <script src="./assets/js/compose.redesign.js"></script>
+    <script src="./assets/js/settings.redesign.js"></script>
 </body>
 
 </html>

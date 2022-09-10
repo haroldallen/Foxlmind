@@ -89,10 +89,14 @@ function popup(name) {
 
             s.style.top = ns;
             s.children[0].style.top = ns;
-            s.children[1].style.top = ns;
-            s.children[1].children[0].style.top = ns;
-            s.children[1].children[0].children[0].style.top = ns2;
 
+            loadThemesManager();
+
+            break;
+        case 'absolute':
+            let a = document.getElementById('absolute-popup');
+            if (a.style.top === "100%") { a.style.top = "0"; }
+            else { a.style.top = "100%"; }
             break;
     }
 }

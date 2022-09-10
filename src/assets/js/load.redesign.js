@@ -160,8 +160,8 @@ this.fixPostsFile = fixPostsFile;
 
 ipcRenderer.on('json_path', (e, args) => {
     console.log('Found path ' + args.path);
-    dataPath = args.path;
-    this.dataPath = args.path;
+    dataPath = args.path.replaceAll('\\', '/');
+    this.dataPath = args.path.replaceAll('\\', '/');
 });
 
 function loadComplete() {
@@ -183,6 +183,7 @@ function loadComplete() {
     console.log(gpg);
     let dt = new Date();
     makeDate(dt, "", "");
+    loadTheme();
     setTimeout(function() {loadTasksComplete(dt);}, 50);
 }
 this.loadComplete = loadComplete;
