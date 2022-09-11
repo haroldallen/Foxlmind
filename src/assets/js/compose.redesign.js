@@ -77,8 +77,8 @@ function composePostFromForm() {
     } else {
         console.log("Other types have not been implemented yet!");
     }
-    //reloadPage();
-    popup('compose');
+    reloadPage();
+    //popup('compose');
 }
 this.composePostFromForm = composePostFromForm;
 

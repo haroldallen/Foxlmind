@@ -11,36 +11,32 @@ async function importTasks() {
     });
 
     if (file !== undefined || file !== null) {
-        if (file.filePaths.length === 0) {console.log("error")}
+        if (file.filePaths.length === 0) {console.error("Error! File.FilePaths.Length = 0")}
         else {
             let a = file.filePaths[0].split('\\')
             let b = a[a.length-1];
-            console.log("file named " + b);
+            console.log("ImportTasks got file " + b);
 
             let rfile = fs.readFileSync(file.filePaths[0]);
-            console.log(rfile);
             let pfile = JSON.parse(rfile);
-            console.log(pfile);
             let keys = Object.keys(pfile.table);
             let values = Object.values(pfile.table);
 
             let old = fs.readFileSync(dataPath+'/posts.fpf');
-            let pold = JSON.parse(old);
-            let told = pold.table;
-            let vold = Object.values(told);
-            let njson = {"table":[]};
+            let oldparsed = JSON.parse(old);
+            let oldtable = oldparsed.table;
+            let oldvalues = Object.values(oldtable);
+            let newjson = {"table":[]};
 
-            for (let i = 0; i < told.length; i++) {
-                console.log("iteration(2) "+i+", "+vold[i])
-                njson.table[i] = vold[i];
+            for (let i = 0; i < oldtable.length; i++) {
+                newjson.table[i] = oldvalues[i];
             }
             for (let i = 0; i < keys.length; i++) {
-                let ni = njson.table.length+i;
-                if (i>0) {ni = njson.table.length+i-1};
-                console.log("iteration "+i+" / "+ni+", "+keys[ni]+" is "+values[ni])
-                njson.table[ni] = values[i];
+                let ni = newjson.table.length+i;
+                if (i>0) {ni = newjson.table.length+i-1};
+                newjson.table[ni] = values[i];
             }
-            fs.writeFile(dataPath+'/posts.fpf', JSON.stringify(njson, null, 2), (err) => {if(err) {throw(err);}});
+            fs.writeFile(dataPath+'/posts.fpf', JSON.stringify(newjson, null, 2), (err) => {if(err) {throw(err);}});
         }
     } else {
         //document.getElementById('error-content').style.display = block;
@@ -83,17 +79,14 @@ async function loadThemesManager() {
             for (let ii = 0; ii < ajf.length; ii++) {
                 if (!officialThemeStngs.includes(Object.keys(jf)[ii])) { gotall = false; }
             }
-            console.log(gotall);
             if (gotall) { themeLocs.push(dataPath+"/themes/"+files[i]); }
-            console.log(themeLocs);
+            console.log("LoadThemesManager got themes: "+themeLocs);
         }
     }
-    console.log("e")
     for (let i=0; i<themeLocs.length; i++) {
-        console.log("e 2");
         try {
             let theme = fs.readFileSync(themeLocs[i]);
-            console.log(theme);
+            console.log("Now loading details for theme: "+themeLocs[i]);
             if (theme !== null) {
                 let jtheme = JSON.parse(theme);
 
@@ -134,7 +127,7 @@ function loadTheme() {
     document.body.classList.remove('night','dark','light');
     document.body.style = "";
     let theme = window.localStorage.getItem('theme');
-    console.log(theme);
+    console.log("Now loading theme: "+theme);
     if (theme !== "night" && theme !== "dark" && theme !== "light" && theme !== null && theme !== "null") {
         let af = fs.readFileSync(theme.toString());
         let jf = JSON.parse(af);

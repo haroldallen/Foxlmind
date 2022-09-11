@@ -114,14 +114,19 @@ function rightClickThingy(id) {
     let a = document.getElementById(id).children[0];
     listOfDumbThingaMaJigs.push(id);
 
-    if (isRightMB) { a.classList.add('open'); } else { a.classList.remove('open'); }
+    setTimeout(function(){if (isRightMB) { a.classList.add('open'); }},10)
 }
 
 function aaaaaaa() {
-    console.log(listOfDumbThingaMaJigs)
-    for (let i=0; i<listOfDumbThingaMaJigs.length; i++) {
-        // kill me
-        document.getElementById(listOfDumbThingaMaJigs[i]).children[0].classList.remove('open');
-        listOfDumbThingaMaJigs.splice(listOfDumbThingaMaJigs[i]);
-    }
+    setTimeout(function(){
+        console.log(listOfDumbThingaMaJigs)
+        for (let i=0; i<listOfDumbThingaMaJigs.length; i++) {
+            // kill me
+            let killme = document.getElementById(listOfDumbThingaMaJigs[i]).children[0];
+            if (killme.classList.contains('open')) {
+                killme.classList.remove('open');
+                listOfDumbThingaMaJigs.splice(listOfDumbThingaMaJigs[i], 1);
+            }
+        }
+    }, 5);
 }

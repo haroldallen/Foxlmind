@@ -54,9 +54,8 @@ body {
 }
 .btn-gray:hover { background: var(--secondhvrcol); }
 
-.hvr {
-    cursor: pointer;
-}
+.hvr { cursor: pointer; }
+.hvrul:hover { text-decoration: underline;}
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -105,13 +104,17 @@ a:hover, .link:hover {
     position: relative;
     display: flex;
     justify-content: center;
+    border-radius: 15px;
+
+    height: min-content;
+    margin: 10px;
+    padding: 5px;
 }
 .task {
-    margin: 10px;
-    padding: 20px;
+    padding: 5px;
+    margin: 5px;
     width: 250px;
     transition: 0.2s;
-    border-radius: 15px;
     height: 100%;
 }
 .task-options.open { opacity: 1; top: 10px; }
@@ -143,6 +146,7 @@ a:hover, .link:hover {
     margin-bottom: 0;
 }
 .task-contents {
+    position: relative;
     margin: 5px;
     font-size: 20px;
     font-weight: 400;
@@ -151,9 +155,37 @@ a:hover, .link:hover {
 .task-contents span {
     color: var(--mtextcol);
 }
+.task-contents {
+    
+}
 .todo-point.checked { font-weight: 500; color: var(--textcol); }
 .todo-point { margin-top: 5px; cursor: pointer; display: flex; color: var(--stextcol); }
 .todo-point label { margin-top: -2px; margin-left: 10px; }
+
+/* editing task */
+.task-wrapper.editing { background-color: var(--secondcol); }
+.editinput {
+    font-family: inherit;
+    background-color: var(--secondhvrcol);
+    color: var(--textcol);
+    border: none;
+    border-radius: 10px;
+    max-width: calc(100% - 20px);
+    max-height: 250px;
+    padding: 10px;
+}
+.editinput.title { font-size: 24px; }
+.editinput.content { font-size: 20px; }
+.editinput.point {
+    position: absolute;
+    left: 20px;
+}
+.editinput.mw {
+    max-width: calc(100% - 30px);
+    margin-left: 5px;
+    padding: 5px 10px 5px 10px;
+}
+.editinput:focus { outline: none; }
 
 .noposts {
     font-size: 16px;

@@ -45,48 +45,40 @@ function loadTasks(tc) {
     const contentsDiv = document.getElementById("into-tasks");
     contentsDiv.innerHTML = "";
     try {
-        console.log("loadTodayNotes started")
+        console.log("Loading tasks...")
         const notesfile = fs.readFileSync(dataPath+"/posts.fpf");
-        console.log("notesFile got "+notesfile);
         const notesParsed = JSON.parse(notesfile);
         let notes = notesParsed.table;
-        console.log("notes got "+notes);
-        console.log("contentsDiv got "+contentsDiv);
+        console.log("Tasks: "+notes);
         let notesLength = Object.keys(notes).length;
-        console.log("notesLength got "+notesLength)
         let postsLoaded = 0;
 
         for (let i = 0; i < notesLength; i++) {
             let thisNote = notes[i];
             let thisNoteKeys = Object.keys(thisNote);
-            console.log("ThisNoteKeys is " + thisNoteKeys)
             let thisNoteValues = Object.values(thisNote);
-            console.log("ThisNoteValues is " + thisNoteValues)
 
-            console.log("for loop iteration " + i)
-            console.log("date: " + thisNoteValues[0] + " needs to be equal to TC:" + tc + " or endless")
+            console.log("Loading task " + i)
+            console.log("Task date: " + thisNoteValues[0] + "... Today: " + tc)
 
             let upcomingBoolean = false;
             if (gpg === "upcoming") {
                 if (tc === "endless") {
                     upcomingBoolean = true;
-                }
-                else {
+                } else {
                     let mba = new Date(tc);
-                    console.log("mba/today (" + mba.getFullYear() + "-" + ("0" + (mba.getMonth() + 1)).slice(-2) + "-" + ("0" + mba.getDate()).slice(-2) + ") must be before or equal to post's date (" + thisNoteValues[0] + ") - RESULT: " + (mba <= new Date(thisNoteValues[0])));
-                    upcomingBoolean = mba <= new Date(thisNoteValues[0]);
+                    upcomingBoolean = mba < new Date(thisNoteValues[0]);
                 }
             }
             if (gpg === "past" && thisNoteValues[0] !== "endless") {
                 let mba = new Date();
-                console.log("mba/today (" + mba.getFullYear() + "-" + ("0" + (mba.getMonth() + 1)).slice(-2) + "-" + ("0" + mba.getDate()).slice(-2) + ") must be before or equal to post's date (" + thisNoteValues[0] + ") - RESULT: " + (mba <= new Date(thisNoteValues[0])));
                 upcomingBoolean = mba > new Date(thisNoteValues[0]);
             }
 
 
             if ((gpg === "today" && thisNoteValues[4] === "visible") || (gpg === "completed" && thisNoteValues[4] === "completed") || (gpg === "upcoming" && thisNoteValues[4] === "visible") || (gpg === "past" && thisNoteValues[4] === "visible")) {
                 if ((gpg === "completed" || thisNoteValues[0] === tc || thisNoteValues[0] === "endless" || upcomingBoolean) && gpg !== "past" || gpg === "past" && upcomingBoolean) {
-                    console.log("found post for today")
+                    console.log("Task "+i+" matches filter")
                     let unCompleteIcon = "fa-check";
                     let unComplete = "Complete";
                     if (gpg === "completed") { unComplete = "Uncomplete"; unCompleteIcon = "fa-angle-left"; }
@@ -101,7 +93,6 @@ function loadTasks(tc) {
                     let todoContent = "";
                     if (thisNoteValues[1] === "todo") {
                         for (let it = 0; it < thisNoteValues[3].length; it++) {
-                            console.log(Object.values(thisNoteValues[3])[it].val);
                             let checkedOut = Object.values(thisNoteValues[3])[it].val === true ? " checked" : "";
                             let checkedIns = Object.values(thisNoteValues[3])[it].val === true ? "check-" : "";
                             todoContent +=
@@ -115,16 +106,16 @@ function loadTasks(tc) {
                     let finalContent = thisNoteValues[1] === "note" ? `<span>${thisNoteValues[3]}</span>` : todoContent;
 
                     contentsDiv.innerHTML += `
-                    <div class="task-wrapper" id="task-wrapper-${i}">
+                    <div name="tid-${i}" class="task-wrapper" id="task-wrapper-${i}">
                         <div class="task-options">
-                            <i onclick="option${unComplete}" class="task-option complete fa-solid ${unCompleteIcon}"></i>
-                            <i onclick="optionEdit" class="task-option edit fa-solid fa-pencil"></i>
-                            <i onclick="optionDelete" class="task-option delete fa-solid fa-trash"></i>
+                            <i onclick="option${unComplete}(${i})" class="task-option complete fa-solid ${unCompleteIcon}"></i>
+                            <i onclick="optionEdit(${i})" class="task-option edit fa-solid fa-pencil"></i>
+                            <i onclick="optionDelete(${i})" class="task-option delete fa-solid fa-trash"></i>
                         </div>
-                        <div class="task" onmousedown="rightClickThingy('task-wrapper-${i}')">
+                        <div class="task" id="task-${i}" onmousedown="rightClickThingy('task-wrapper-${i}')">
                             <p class="task-date">${dateFormatted}
                             <p class="task-title">${thisNoteValues[2]}</p>
-                            <div class="task-contents">${finalContent}</div>
+                            <div class="task-contents ${thisNoteValues[1]}">${finalContent}</div>
                         </div>
                     </div>`;
 
@@ -133,14 +124,14 @@ function loadTasks(tc) {
                 }
             }
         }
-        console.log(postsLoaded);
+        console.log("Loaded "+postsLoaded+" tasks");
         if (postsLoaded === 0) {
             contentsDiv.innerHTML += `<p class="noposts">Couldn't find any tasks</p>`;
         }
     }
     catch (err) {
         contentsDiv.innerHTML += `<p class="noposts">There seems to be an error with your tasks file<br><button class="hvr btn btn-circle btn-accent" onclick="location.reload()">Reload</button> <button class="hvr btn btn-circle btn-gray" onclick="fixPostsFile()">Fix (will delete tasks)</button></p>`;
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -152,40 +143,33 @@ function fixPostsFile(wx) {
     if (wx === true) {
         fs.writeFile(dataPath + "/posts.fpf", JSON.stringify(data2Write, null, 2), {flags: 'wx'}, function (err) {
             if (err) throw err;
-            console.log("It's saved!");
+            console.log("Fixed tasks file (WX=true)");
         });
     } else {
         fs.writeFile(dataPath + "/posts.fpf", JSON.stringify(data2Write, null, 2), function (err) {
             if (err) throw err;
-            console.log("It's saved!");
+            console.log("Fixed tasks file (WX=false)");
         });
     }
 }
 this.fixPostsFile = fixPostsFile;
 
 ipcRenderer.on('json_path', (e, args) => {
-    console.log('Found path ' + args.path);
+    console.log('DataPath: ' + args.path);
     dataPath = args.path.replaceAll('\\', '/');
     this.dataPath = args.path.replaceAll('\\', '/');
 });
 
 function loadComplete() {
-    console.log("fs got "+fs);
+    console.warn("%cWARNING!\n"+"%cSome console commands can cause irreversable damage to Foxlmind and your machine. Only use if you know what you are doing...\n\n"+"%cCopyright Notice"+"%cThis software is using the MIT License, and it's original creator is Foxlldev (https://foxl.design). Use forks of this software at your own risk.\n\n"+"%cSummary\n"+"%cdont be an idiot", "color: red; text-decoration: underline;", "color: yellow", "color: red; text-decoration: underline", "color: skyblue", "color: yellow; text-decoration: underline", "color: white")
     if (!fs.existsSync(dataPath+"/posts.fpf")) {fixPostsFile(true);}
-    console.log("dataPath got "+dataPath);
-    console.log("storage getDataPath got "+storage.getDataPath());
-    console.log("loadComplete got path "+dataPath);
-    //loadSidebar();
-    //loadPage(gpg);
-    //loadTheme();
-    //setTimeout(loadSettings,1);
     ipcRenderer.send('json_path');
-    console.log(localStorage.getItem('temp-gtp'));
+
     let daytxt = document.getElementById('top-title-day-text');
     if (localStorage.getItem('temp-gtp') === "past") daytxt.innerText = "Past";
     else if (localStorage.getItem('temp-gtp') === "upcoming") daytxt.innerHTML = "Upcoming";
     localStorage.setItem('temp-gtp', 'default');
-    console.log(gpg);
+
     let dt = new Date();
     makeDate(dt, "", "");
     loadTheme();
