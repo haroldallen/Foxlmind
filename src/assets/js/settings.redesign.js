@@ -65,7 +65,9 @@ function fixThemesDir() {
 }
 
 async function loadThemesManager() {
-    document.getElementById('settings-themes').innerHTML = `<div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('dark')"><div class="settings-theme-top"><p class="settings-theme-name">Dark</p><p class="settings-theme-builtin">Built-in</p> </div></div></div>
+    document.getElementById('settings-themes').innerHTML = `
+        <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('night')"><div class="settings-theme-top"><p class="settings-theme-name">Night</p><p class="settings-theme-builtin">Built-in</p></div></div></div>
+        <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('dark')"><div class="settings-theme-top"><p class="settings-theme-name">Dark</p><p class="settings-theme-builtin">Built-in</p> </div></div></div>
         <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('light')"><div class="settings-theme-top"><p class="settings-theme-name">Light</p><p class="settings-theme-builtin">Built-in</p></div></div></div>`;
     
     if (!fs.existsSync(dataPath+"/themes/")) { fixThemesDir(); }
@@ -117,6 +119,7 @@ function selectTheme(loc) {
     window.localStorage.setItem('theme', loc);
     let c = document.getElementById('settings-themes').children;
     visualizeSelectedTheme();
+    loadTheme();
 }
 
 function visualizeSelectedTheme() {
@@ -128,9 +131,11 @@ function visualizeSelectedTheme() {
 }
 
 function loadTheme() {
+    document.body.classList.remove('night','dark','light');
+    document.body.style = "";
     let theme = window.localStorage.getItem('theme');
     console.log(theme);
-    if (theme !== "dark" && theme !== "light" && theme !== null && theme !== "null") {
+    if (theme !== "night" && theme !== "dark" && theme !== "light" && theme !== null && theme !== "null") {
         let af = fs.readFileSync(theme.toString());
         let jf = JSON.parse(af);
         let nonStyleVariables = ["name", "author", "version"]
@@ -141,6 +146,6 @@ function loadTheme() {
         }
     }
 
-    if (theme === "dark" || theme === "light") { document.body.classList.add(theme); }
+    if (theme === "night" || theme === "dark" || theme === "light") { document.body.classList.add(theme); }
     if (theme === "null" || theme === null) { window.localStorage.setItem('theme', 'dark'); }
 }

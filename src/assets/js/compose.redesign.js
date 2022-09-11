@@ -32,7 +32,6 @@ function composeTodoKeydown() {
 
 function composePostFromForm() {
     let type = document.getElementById("compose-popup-input-tab-todo").classList.contains('open') ? "todo" : "note";
-    //let date = document.getElementById("compose-form-date");
     let endless = document.getElementById("compose-popup-endless-i").classList.contains('fa-check-circle');
     let title = document.getElementById(`compose-popup-content-${type}-title`);
     let content = type === "note" ? document.getElementById("compose-popup-content-note") : null;
@@ -47,7 +46,7 @@ function composePostFromForm() {
     }
 
     //let dateFull = new Date(date.value);
-    let dateFull = new Date();
+    let dateFull = new Date($("#compose-popup-datec-input").datepicker("getDate"));
 
     let newDateFull = dateFull.getFullYear()+"-"+("0" + (dateFull.getMonth() + 1)).slice(-2)+"-"+("0" + dateFull.getDate()).slice(-2);
 

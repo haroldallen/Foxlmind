@@ -23,6 +23,7 @@
 </head>
 
 <body onload="loadComplete()">
+    <div class="blurbg"></div>
     <div class="header">
         <div class="header-section header-left">
             <img class="header-img" src="./assets/media/logo.svg" alt="logo">
@@ -100,7 +101,7 @@
                     </div>
                 </div>
                 <div class="compose-popup-buttons">
-                    <button class="button compose-popup-button hvr" onclick="composePostFromForm()">Post</button>
+                    <button class="btn btn-circle btn-accent hvr" onclick="composePostFromForm()">Post</button>
                 </div>
             </div>
         </div></div>
@@ -120,6 +121,12 @@
             <div class="settings-themes-w">
                 <h1 class="settings-ph settings-themes-header">Themes <span class="secondary smol">(place in themes folder)</span></h1>
                 <div class="settings-themes" id="settings-themes">
+                    <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('night')">
+                        <div class="settings-theme-top">
+                            <p class="settings-theme-name">Night</p>
+                            <p class="settings-theme-builtin">Built-in</p>
+                        </div>
+                    </div></div>
                     <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('dark')">
                         <div class="settings-theme-top">
                             <p class="settings-theme-name">Dark</p>

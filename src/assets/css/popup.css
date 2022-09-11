@@ -18,13 +18,18 @@
 .compose-popup-close {
     font-size: 30px;
     transition: 0.2s;
+    fill: var(--textcol) !important;
+    color: var(--textcol);
+}
+.compose-popup-close path {
+    stroke: var(--textcol) !important;
 }
 .compose-popup-endless {
     margin-top: 30px;
-    color: rgb(109, 109, 109);
+    color: var(--stextcol);
 }
 .compose-popup-endless.checked {
-    color: white;
+    color: var(--textcol);
 }
 .compose-popup-input {
     margin-top: 30px;
@@ -34,7 +39,7 @@
 }
 .compose-popup-input-tabs {
     display: flex;
-    color: rgb(109, 109, 109);
+    color: var(--stextcol);
     display: flex;
     justify-content: center;
 }
@@ -43,13 +48,13 @@
     font-weight: 400;
     padding: 10px;
     width: 150px;
-    border-bottom: 2px rgb(109, 109, 109) solid;
+    border-bottom: 2px var(--stextcol) solid;
     cursor: pointer;
 }
 .compose-popup-input-tab.open {
     font-weight: 600;
-    color: white;
-    border-bottom: 2px white solid;
+    color: var(--textcol);
+    border-bottom: 2px var(--textcol) solid;
 }
 .compose-popup-input-content-wrapper {
     margin-top: 20px;
@@ -66,8 +71,8 @@
 .compose-popup-input-content input, .compose-popup-input-content textarea {
     font-family: Inter, Gantari, 'Helvetica Now', Helvetica, 'Open Sans', Arial, sans-serif;
     margin-top: 10px;
-    background-color: rgb(35,35,35);
-    color: rgb(177, 177, 177);
+    background-color: var(--secondcol);
+    color: var(--mtextcol);
     padding: 7px 10px 7px 10px;
     border-radius: 10px;
     border: none;
@@ -91,7 +96,7 @@
     align-items: center;
 }
 .compose-popup-content-point input { margin-top: 0; margin-left: 5px; }
-.compose-popup-content-point.notcontaining { color: rgb(109, 109, 109) }
+.compose-popup-content-point.notcontaining { color: var(--stextcol); }
 
 .compose-popup-buttons {
     margin-top: 15px;
@@ -101,10 +106,10 @@
 }
 .compose-popup-button {
     font-family: Inter, Gantari, 'Helvetica Now', Helvetica, 'Open Sans', Arial, sans-serif;
-    color: white;
+    color: var(--textcol);
     font-size: 20px;
-    background-color: rgb(41, 126, 196);
-    --bs-clr: rgb(34, 108, 168);
+    background-color: var(--linkcol);
+    --bs-clr: var(--linkcol);
     box-shadow: 0px 5px 0px var(--bs-clr);
     border: none;
     padding: 10px 20px;
@@ -133,12 +138,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(109, 109, 109);
+    color: var(--stextcol);
 }
 .top-title-datec div { display: flex; justify-content: center; align-items: center; }
 .compose-popup-datec-input {
-    background-color: rgb(35,35,35);
-    color: rgb(177, 177, 177);
+    background-color: var(--secondcol);
+    color: var(--mtextcol);
     padding: 7px 10px 7px 10px;
     border-radius: 10px;
     border: none;
@@ -154,7 +159,7 @@
     transition: 0.1s;
     font-size: 16px;
 }
-.top-title-datec-chevron:hover, .top-title-datec div:hover { color: rgb(177, 177, 177); }
+.top-title-datec-chevron:hover, .top-title-datec div:hover { color: var(--mtextcol); }
 .top-title-datec-chevrons.right { margin-left: -4px; }
 .top-title-datec-chevrons.right.e { margin-left: 2px; }
 .top-title-datec-chevrons.left { margin-right: -4px; }
@@ -192,7 +197,7 @@
 }
 
 .error-close:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(210, 210, 210, 0.2);
     transform: rotate(360deg);
 }
 
@@ -206,7 +211,7 @@
     right: 0;
     opacity: 1;
     transition: 0.2s;
-    background-color: black;
+    background-color: var(--backgroundcol);
 }
 .settings-popup {
     overflow-y: auto;
@@ -221,20 +226,20 @@
 
 .settings-themes { display: flex; flex-wrap: wrap; }
 .settings-theme-wrapper {
-    background-color: #0E0E0E;
+    background-color: var(--secondcol);
     border-radius: 15px;
     padding: 2px;
     margin: 5px;
     cursor: pointer;
 }
-.settings-theme-wrapper.selected { background-image: linear-gradient(to bottom right, #FE7259, #FF8B38); }
+.settings-theme-wrapper.selected { background-image: var(--accentcol); }
 .settings-theme {
     min-width: 175px;
     min-height: 85px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    background-color: #0E0E0E;
+    background-color: var(--secondcol);
     border-radius: 15px;
     padding: 10px;
 }
@@ -245,7 +250,7 @@
 .settings-theme-builtin {
     font-size: 15px;
     font-weight: 500;
-    color: #C8C8C8;
+    color: var(--stextcol);
 }
 .settings-theme * p {
     margin: 3px;
@@ -267,7 +272,7 @@
     transition: 0.3s;
 }
 .absolute-popup {
-    background-color: rgba(20,20,20);
+    background-color: var(--secondcol);
     border-radius: 15px;
     padding: 20px;
 }

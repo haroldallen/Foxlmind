@@ -5,9 +5,26 @@ html {
     font-family: Inter, Gantari, 'Helvetica Now', Helvetica, 'Open Sans', Arial, sans-serif;
     font-size: 20px;
     font-weight: 600;
-    background-color: black;
-    color: white;
     overflow-y: visible;
+    height: 100%;
+}
+html,body {
+    margin: 0;
+    background: linear-gradient(var(--backgroundcol), var(--backgroundcol)), var(--backgroundurl);
+    background-position: center;
+    background-size: cover;
+    color: var(--textcol);
+}
+.blurbg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(var(--backgroundblur));
 }
 body {
     height: 100%;
@@ -19,19 +36,22 @@ body {
     font-size: 16px;
     font-weight: 600;
     border: none;
+    transition: 0.2s;
 }
 .btn-circle {
     padding: 10px 20px 10px 20px;
     border-radius: 1000px;
 }
 .btn-accent {
-    background-image: linear-gradient(to bottom right, #FE7259, #FF8B38);
-    color: white;
+    background: var(--accentcol);
+    color: var(--accentcontrastcol);
 }
+.btn-accent:hover { background: var(--accenthvrcol); }
 .btn-gray {
-    background-color: rgb(35,35,35);
-    color: white;
+    background: var(--secondcol);
+    color: var(--textcol);
 }
+.btn-gray:hover { background: var(--secondhvrcol); }
 
 .hvr {
     cursor: pointer;
@@ -42,27 +62,27 @@ body {
     border-radius: 10px;
 }
 ::-webkit-scrollbar-track {
-    background-color: rgb(35,35,35);
+    background-color: var(--scrollbgcol);
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb {
+    background: var(--scrollfgcol);
     border-radius: 10px;
-    background: rgb(22, 22, 22);
 }
 
 a, .link {
-    color: rgb(62, 181, 228);
+    color: var(--linkcol);
     text-decoration: none;
     padding: 3px;
     transition: 0.2s;
 }
 a:hover, .link:hover {
-    color: white;
-    background-color: rgb(62, 181, 228);
+    color: var(--textcol);
+    background-color: var(--linkcol);
 }
 
 .secondary {
-    color: rgb(109, 109, 109);
+    color: var(--stextcol);
 }
 .secondary.smol {
     font-size: 16px; font-weight: 400;
@@ -85,7 +105,7 @@ a:hover, .link:hover {
     width: 250px;
 }
 .task-date {
-    color: rgb(177, 177, 177);
+    color: var(--stextcol);
     font-size: 12px;
     margin: 0;
 }
@@ -103,15 +123,15 @@ a:hover, .link:hover {
     word-wrap: break-word;
 }
 .task-contents span {
-    color: rgb(177, 177, 177);
+    color: var(--mtextcol);
 }
-.todo-point.checked { font-weight: 500; color: white; }
-.todo-point { margin-top: 5px; cursor: pointer; display: flex; color: rgb(109, 109, 109) }
+.todo-point.checked { font-weight: 500; color: var(--textcol); }
+.todo-point { margin-top: 5px; cursor: pointer; display: flex; color: var(--stextcol); }
 .todo-point label { margin-top: -2px; margin-left: 10px; }
 
 .noposts {
     font-size: 16px;
-    color: rgb(109, 109, 109)
+    color: var(--stextcol);
 }
 
 
@@ -162,7 +182,7 @@ a:hover, .link:hover {
 }
 .top-title-day-chevron {
     font-size: 20px;
-    color: rgb(100, 100, 100);
+    color: var(--stextcol);
 }
 .top-title-day-chevron.left { margin-right: 20px; }
 .top-title-day-chevron.right { margin-left: 20px; }
@@ -170,7 +190,7 @@ a:hover, .link:hover {
     margin-top: 0;
     font-size: 16px;
     font-weight: 400;
-    color: rgb(177, 177, 177);
+    color: var(--mtextcol);
 }
 
 .top-addtask {
@@ -187,16 +207,16 @@ a:hover, .link:hover {
     box-sizing: border-box;
     border: none;
     border-radius: 5px;
-    color: rgb(177, 177, 177);
-    background-color: rgba(255, 255, 255, 0.12);
+    color: var(--mtextcol);
+    background-color: var(--secondcol);
 }
 .top-addtask-button:hover {
-    background-color: rgba(255, 255, 255, 0.17);
+    background-color: var(--secondhvrcol);
 }
 .top-addtask input {
     margin-top: 10px;
-    background-color: rgb(35,35,35);
-    color: rgb(177, 177, 177);
+    background-color: var(--secondcol);
+    color: var(--mtextcol);
     padding: 7px 10px 7px 10px;
     border-radius: 10px;
     display: flex;
