@@ -1,5 +1,6 @@
 /* compose popup */
 #compose-popup, .compose-popup-wrapper, .compose-popup-background, .compose-popup {
+    z-index: 5;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -34,7 +35,7 @@
 .compose-popup-input {
     margin-top: 30px;
     overflow-y: auto;
-    height: calc(100% - 210px);
+    height: calc(100% - 255px);
     padding: 20px;
 }
 .compose-popup-input-tabs {
@@ -127,11 +128,6 @@
     box-shadow: none;
 }
 
-* compose popup header */
-.compose-popup .header {
-    margin: 8px;
-}
-
 /* compose popup top */
 .top-title-datec {
     margin-top: 5px;
@@ -204,6 +200,7 @@
 
 /* settings popup */
 #settings-popup {
+    z-index: 5;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -215,7 +212,10 @@
 }
 .settings-popup {
     overflow-y: auto;
-    padding: 20px;
+    padding: 10px;
+}
+.settings-content {
+    padding: 10px;
 }
 .settings-ph {
     font-family: Poppins, Inter, Gantari, 'Helvetica Now', Helvetica, Arial, sans-serif;

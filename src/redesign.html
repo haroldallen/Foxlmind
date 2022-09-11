@@ -22,7 +22,7 @@
     </script>
 </head>
 
-<body onload="loadComplete()">
+<body onload="loadComplete()" onmousedown="aaaaaaa()">
     <div class="blurbg"></div>
     <div class="header">
         <div class="header-section header-left">
@@ -44,6 +44,7 @@
         <div class="top-addtask" id="top-addtask">
             <a class="button top-addtask-button hvr" onclick="popup('compose')"><i class="fa-solid fa-plus" style="margin-right: 5px;"></i> Add a task...</a>
         </div>
+        <div class="top-showcompleted hvr togglew" onclick="toggleCheck('showCompleted')"><i id="showCompleted" class="hvr fa-solid fa-circle"></i> Show completed</div>
     </div></div>
     <div class="tasks" id="into-tasks">
     </div>
@@ -118,6 +119,7 @@
                     <img style="top: 100%;" src="./assets/media/cross.svg" class="settings-popup-close hvr" onclick="popup('settings')">
                 </div>
             </div>
+            <div class="settings-content">
             <div class="settings-themes-w">
                 <h1 class="settings-ph settings-themes-header">Themes <span class="secondary smol">(place in themes folder)</span></h1>
                 <div class="settings-themes" id="settings-themes">
@@ -140,6 +142,7 @@
                         </div>
                     </div></div>
                 </div>
+                <p class="settings-themes-comingsoon secondary smol">Themes designer coming soon...<br>Plugins (maybe) coming soon...</p>
             </div>
             <div class="settings-tasks-w">
                 <h1 class="settings-ph settings-tasks-header">Tasks</h1>
@@ -147,6 +150,7 @@
                     <button class="hvr btn btn-circle btn-accent" onclick="importTasks()">Import tasks</button>
                     <button class="hvr btn btn-circle btn-gray" onclick="confirmResetTasks()">Reset tasks file</button>
                 </div>
+            </div>
             </div>
         </div></div>
     </div>

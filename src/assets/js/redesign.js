@@ -100,3 +100,28 @@ function popup(name) {
             break;
     }
 }
+
+let listOfDumbThingaMaJigs = [];
+function rightClickThingy(id) {
+    let isRightMB;
+    let e = window.event;
+
+    if ("which" in e)  // Gecko (Firefox), WebKit (Safari/Chrome) & Opera
+        isRightMB = e.which == 3; 
+    else if ("button" in e)  // IE, Opera 
+        isRightMB = e.button == 2; 
+    
+    let a = document.getElementById(id).children[0];
+    listOfDumbThingaMaJigs.push(id);
+
+    if (isRightMB) { a.classList.add('open'); } else { a.classList.remove('open'); }
+}
+
+function aaaaaaa() {
+    console.log(listOfDumbThingaMaJigs)
+    for (let i=0; i<listOfDumbThingaMaJigs.length; i++) {
+        // kill me
+        document.getElementById(listOfDumbThingaMaJigs[i]).children[0].classList.remove('open');
+        listOfDumbThingaMaJigs.splice(listOfDumbThingaMaJigs[i]);
+    }
+}

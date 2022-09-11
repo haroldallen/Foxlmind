@@ -147,5 +147,5 @@ function loadTheme() {
     }
 
     if (theme === "night" || theme === "dark" || theme === "light") { document.body.classList.add(theme); }
-    if (theme === "null" || theme === null) { window.localStorage.setItem('theme', 'dark'); }
+    if (theme === "null" || theme === null) { window.localStorage.setItem('theme', 'light'); }
 }

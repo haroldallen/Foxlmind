@@ -115,11 +115,16 @@ function loadTasks(tc) {
                     let finalContent = thisNoteValues[1] === "note" ? `<span>${thisNoteValues[3]}</span>` : todoContent;
 
                     contentsDiv.innerHTML += `
-                    <div class="task">
-                        <p class="task-date">${dateFormatted}
-                        <p class="task-title">${thisNoteValues[2]}</p>
-                        <div class="task-contents">
-                            ${finalContent}
+                    <div class="task-wrapper" id="task-wrapper-${i}">
+                        <div class="task-options">
+                            <i onclick="option${unComplete}" class="task-option complete fa-solid ${unCompleteIcon}"></i>
+                            <i onclick="optionEdit" class="task-option edit fa-solid fa-pencil"></i>
+                            <i onclick="optionDelete" class="task-option delete fa-solid fa-trash"></i>
+                        </div>
+                        <div class="task" onmousedown="rightClickThingy('task-wrapper-${i}')">
+                            <p class="task-date">${dateFormatted}
+                            <p class="task-title">${thisNoteValues[2]}</p>
+                            <div class="task-contents">${finalContent}</div>
                         </div>
                     </div>`;
 
@@ -134,7 +139,7 @@ function loadTasks(tc) {
         }
     }
     catch (err) {
-        contentsDiv.innerHTML += `<p class="noposts">There seems to be an error with your tasks file<br><button class="button" onclick="location.reload()">Reload</button> <button class="button" onclick="fixPostsFile()">Fix (will delete tasks)</button></p>`;
+        contentsDiv.innerHTML += `<p class="noposts">There seems to be an error with your tasks file<br><button class="hvr btn btn-circle btn-accent" onclick="location.reload()">Reload</button> <button class="hvr btn btn-circle btn-gray" onclick="fixPostsFile()">Fix (will delete tasks)</button></p>`;
         console.log(err);
     }
 }

@@ -436,7 +436,10 @@ button.ui-button::-moz-focus-inner {
     position: absolute;
     top: 2px;
     width: 1.8em;
-    height: 1.8em
+    height: 1.8em;
+    background-color: var(--stextcol);
+    color: var(--textcol);
+    fill: var(--textcol);
 }
 
 .ui-datepicker .ui-datepicker-prev-hover,
@@ -1010,22 +1013,22 @@ body .ui-tooltip {
 
 .ui-widget-content {
     border: 1px solid #666;
-    background-color: #000;
-    color: #fff
+    background-color: var(--secondcol);
+    color: var(--textcol);
 }
 
 .ui-widget-content a {
-    color: #fff
+    color: var(--textcol);
 }
 
 .ui-widget-header {
     border: 1px solid #333;
-    color: #fff;
+    color: var(--textcol);
     font-weight: bold
 }
 
 .ui-widget-header a {
-    color: #fff
+    color: var(--textcol);
 }
 
 .ui-state-default,
@@ -1036,7 +1039,7 @@ html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
     border: 1px solid #666;
     font-weight: bold;
-    color: #eee
+    color: var(--stextcol);
 }
 
 .ui-state-default a,
@@ -1046,7 +1049,7 @@ a.ui-button,
 a:link.ui-button,
 a:visited.ui-button,
 .ui-button {
-    color: #eee;
+    color: var(--stextcol);
     text-decoration: none
 }
 
@@ -1061,7 +1064,7 @@ a:visited.ui-button,
     border: 1px solid #59b4d4;
     background-color: #59b3d475;
     font-weight: bold;
-    color: #fff
+    color: var(--textcol);
 }
 
 .ui-state-hover a,
@@ -1074,7 +1077,7 @@ a:visited.ui-button,
 .ui-state-focus a:visited,
 a.ui-button:hover,
 a.ui-button:focus {
-    color: #fff;
+    color: var(--textcol);
     text-decoration: none
 }
 
@@ -1091,19 +1094,21 @@ a.ui-button:active,
     border: 1px solid #ffaf0f;
     background: #f58400 url("images/ui-bg_inset-soft_30_f58400_1x100.png") 50% 50% repeat-x;
     font-weight: bold;
-    color: #fff
+    color: var(--textcol);
 }
 
 .ui-icon-background,
 .ui-state-active .ui-icon-background {
     border: #ffaf0f;
-    background-color: #fff
+    background-color: var(--stextcol);
+    color: var(--textcol);
+    fill: var(--textcol);
 }
 
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-    color: #fff;
+    color: var(--textcol);
     text-decoration: none
 }
 
