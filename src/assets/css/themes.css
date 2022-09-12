@@ -1,31 +1,48 @@
-:root {--link-color: rgb(92, 128, 196); --bgimgurl: #fff; }
-.theme-dark {
-    --cics: 'dark';
-    --content-background: rgb(54, 54, 54);
-    --content-textcolor: white;
-    --content-placeholdercolor: rgb(197, 197, 197);
-    --title-background: rgb(45, 45, 45);
-    --sidebar-background: rgb(49, 47, 47);
-
-    --input-background: rgba(34, 36, 37,0.3);
-    --compose-bbc: white;
-    --link-color: rgb(92, 128, 196);
-
-    --border-color: rgba(255, 255, 255, 0.326);
-    --post-color: rgba(60, 58, 58, 0);
+.night {
+    --backgroundcol: #000;
+    --backgroundurl: #fff;
+    --backgroundblur: 0;
+    --accentcol: linear-gradient(to bottom right, #FE7259, #FF8B38);
+    --accentcontrastcol: #fff;
+    --accenthvrcol: linear-gradient(to bottom right, #FF8B38, #FE7259);
+    --secondcol: rgb(35,35,35);
+    --secondhvrcol: rgb(55,55,55);
+    --textcol: white;
+    --mtextcol: rgb(177,177,177);
+    --stextcol: rgb(109,109,109);
+    --linkcol: rgb(62,181,228);
+    --scrollfgcol: rgb(22,22,22);
+    --scrollbgcol: rgb(35,35,35);
 }
-.theme-light {
-    --cics: 'light';
-    --content-background: white;
-    --content-textcolor: rgb(20, 20, 20);
-    --content-placeholdercolor: rgb(83, 83, 83);
-    --title-background: rgb(230, 230, 230);
-    --sidebar-background: rgb(230, 230, 230);
-
-    --input-background: rgba(211, 222, 228, 0.3);
-    --compose-bbc: rgb(87, 87, 87);
-    --link-color: rgb(92, 128, 196);
-
-    --post-color: rgba(0, 0, 0, 0);
-    --border-color: rgba(0, 0, 0, 0.51);
+.dark {
+    --backgroundcol: rgb(30,30,30);
+    --backgroundurl: #fff;
+    --backgroundblur: 0;
+    --accentcol: linear-gradient(to bottom right, #FE7259, #FF8B38);
+    --accentcontrastcol: #fff;
+    --accenthvrcol: linear-gradient(to bottom right, #FF8B38, #FE7259);
+    --secondcol: rgb(25,25,25);
+    --secondhvrcol: rgb(20,20,20);
+    --textcol: rgb(228, 228, 228);
+    --mtextcol: rgb(177,177,177);
+    --stextcol: rgb(109,109,109);
+    --linkcol: rgb(62, 181, 228);
+    --scrollfgcol: rgb(37, 37, 37);
+    --scrollbgcol: rgb(55,55,55);
+}
+.light {
+    --backgroundcol: rgb(228,228,228);
+    --backgroundurl: #fff;
+    --backgroundblur: 0;
+    --accentcol: linear-gradient(to bottom right, #FE7259, #FF8B38);
+    --accentcontrastcol: #fff;
+    --accenthvrcol: linear-gradient(to bottom right, #FF8B38, #FE7259);
+    --secondcol: #fff;
+    --secondhvrcol: rgb(228, 245, 255);
+    --textcol: rgb(20, 20, 20);
+    --mtextcol: rgb(40,40,40);
+    --stextcol: rgb(69, 69, 69);
+    --linkcol: rgb(16, 158, 214);
+    --scrollfgcol: #fff;
+    --scrollbgcol: rgb(210, 210, 210);
 }

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="./assets/css/themes.css" rel="stylesheet">
+    <link href="./assets/css/popup.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d5db5a9cd6.js" crossorigin="anonymous"></script>
+    
+    <link href="./assets/css/jquery-ui.min.css" rel="stylesheet">
+    <script src="./assets/js/jquery.min.js"></script>
+    <script>window.$ = window.jQuery = require('./assets/js/jquery.min.js');</script>
+    <script src="./assets/js/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $("#compose-popup-datec-input").datepicker({
+                dateFormat: "D, d M, yy",
+                defaultDate: 0
+            });
+            $("#compose-popup-datec-input").datepicker( "setDate", new Date() );
+        });
+    </script>
+</head>
+
+<body onload="loadComplete()" onmousedown="aaaaaaa()">
+    <div class="blurbg"></div>
+    <div class="header">
+        <div class="header-section header-left">
+            <img class="header-img" src="./assets/media/logo.svg" alt="logo">
+            <strong>Foxlmind</strong>
+        </div>
+        <!-- TODO: Add epic thingy where u do the thing where u do the search mhm yeah-->
+        <div class="header-section header-right">
+            <i class="header-icon fa-solid fa-cog hvr" onclick="popup('settings')"></i>
+        </div>
+    </div>
+    <div class="top-wrapper"><div class="top">
+        <!--<p class="top-title-page" id="top-title-page">Today</p>-->
+        <div class="top-title-day">
+            <i onclick="moveDate('left')" id="top-title-day-left" class="hvr top-title-day-chevron left fa-solid fa-chevron-left"></i>
+            <span class="top-title-day-text" id="top-title-day-text">Today</span>
+            <i onclick="moveDate('right')" id="top-title-day-right" class="hvr top-title-day-chevron right fa-solid fa-chevron-right"></i>
+        </div>
+        <p class="top-title-date" id="top-title-date">Sunday, Aug 21, 2022</p>
+        <div class="top-addtask" id="top-addtask">
+            <a class="button top-addtask-button hvr" onclick="popup('compose')"><i class="fa-solid fa-plus" style="margin-right: 5px;"></i> Add a task...</a>
+        </div>
+        <div class="top-showcompleted hvr togglew" onclick="toggleCheck('showCompleted', true); reloadPage()"><i id="showCompleted" class="hvr fa-solid fa-circle"></i> Show completed</div>
+    </div></div>
+    <div class="tasks" id="into-tasks">
+    </div>
+
+    <div id="compose-popup" style="top: 100%;">
+        <div class="compose-popup-background" style="top: 100%;"></div>
+        <div class="compose-popup-wrapper" style="top: 100%;"><div class="compose-popup" style="top: 100%;">
+            <div class="header">
+                <div class="header-section header-left">
+                    <img class="header-img" src="./assets/media/logo.svg" alt="logo">
+                    <strong>Foxlmind</strong> Compose task
+                </div>
+                <div class="header-section header-right">
+                    <img style="top: 100%;" src="./assets/media/cross.svg" class="compose-popup-close hvr" onclick="popup('compose')">
+                </div>
+            </div>
+            <div class="top-wrapper">
+                <div class="top">
+                    <p class="top-title-page" id="compose-popup-page">Compose</p>
+                    <div class="top-title-datec">
+                        <input class="compose-popup-datec-input" id="compose-popup-datec-input" type="text" size="30">
+                    </div>
+                    <div class="compose-popup-endless hvr" onclick="toggleCheck('compose-popup-endless-i')">
+                        <i id="compose-popup-endless-i" class="fa-solid fa-circle" style="margin-right: 5px;"></i> Endless
+                    </div>
+                </div>
+            </div>
+    
+            <div class="compose-popup-input">
+                <div class="compose-popup-input-tabs">
+                    <div class="compose-popup-input-tab open" id="compose-popup-input-tab-todo" onclick="composeSwitchTab('todo')">To-Do List</div>
+                    <div class="compose-popup-input-tab" id="compose-popup-input-tab-note" onclick="composeSwitchTab('note')">Note</div>
+                </div>
+                <div class="compose-popup-input-content-wrapper">
+                    <div class="compose-popup-input-content">
+                        <div class="error" id="compose-error">
+                            <span class="error-content" id="compose-error-content"><strong>Error</strong>: none</span>
+                            <button class="error-close" onclick="closeComposeError()">X</button>
+                        </div>
+                        <div class="compose-popup-input-opentab todo" id="compose-popup-input-todo">
+                            <input placeholder="Task title..." class="compose-popup-content-title" id="compose-popup-content-todo-title" type="text">
+                            <div class="compose-popup-content-points" id="compose-popup-content-points">
+                                <div class="compose-popup-content-point" id="compose-popup-content-point-0">
+                                    <i onclick="toggleCheck('compose-point-0')" id="compose-point-0" class="hvr fa-solid fa-circle" style="margin-right: 5px;"></i>
+                                    <input placeholder="Point label..." onkeydown="composeTodoKeydown()" class="compose-popup-content-point-label" id="compose-popup-content-point-0-label" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="compose-popup-input-opentab note" id="compose-popup-input-note" style="display: none;">
+                            <input placeholder="Task title..." class="compose-popup-content-title" id="compose-popup-content-note-title"
+                                type="text">
+                            <textarea placeholder="Task content..." class="compose-popup-content-note"
+                                id="compose-popup-content-note"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="compose-popup-buttons">
+                    <button class="btn btn-circle btn-accent hvr" onclick="composePostFromForm()">Post</button>
+                </div>
+            </div>
+        </div></div>
+    </div>
+
+    <div id="settings-popup" style="top: 100%;">
+        <div class="settings-popup-wrapper" style="top: 100%;"><div class="settings-popup" style="top: 100%;">
+            <div class="header" style="padding: 0;">
+                <div class="header-section header-left">
+                    <img class="header-img" src="./assets/media/logo.svg" alt="logo">
+                    <strong>Foxlmind</strong> Settings
+                </div>
+                <div class="header-section header-right">
+                    <img style="top: 100%;" src="./assets/media/cross.svg" class="settings-popup-close hvr" onclick="popup('settings')">
+                </div>
+            </div>
+            <div class="settings-content">
+            <div class="settings-themes-w">
+                <h1 class="settings-ph settings-themes-header">Themes <span class="secondary smol">(place in themes folder)</span></h1>
+                <div class="settings-themes" id="settings-themes">
+                    <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('night')">
+                        <div class="settings-theme-top">
+                            <p class="settings-theme-name">Night</p>
+                            <p class="settings-theme-builtin">Built-in</p>
+                        </div>
+                    </div></div>
+                    <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('dark')">
+                        <div class="settings-theme-top">
+                            <p class="settings-theme-name">Dark</p>
+                            <p class="settings-theme-builtin">Built-in</p>
+                        </div>
+                    </div></div>
+                    <div class="settings-theme-wrapper"><div class="settings-theme builtin" onclick="selectTheme('light')">
+                        <div class="settings-theme-top">
+                            <p class="settings-theme-name">Light</p>
+                            <p class="settings-theme-builtin">Built-in</p>
+                        </div>
+                    </div></div>
+                </div>
+                <p class="settings-themes-comingsoon secondary smol">Themes designer coming soon...<br>Plugins (maybe) coming soon...</p>
+            </div>
+            <div class="settings-tasks-w">
+                <h1 class="settings-ph settings-tasks-header">Tasks</h1>
+                <div class="settings-tasks">
+                    <button class="hvr btn btn-circle btn-accent" onclick="importTasks()">Import tasks</button>
+                    <button class="hvr btn btn-circle btn-gray" onclick="confirmResetTasks()">Reset tasks file</button>
+                </div>
+            </div>
+            </div>
+        </div></div>
+    </div>
+
+    <div class="absolute-popup-w" id="absolute-popup" style="top: 100%;">
+        <div class="absolute-popup">
+            <h1 class="absolute-header" id="absolute-header">Absolute header</h1>
+            <div class="absolute-details" id="absolute-details">Absolute details</div>
+        </div>
+    </div>
+
+    <script src="./assets/js/redesign.js"></script>
+    <script src="./assets/js/load.redesign.js"></script>
+    <script src="./assets/js/post-options.js"></script>
+    <script src="./assets/js/post-utils.js"></script>
+    <script src="./assets/js/compose.redesign.js"></script>
+    <script src="./assets/js/settings.redesign.js"></script>
+</body>
+
+</html>

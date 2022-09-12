@@ -33,7 +33,8 @@ const createWindow = () => {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow.setBackgroundColor('rgb(228,228,228)');
+  mainWindow.loadFile(path.join(__dirname, 'redesign.html'));
 
   mainWindow.on('ready-to-show', () => {
     autoUpdater.checkForUpdatesAndNotify();

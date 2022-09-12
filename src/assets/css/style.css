@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    font-family: Inter, Gantari, 'Helvetica Now', Helvetica, 'Open Sans', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    overflow-y: visible;
+    height: 100%;
+}
+html,body {
+    margin: 0;
+    background: linear-gradient(var(--backgroundcol), var(--backgroundcol)), var(--backgroundurl);
+    background-position: center;
+    background-size: cover;
+    color: var(--textcol);
+}
+.blurbg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(var(--backgroundblur));
+}
+body {
+    margin: 0;
+    height: calc(100% - 10px);
+}
+
+.button, .btn {
+    padding: 10px 13px 10px 13px;
+    font-family: Inter, Gantari, 'Helvetica Now', Helvetica, 'Open Sans', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    transition: 0.2s;
+}
+.btn-circle {
+    padding: 10px 20px 10px 20px;
+    border-radius: 1000px;
+}
+.btn-accent {
+    background: var(--accentcol);
+    color: var(--accentcontrastcol);
+}
+.btn-accent:hover { background: var(--accenthvrcol); }
+.btn-gray {
+    background: var(--secondcol);
+    color: var(--textcol);
+}
+.btn-gray:hover { background: var(--secondhvrcol); }
+
+.hvr { cursor: pointer; }
+.hvrul:hover { text-decoration: underline;}
+
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--scrollbgcol);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--scrollfgcol);
+    border-radius: 10px;
+}
+
+a, .link {
+    color: var(--linkcol);
+    text-decoration: none;
+    padding: 3px;
+    transition: 0.2s;
+}
+a:hover, .link:hover {
+    color: var(--textcol);
+    background-color: var(--linkcol);
+}
+
+.secondary {
+    color: var(--stextcol);
+}
+.secondary.smol {
+    font-size: 16px; font-weight: 400;
+}
+
+/* tasks */
+.tasks {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    overflow-y: auto;
+    width: calc(100% - 10px);
+    height: calc(100% - 270px);
+    margin-bottom: 0;
+}
+.task-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+
+    height: min-content;
+    margin: 10px;
+    padding: 5px;
+}
+.task {
+    padding: 5px;
+    margin: 5px;
+    width: 250px;
+    transition: 0.2s;
+    height: 100%;
+}
+.task-options.open { opacity: 1; top: 10px; }
+.task-options {
+    top: -5px;
+    opacity: 0;
+    position: absolute;
+    color: var(--textcol);
+    background: var(--secondcol);
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.1s;
+}
+.task-option {
+    width: 30;
+    height: 30;
+    padding: 5px;
+    z-index: 1;
+}
+.open .task-option { cursor: pointer; }
+.task-date {
+    color: var(--stextcol);
+    font-size: 12px;
+    margin: 0;
+}
+.task-title {
+    font-family: Poppins, Inter, Gantari, 'Helvetica Now', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.task-contents {
+    position: relative;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+.task-contents span {
+    color: var(--mtextcol);
+}
+.todo-point.checked { font-weight: 500; color: var(--textcol); }
+.todo-point { margin-top: 5px; cursor: pointer; display: flex; color: var(--stextcol); }
+.todo-point label { margin-top: -2px; margin-left: 10px; }
+
+/* editing task */
+.task-wrapper.editing { background-color: var(--secondcol); }
+.editinput {
+    font-family: inherit;
+    background-color: var(--secondhvrcol);
+    color: var(--textcol);
+    border: none;
+    border-radius: 10px;
+    max-width: calc(100% - 20px);
+    max-height: 250px;
+    padding: 10px;
+}
+.editinput.title { font-size: 24px; }
+.editinput.content { font-size: 20px; }
+.editinput.point {
+    position: absolute;
+    left: 20px;
+}
+.editinput.mw {
+    max-width: calc(100% - 30px);
+    margin-left: 5px;
+    padding: 5px 10px 5px 10px;
+}
+.editinput:focus { outline: none; }
+
+.noposts {
+    font-size: 16px;
+    color: var(--stextcol);
+}
+
+
+/* OTHER !!!! */
+
+/* kinda global but not ig */
+.header {
+    margin: 8px;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 21px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.header strong {
+    margin-right: 7px;
+    font-weight: 600;
+}
+.header-section {
+    display: flex;
+    align-items: center;
+}
+.header-img { margin-right: 7px; }
+
+.top-wrapper {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Poppins, Inter, Gantari, 'Helvetica Now', Helvetica, Arial, sans-serif;
+}
+
+.top-title-page {
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.top-title-day {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 300;
+}
+.top-title-day-text {
+    margin-top: -5px;
+}
+.top-title-day-chevron {
+    font-size: 20px;
+    color: var(--stextcol);
+}
+.top-title-day-chevron.left { margin-right: 20px; }
+.top-title-day-chevron.right { margin-left: 20px; }
+.top-title-date {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--mtextcol);
+}
+
+.top-addtask {
+    width: 100%px;
+    margin-bottom: 15px;
+}
+.top-addtask-button {
+    font: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    height: 25px;
+    width: 100%;
+    background: transparent;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    color: var(--mtextcol);
+    background-color: var(--secondcol);
+}
+.top-addtask-button:hover {
+    background-color: var(--secondhvrcol);
+}
+.top-addtask input {
+    margin-top: 10px;
+    background-color: var(--secondcol);
+    color: var(--mtextcol);
+    padding: 7px 10px 7px 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}

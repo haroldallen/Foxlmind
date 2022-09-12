@@ -56,7 +56,6 @@
   },
   "dependencies": {
     "@electron/remote": "^2.0.8",
-    "electron": "^19.0.7",
     "electron-forge": "^5.2.4",
     "electron-json-storage": "^4.5.0",
     "electron-squirrel-startup": "^1.0.0",
@@ -74,10 +73,9 @@
     "electron-builder": "^22.14.13"
   },
   "build": {
+    "productName": "Foxlmind",
+    "copyright": "Copyright © 2022 Foxlldev",
     "appId": "design.foxl.foxlmind",
-    "icon": "./src/assets/media/logo.png",
-    "publish": [
-      "github"
-    ]
+    "icon": "./build/icon.icns"
   }
 }
