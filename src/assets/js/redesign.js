@@ -39,8 +39,14 @@ function moveDate(dir, compose = false) {
     document.getElementById('into-tasks').innerHTML = "";
     loadTasksComplete(dt);
 }
-
-function toggleCheck(id) {
+function loadChecks() {
+    let sc = document.getElementById('showCompleted');
+    sc.classList.remove('fa-circle');
+    console.log(window.localStorage.getItem('showCompleted') === 'true');
+    sc.classList.add(window.localStorage.getItem('showCompleted') === 'true' ? 'fa-check-circle' : 'fa-circle');
+    if (window.localStorage.getItem('showCompleted') === 'true') sc.parentElement.classList.add('checked');
+}
+function toggleCheck(id, store=false) {
     let t = document.getElementById(id);
     if (t.parentElement.classList.contains('checked')) {
         t.classList.replace('fa-check-circle', 'fa-circle');
@@ -48,6 +54,10 @@ function toggleCheck(id) {
     } else {
         t.classList.replace('fa-circle', 'fa-check-circle');
         t.parentElement.classList.add('checked');
+    }
+
+    if (store) {
+        window.localStorage.setItem(id, t.parentElement.classList.contains('checked'));
     }
 }
 function toggleCheckT(id, i, it) {
@@ -114,7 +124,7 @@ function rightClickThingy(id) {
     let a = document.getElementById(id).children[0];
     listOfDumbThingaMaJigs.push(id);
 
-    setTimeout(function(){if (isRightMB) { a.classList.add('open'); }},10)
+    setTimeout(function(){if (isRightMB) { a.classList.add('open'); }},150)
 }
 
 function aaaaaaa() {
@@ -128,5 +138,5 @@ function aaaaaaa() {
                 listOfDumbThingaMaJigs.splice(listOfDumbThingaMaJigs[i], 1);
             }
         }
-    }, 5);
+    }, 140);
 }

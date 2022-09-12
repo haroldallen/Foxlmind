@@ -1,19 +1,20 @@
 async function optionComplete(id) {
+    if (!document.getElementById('into-tasks').children[id].children[0].classList.contains('open')) return;
     console.log("Attempting to mark post with id "+id+" completed")
     updateValueInPost(id, "state", "completed");
     reloadPage();
 }
-this.optionComplete = optionComplete;
 
 async function optionUncomplete(id) {
+    if (!document.getElementById('into-tasks').children[id].children[0].classList.contains('open')) return;
     console.log("Attempting to mark post with id "+id+" uncompleted");
     updateValueInPost(id, "state", "visible");
     reloadPage();
 }
-this.optionUncomplete = optionUncomplete;
 
 function optionEdit(id) {
     let tasks = document.getElementById('into-tasks').children;
+    if (!tasks[id].children[0].classList.contains('open')) return;
     let task = tasks.namedItem('tid-'+id);
     let taskc = task.children[1];
     let taskType = task.children[1].children[2].classList.contains('todo') ? 'todo' : 'note';
@@ -42,7 +43,6 @@ function optionEdit(id) {
 
     $("#"+taskc.id).append(`<span class='secondary smol hvr hvrul' onclick='submitEdit(${id})'><i class='fa-solid fa-check'></i> Finish editing</span>`);
 }
-this.optionEdit = optionEdit;
 
 function submitEdit(id) {
     let tasks = document.getElementById('into-tasks').children;
@@ -69,45 +69,17 @@ function submitEdit(id) {
             updateValueInPost(id, 'content', newContent);
         }
 
-        //reloadPage();
+        reloadPage();
     }, 100);
 }
 
-function optionFuncEditDate(id, newDate) {
-    updateValueInPost(id, "date", newDate);
-    reloadPage();
-}
-this.optionFuncEditDate = optionFuncEditDate;
-function optionFuncEditTitle(id, newTitle) {
-    updateValueInPost(id, "title", newTitle);
-    reloadPage();
-}
-this.optionFuncEditTitle = optionFuncEditTitle;
-function optionFuncEditNoteContent(id, newContent) {
-    getValueInPost(id, "type", function(rv) {
-        if (rv === "note") {
-            updateValueInPost(id, "content", newContent);
-            reloadPage();
-        }
-    })
-}
-this.optionFuncEditNoteContent = optionFuncEditNoteContent;
-function optionFuncEditTodoLabel(pid, cid, newLabel) {
-    getValueInPost(pid, "type", function(rv) {
-        if (rv === "todo") {
-            updateTodoValueInPost(pid, cid, "label", newLabel);
-            reloadPage();
-        }
-    })
-}
-this.optionFuncEditTodoLabel = optionFuncEditTodoLabel;
-
 function optionDelete(id) {
+    console.log(document.getElementById('into-tasks').children[id].children[0]);
+    if (!document.getElementById('into-tasks').children[id].children[0].classList.contains('open')) return;
     console.log("Attempting to delete post with id "+id)
     deletePost(id);
     reloadPage();
 }
-this.optionDelete = optionDelete;
 
 function updateCheck(pid, cid, checked) {
     updateTodoValueInPost(pid, cid, "val", checked);
@@ -117,4 +89,3 @@ function updateCheck(pid, cid, checked) {
 function closeError() {
     document.getElementById("error").style.display = "none";
 }
-this.closeError = closeError;

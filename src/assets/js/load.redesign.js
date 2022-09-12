@@ -45,12 +45,11 @@ function loadTasks(tc) {
     const contentsDiv = document.getElementById("into-tasks");
     contentsDiv.innerHTML = "";
     try {
-        console.log("Loading tasks...")
         const notesfile = fs.readFileSync(dataPath+"/posts.fpf");
         const notesParsed = JSON.parse(notesfile);
         let notes = notesParsed.table;
-        console.log("Tasks: "+notes);
         let notesLength = Object.keys(notes).length;
+        console.log("Loading tasks ("+notesLength+") ...")
         let postsLoaded = 0;
 
         for (let i = 0; i < notesLength; i++) {
@@ -60,28 +59,29 @@ function loadTasks(tc) {
 
             console.log("Loading task " + i)
             console.log("Task date: " + thisNoteValues[0] + "... Today: " + tc)
-
+            
             let upcomingBoolean = false;
+            let todayDate = new Date(tc);
+            let taskDate = new Date(thisNoteValues[0]);
             if (gpg === "upcoming") {
                 if (tc === "endless") {
                     upcomingBoolean = true;
                 } else {
-                    let mba = new Date(tc);
-                    upcomingBoolean = mba < new Date(thisNoteValues[0]);
+                    upcomingBoolean = (todayDate < taskDate && todayDate !== taskDate);
                 }
             }
             if (gpg === "past" && thisNoteValues[0] !== "endless") {
-                let mba = new Date();
-                upcomingBoolean = mba > new Date(thisNoteValues[0]);
+                upcomingBoolean = (todayDate > taskDate && todayDate !== taskDate);
             }
 
 
-            if ((gpg === "today" && thisNoteValues[4] === "visible") || (gpg === "completed" && thisNoteValues[4] === "completed") || (gpg === "upcoming" && thisNoteValues[4] === "visible") || (gpg === "past" && thisNoteValues[4] === "visible")) {
-                if ((gpg === "completed" || thisNoteValues[0] === tc || thisNoteValues[0] === "endless" || upcomingBoolean) && gpg !== "past" || gpg === "past" && upcomingBoolean) {
+            if (gpg === "today" || gpg === "upcoming" || gpg === "past") {
+                if ((thisNoteValues[0] === tc || thisNoteValues[0] === "endless" || upcomingBoolean) && gpg !== "past" || (gpg === "past" && upcomingBoolean)) {
+                    if ((!document.getElementById('showCompleted').parentElement.classList.contains('checked')) && thisNoteValues[4] === "completed") continue;
                     console.log("Task "+i+" matches filter")
                     let unCompleteIcon = "fa-check";
                     let unComplete = "Complete";
-                    if (gpg === "completed") { unComplete = "Uncomplete"; unCompleteIcon = "fa-angle-left"; }
+                    if (thisNoteValues[4] === "completed") { unComplete = "Uncomplete"; unCompleteIcon = "fa-angle-left"; }
 
                     let dateFormatted = thisNoteValues[0];
                     if (dateFormatted !== "endless") {
@@ -173,7 +173,8 @@ function loadComplete() {
     let dt = new Date();
     makeDate(dt, "", "");
     loadTheme();
-    setTimeout(function() {loadTasksComplete(dt);}, 50);
+    loadChecks();
+    setTimeout(function() {loadTasksComplete(dt);}, 10);
 }
 this.loadComplete = loadComplete;
 

@@ -1,4 +1,4 @@
-const { getCurrentWindow, dialog } = require('@electron/remote');
+const { mainWindow, getCurrentWindow, dialog } = require('@electron/remote');
 
 async function importTasks() {
     let file = await dialog.showOpenDialog(getCurrentWindow(), {

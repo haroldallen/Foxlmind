@@ -35,7 +35,7 @@
 .compose-popup-input {
     margin-top: 30px;
     overflow-y: auto;
-    height: calc(100% - 255px);
+    height: calc(100% - 270px);
     padding: 20px;
 }
 .compose-popup-input-tabs {

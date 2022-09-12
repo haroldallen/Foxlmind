@@ -126,13 +126,15 @@ a:hover, .link:hover {
     background: var(--secondcol);
     padding: 10px;
     border-radius: 10px;
-    z-index: 1;
     transition: 0.1s;
 }
 .task-option {
-    cursor: pointer;
+    width: 30;
+    height: 30;
     padding: 5px;
+    z-index: 1;
 }
+.open .task-option { cursor: pointer; }
 .task-date {
     color: var(--stextcol);
     font-size: 12px;
@@ -154,9 +156,6 @@ a:hover, .link:hover {
 }
 .task-contents span {
     color: var(--mtextcol);
-}
-.task-contents {
-    
 }
 .todo-point.checked { font-weight: 500; color: var(--textcol); }
 .todo-point { margin-top: 5px; cursor: pointer; display: flex; color: var(--stextcol); }

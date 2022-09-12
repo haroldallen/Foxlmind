@@ -29,6 +29,7 @@
             <img class="header-img" src="./assets/media/logo.svg" alt="logo">
             <strong>Foxlmind</strong>
         </div>
+        <!-- TODO: Add epic thingy where u do the thing where u do the search mhm yeah-->
         <div class="header-section header-right">
             <i class="header-icon fa-solid fa-cog hvr" onclick="popup('settings')"></i>
         </div>
@@ -44,7 +45,7 @@
         <div class="top-addtask" id="top-addtask">
             <a class="button top-addtask-button hvr" onclick="popup('compose')"><i class="fa-solid fa-plus" style="margin-right: 5px;"></i> Add a task...</a>
         </div>
-        <div class="top-showcompleted hvr togglew" onclick="toggleCheck('showCompleted')"><i id="showCompleted" class="hvr fa-solid fa-circle"></i> Show completed</div>
+        <div class="top-showcompleted hvr togglew" onclick="toggleCheck('showCompleted', true); reloadPage()"><i id="showCompleted" class="hvr fa-solid fa-circle"></i> Show completed</div>
     </div></div>
     <div class="tasks" id="into-tasks">
     </div>
