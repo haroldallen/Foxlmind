@@ -14,8 +14,8 @@ async function optionUncomplete(id) {
 
 function optionEdit(id) {
     let tasks = document.getElementById('into-tasks').children;
-    if (!tasks[id].children[0].classList.contains('open')) return;
     let task = tasks.namedItem('tid-'+id);
+    if (!task.children[0].classList.contains('open')) return;
     let taskc = task.children[1];
     let taskType = task.children[1].children[2].classList.contains('todo') ? 'todo' : 'note';
     
@@ -55,8 +55,10 @@ function submitEdit(id) {
     updateValueInPost(id, 'title', newTitle);
 
     setTimeout(function () {
+        let time = 50;
         if (taskType === "todo") {
             let points = taskc.children[2].children;
+            time += (points.length*50);
             for (let i = 0; i < points.length; i++) {
                 let newLabel = points[i].children[1].children[0].value;
                 console.log("Editing NewPointLabel for point " + i + ": " + newLabel);
@@ -68,8 +70,7 @@ function submitEdit(id) {
             console.log("Editing NewNoteContent: " + newContent);
             updateValueInPost(id, 'content', newContent);
         }
-
-        reloadPage();
+        setTimeout(function(){reloadPage();},time);
     }, 100);
 }
 
