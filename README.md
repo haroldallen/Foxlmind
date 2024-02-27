@@ -1,9 +1,12 @@
+# Deprecated
+This app is nolonger being worked on but will continue to function (although buggy)
+
 <div align="center">
     <img src="readme/media/logo.svg" alt="logo" height="200px"><br>
-    <h3>Foxlmind</h3>
-    An epic note-keeping and to-do app built in <a href="https://electronjs.org">Electron</a> by <a href="https://github.com/foxlldev">Foxlldev</a><br><br>
-    <a href="https://foxl.design/mind"><b>Website</b></a>&nbsp;&nbsp;&nbsp;
-    <a href="https://foxl.design/mind#downloads"><b>Downloads</b></a>&nbsp;&nbsp;&nbsp;
+    <h3>Mindnote (prev. Foxlmind)</h3>
+    An epic note-keeping and to-do app built in <a href="https://electronjs.org">Electron</a> by <a href="https://github.com/haroldallen">Harold Allen</a><br><br>
+    <a><b>Website</b></a>&nbsp;&nbsp;&nbsp;
+    <a><b>Downloads</b></a>&nbsp;&nbsp;&nbsp;
     <a href="https://github.com/foxlldev/Foxlmind/releases"><b>Releases</b></a>&nbsp;&nbsp;&nbsp;
     <a href="https://github.com/foxlldev/Foxlmind/issues"><b>Issues</b></a>&nbsp;&nbsp;&nbsp;
 </div>
@@ -24,7 +27,7 @@
 
 ## For developers
 
-### How to contribute Foxlmind
+### How to contribute to Foxlmind
 
 To contribute Foxlmind, first fork this repository. Click 'fork', 'create fork'. Next, clone the your fork of repository in GitHub Desktop or equivilent, and make your changes. You can make an unlimited ammount of commits to your repository, though it's easier for us if you keep it small. After you push your changes, you can open a pull request so that we can merge your changes if we deem them helpful.
 
